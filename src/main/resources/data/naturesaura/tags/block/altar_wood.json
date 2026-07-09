@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "tfaura:wood/planks/ancient",
+    {
+      "id": "#arborfirmacraft:planks",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:planks",
+      "required": false
+    },
+    {
+      "id": "#afc:planks",
+      "required": false
+    }
+  ]
+}
