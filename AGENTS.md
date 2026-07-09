@@ -44,7 +44,7 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - golden leavesはTFAura独自ブロック`tfaura:wood/leaves/golden`として実装する。Nature's Aura本体仕様に合わせ、stage 0〜3、stage 2以降の隣接葉伝播、stage 3の金色粒子、stage 3時のみ75%で`naturesaura:gold_leaf`ドロップを持つ。TFC葉同様に衝突判定なし。
 - decayed leavesはTFAura独自ブロック`tfaura:wood/leaves/decayed`として実装する。Nature's Aura本体仕様に合わせ、ランダムtickで空気へ消える。TFC葉同様に衝突判定なし。
 - `naturesaura:gold_fiber`を使ったgolden leaves変換対象はTFC/ArborFirmaCraft/TFAura/Beneath系の葉。TFCは`#tfc:seasonal_leaves`/`#tfc:fruit_tree_leaves`、他modは`#tfaura:golden_leaves_convertible`タグと`minecraft:leaves` + namespace判定で拾う。
-- TFCワールド生成は`#tfc:feature/land_plants`へplaced featureを追加し、各植物のplaced feature側で`tfc:climate`により温度・地下水・森林度を制限する。
+- TFCワールド生成は`#tfc:feature/land_plants`へoverworld植物のplaced featureを追加し、各植物のplaced feature側で`tfc:climate`により温度・地下水・森林度を制限する。ただし`crimson_aura_mushroom`と`warped_aura_mushroom`はoverworld生成せず、Nature's Aura本体のNether biome modifier/configured featureを同名上書きしてTFAura版ブロックをNetherへ生成する。
 - Nature's Aura由来金属はTFAura側の独自アイテムとして実装し、Nature's Aura本体インゴットをそのままTFC金属フォームとしては使わない。
 - TFC風金属実装対象は`infused_iron`, `tainted_gold`, `sky`, `depth`。
 - 標準金属フォームは常時登録: ingot, double_ingot, sheet, double_sheet, rod。
@@ -67,6 +67,6 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 負のauraの具体効果: tier 1は主に成長遅延で、作物growthを0.015減らし、苗木系tick counterをresetする。tier 2は作物growthを`0.05 * intensity`（0.03〜0.12にclamp）減らし、dead crop化3〜12%、grass die 3%、苗木消滅2%、汎用非葉植物消滅2%。tier 3は作物growthを`0.12 * intensity`（0.08〜0.35にclamp）減らし、dead crop化12〜75%、grass die 25〜85%、苗木消滅8〜65%、汎用非葉植物消滅8〜55%。葉はNature's Aura本体のGrassDieEffectに合わせ、直接破壊せず`tfaura:wood/leaves/decayed`へ変換し、その後decayed leaves自身のrandom tickで空気へ消える。
 - 葉のdecayed化対象はTFC/TFAura/Beneath/ArborFirmaCraft/Arbor_FirmaCraft/AFC名前空間で、`#minecraft:leaves`、`#tfaura:golden_leaves_convertible`、またはTFC葉タグに入る対応葉。TFAura golden leavesとTFAura decayed leaves自身は対象外。
 - Natural Altarの構成ブロックはNature's Aura本体の`data/naturesaura/tags/block/altar_*`を拡張して対応する。TFC通常木材は`#minecraft:planks`、TFC岩石レンガは`#minecraft:stone_bricks`経由で利用でき、TFC chiseled rockは`altar_fancy_brick`へ明示追加する。TFAura ancient planksとArbor系planksタグも`altar_wood`へ追加する。
-- Ritual of the ForestはNature's Aura本体の`data/naturesaura/recipe/tree_ritual/*`を同名上書きし、中心苗木を`#tfaura:tree_ritual_saplings`へ差し替える。このタグは`#minecraft:saplings`、TFAura ancient sapling、Arbor系saplings optional tagsを含む。TFC果樹苗と竹苗はRitual対象にしない。
-- Tree Ritual内のNature's Aura金属素材はTFAura金属へ寄せる。`ancient_sapling` ritualは`tfaura:wood/sapling/ancient`を出力し、stone/grain/seed/sugarcane/meat/fish等はTFC環境向けのTFAura item tagで受ける。
+- Ritual of the ForestはNature's Aura本体の`data/naturesaura/recipe/tree_ritual/*`を同名上書きし、中心苗木を`#tfaura:tree_ritual_saplings`へ差し替える。このタグはTFAura ancient sapling、TFC通常木sapling、BeneathのNether sapling、Arbor系の1x1/single sapling optional tagsだけを含む。TFC果樹苗・竹苗・2x2成長前提のsaplingはRitual対象にしない。
+- Tree Ritual内のNature's Aura金属素材はTFAura金属へ寄せる。`ancient_sapling` ritualは`tfaura:wood/sapling/ancient`を出力する。レシピ素材はTFC素材またはTFCが供給するcommon tagへ寄せ、`tfc:torch`や`tfc:poured_glass`のような明確な1:1対応はレシピへ直接置換する。TFCに相当品がない素材は元の`minecraft:*`のまま残し、複数候補が必要なsugarcane/magma rocks/grass類だけTFAura item tagで受ける。
 - Nature's Aura本体の主要素材生成レシピは同名上書きでTFAura金属へ寄せる。altarのinfused iron/tainted gold、offeringのsky ingot、depth ingot creationはTFAura metal ingotを出力する。

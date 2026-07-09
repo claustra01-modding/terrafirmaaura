@@ -16,10 +16,10 @@ public final class TFAuraFeatures {
         () -> new TFAuraPlantPatchFeature(TFAuraBlocks.AURA_CACTUS, 3, 6));
     public static final DeferredHolder<Feature<?>, TFAuraPlantPatchFeature> AURA_MUSHROOM = FEATURES.register("aura_mushroom",
         () -> new TFAuraPlantPatchFeature(TFAuraBlocks.AURA_MUSHROOM, 5, 8));
-    public static final DeferredHolder<Feature<?>, TFAuraPlantPatchFeature> CRIMSON_AURA_MUSHROOM = FEATURES.register("crimson_aura_mushroom",
-        () -> new TFAuraPlantPatchFeature(TFAuraBlocks.CRIMSON_AURA_MUSHROOM, 4, 8));
-    public static final DeferredHolder<Feature<?>, TFAuraPlantPatchFeature> WARPED_AURA_MUSHROOM = FEATURES.register("warped_aura_mushroom",
-        () -> new TFAuraPlantPatchFeature(TFAuraBlocks.WARPED_AURA_MUSHROOM, 4, 8));
+    public static final DeferredHolder<Feature<?>, TFAuraNetherPlantPatchFeature> CRIMSON_AURA_MUSHROOM = FEATURES.register("crimson_aura_mushroom",
+        () -> new TFAuraNetherPlantPatchFeature(TFAuraBlocks.CRIMSON_AURA_MUSHROOM, 8, 8, 64));
+    public static final DeferredHolder<Feature<?>, TFAuraNetherPlantPatchFeature> WARPED_AURA_MUSHROOM = FEATURES.register("warped_aura_mushroom",
+        () -> new TFAuraNetherPlantPatchFeature(TFAuraBlocks.WARPED_AURA_MUSHROOM, 8, 8, 64));
     public static final DeferredHolder<Feature<?>, TFAuraPlantPatchFeature> BRILLIANT_GRASS = FEATURES.register("brilliant_grass",
         () -> new TFAuraPlantPatchFeature(TFAuraBlocks.BRILLIANT_GRASS, 6, 8));
 

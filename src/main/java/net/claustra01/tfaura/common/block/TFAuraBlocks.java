@@ -12,6 +12,8 @@ import net.dries007.tfc.common.blocks.wood.TFCFenceGateBlock;
 import net.dries007.tfc.common.blocks.wood.TFCSlabBlock;
 import net.dries007.tfc.common.blocks.wood.TFCStairBlock;
 import net.dries007.tfc.common.blocks.wood.Wood;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +28,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class TFAuraBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TerraFirmaAura.MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TerraFirmaAura.MOD_ID);
+    public static final TagKey<Block> NETHER_AURA_MUSHROOM_PLANTABLE_ON = BlockTags.create(TerraFirmaAura.id("nether_aura_mushroom_plantable_on"));
 
     public static final DeferredBlock<TFAuraPlantBlock> AURA_BLOOM = register("plant/aura_bloom",
         () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.PLANT).lightLevel(state -> 7), TFCTags.Blocks.BUSH_PLANTABLE_ON, TFAuraPlantBlock.AURA_BLOOM_SHAPE, false));
@@ -34,9 +37,9 @@ public final class TFAuraBlocks {
     public static final DeferredBlock<TFAuraPlantBlock> AURA_MUSHROOM = register("plant/aura_mushroom",
         () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.PLANT).lightLevel(state -> 3), TFCTags.Blocks.BUSH_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
     public static final DeferredBlock<TFAuraPlantBlock> CRIMSON_AURA_MUSHROOM = register("plant/crimson_aura_mushroom",
-        () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.CRIMSON_STEM).lightLevel(state -> 3), TFCTags.Blocks.BUSH_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
+        () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.CRIMSON_STEM).lightLevel(state -> 3), NETHER_AURA_MUSHROOM_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
     public static final DeferredBlock<TFAuraPlantBlock> WARPED_AURA_MUSHROOM = register("plant/warped_aura_mushroom",
-        () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.WARPED_STEM).lightLevel(state -> 3), TFCTags.Blocks.BUSH_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
+        () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.WARPED_STEM).lightLevel(state -> 3), NETHER_AURA_MUSHROOM_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
     public static final DeferredBlock<TFAuraPlantBlock> BRILLIANT_GRASS = registerNoItem("plant/brilliant_grass",
         () -> new TFAuraPlantBlock(plantProperties(MapColor.GOLD).lightLevel(state -> 5), TFCTags.Blocks.GRASS_PLANTABLE_ON, TFAuraPlantBlock.GRASS_SHAPE));
 
