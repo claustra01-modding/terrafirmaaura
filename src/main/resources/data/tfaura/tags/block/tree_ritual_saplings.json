@@ -1,0 +1,58 @@
+{
+  "replace": false,
+  "values": [
+    "tfaura:wood/sapling/ancient",
+    "tfc:wood/sapling/acacia",
+    "tfc:wood/sapling/ash",
+    "tfc:wood/sapling/aspen",
+    "tfc:wood/sapling/birch",
+    "tfc:wood/sapling/blackwood",
+    "tfc:wood/sapling/chestnut",
+    "tfc:wood/sapling/douglas_fir",
+    "tfc:wood/sapling/hickory",
+    "tfc:wood/sapling/kapok",
+    "tfc:wood/sapling/mangrove",
+    "tfc:wood/sapling/maple",
+    "tfc:wood/sapling/oak",
+    "tfc:wood/sapling/palm",
+    "tfc:wood/sapling/pine",
+    "tfc:wood/sapling/rosewood",
+    "tfc:wood/sapling/sequoia",
+    "tfc:wood/sapling/spruce",
+    "tfc:wood/sapling/sycamore",
+    "tfc:wood/sapling/white_cedar",
+    "tfc:wood/sapling/willow",
+    {
+      "id": "beneath:wood/sapling/crimson",
+      "required": false
+    },
+    {
+      "id": "beneath:wood/sapling/warped",
+      "required": false
+    },
+    {
+      "id": "#arborfirmacraft:single_saplings",
+      "required": false
+    },
+    {
+      "id": "#arborfirmacraft:1x1_saplings",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:single_saplings",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:1x1_saplings",
+      "required": false
+    },
+    {
+      "id": "#afc:single_saplings",
+      "required": false
+    },
+    {
+      "id": "#afc:1x1_saplings",
+      "required": false
+    }
+  ]
+}

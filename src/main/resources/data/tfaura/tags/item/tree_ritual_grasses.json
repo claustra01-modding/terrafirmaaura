@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "tfc:plant/bear_grass",
+    "tfc:plant/bluegrass",
+    "tfc:plant/tall_fescue_grass",
+    "tfc:plant/switchgrass",
+    "tfc:plant/star_grass",
+    "tfc:plant/raddia_grass",
+    "tfc:plant/red_oat_grass",
+    "tfc:plant/timothy_grass",
+    "tfc:plant/manatee_grass",
+    "tfc:plant/orchard_grass",
+    "tfc:plant/bromegrass",
+    "tfc:plant/scutch_grass",
+    "tfc:plant/beachgrass",
+    "tfc:plant/ryegrass",
+    "tfc:plant/eel_grass",
+    "tfc:plant/pampas_grass",
+    "tfc:plant/turtle_grass",
+    "tfc:plant/cordgrass",
+    "tfc:plant/fountain_grass",
+    "tfc:plant/dry_grass"
+  ]
+}
