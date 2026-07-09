@@ -1,0 +1,1 @@
+{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:welding","first_input":{"tag":"c:double_sheets/sky"},"second_input":{"tag":"c:sheets/sky"},"tier":1,"result":{"id":"tfaura:metal/heavy_sheet/sky"}}

@@ -1,0 +1,1 @@
+{"type":"tfc:anvil","ingredient":{"tag":"c:double_ingots/depth"},"result":{"id":"tfaura:metal/sheet/depth"},"tier":6,"rules":["hit_last","hit_second_last","hit_third_last"]}

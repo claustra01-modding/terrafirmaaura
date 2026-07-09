@@ -1,0 +1,1 @@
+{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:heating","ingredient":{"tag":"c:gears/tainted_gold"},"result_fluid":{"amount":400,"id":"tfc:metal/tainted_gold"},"temperature":1060}

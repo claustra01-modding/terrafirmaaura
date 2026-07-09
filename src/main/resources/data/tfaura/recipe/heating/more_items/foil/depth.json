@@ -1,0 +1,1 @@
+{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:heating","ingredient":{"tag":"c:foils/depth"},"result_fluid":{"amount":100,"id":"tfc:metal/depth"},"temperature":1600}

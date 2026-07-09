@@ -1,0 +1,1 @@
+{"type":"tfc:anvil","ingredient":{"tag":"c:double_ingots/infused_iron"},"result":{"id":"tfaura:metal/sheet/infused_iron"},"tier":3,"rules":["hit_last","hit_second_last","hit_third_last"]}

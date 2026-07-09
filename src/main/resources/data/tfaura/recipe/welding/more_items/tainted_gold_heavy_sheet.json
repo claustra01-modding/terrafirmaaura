@@ -1,0 +1,1 @@
+{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:welding","first_input":{"tag":"c:double_sheets/tainted_gold"},"second_input":{"tag":"c:sheets/tainted_gold"},"tier":1,"result":{"id":"tfaura:metal/heavy_sheet/tainted_gold"}}

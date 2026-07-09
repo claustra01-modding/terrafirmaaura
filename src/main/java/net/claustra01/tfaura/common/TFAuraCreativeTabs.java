@@ -2,6 +2,9 @@ package net.claustra01.tfaura.common;
 
 import net.claustra01.tfaura.TerraFirmaAura;
 import net.claustra01.tfaura.common.block.TFAuraBlocks;
+import net.claustra01.tfaura.common.item.TFAuraItems;
+import net.claustra01.tfaura.common.item.TFAuraItems.TFAuraMoreItemType;
+import net.claustra01.tfaura.common.item.TFAuraMetal;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -36,6 +39,19 @@ public final class TFAuraCreativeTabs {
             output.accept(TFAuraBlocks.GOLDEN_LEAVES.get());
             output.accept(TFAuraBlocks.FALLEN_ANCIENT_LEAVES.get());
             output.accept(TFAuraBlocks.ANCIENT_TWIG.get());
+            for (TFAuraMetal metal : TFAuraMetal.VALUES) {
+                output.accept(TFAuraItems.METAL_INGOTS.get(metal).get());
+                output.accept(TFAuraItems.METAL_DOUBLE_INGOTS.get(metal).get());
+                output.accept(TFAuraItems.METAL_SHEETS.get(metal).get());
+                output.accept(TFAuraItems.METAL_DOUBLE_SHEETS.get(metal).get());
+                output.accept(TFAuraItems.METAL_RODS.get(metal).get());
+
+                if (TFAuraItems.MORE_METAL_ITEMS.containsKey(metal)) {
+                    for (TFAuraMoreItemType type : TFAuraMoreItemType.VALUES) {
+                        output.accept(TFAuraItems.MORE_METAL_ITEMS.get(metal).get(type).get());
+                    }
+                }
+            }
         })
         .build());
 

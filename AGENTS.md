@@ -15,10 +15,12 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 
 - mod idは`tfaura`、Javaパッケージは`net.claustra01.tfaura`。
 - 依存関係はTerraFirmaCraft、Nature's Aura、Patchouliを必須扱いにする。
+- TFC More Items系（mod id `tfc_items`）は任意依存扱いにし、存在する場合のみ対応アイテムを登録する。
 - 初期ID規則:
   - TFC対応植物は`tfaura:plant/<name>`。
   - TFC対応古代木は`tfaura:wood/<type>/ancient`。
   - TFC対応worldgen植物featureは`tfaura:plant/<name>`。
+  - TFC風金属アイテムは`tfaura:metal/<form>/<metal>`。
 - 初期実装対象:
   - Nature's Aura由来の植物: `aura_bloom`, `aura_cactus`, `aura_mushroom`, `crimson_aura_mushroom`, `warped_aura_mushroom`。
   - brilliant fiber供給用の弱光源装飾植物: `brilliant_grass`。ブロックIDは`tfaura:plant/brilliant_grass`、ドロップは`naturesaura:gold_fiber`。
@@ -34,3 +36,12 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合は`naturesaura:decayed_leaves`へ変化する。
 - golden leavesの侵蝕はTFC葉タグ（`tfc:seasonal_leaves`, `tfc:fruit_tree_leaves`, `minecraft:leaves`）にも対応する。`naturesaura:gold_fiber`をTFC葉へ使った場合は`tfaura:wood/leaves/golden`へ変換する。
 - TFCワールド生成は`#tfc:feature/land_plants`へplaced featureを追加し、各植物のplaced feature側で`tfc:climate`により温度・地下水・森林度を制限する。
+- Nature's Aura由来金属はTFAura側の独自アイテムとして実装し、Nature's Aura本体インゴットをそのままTFC金属フォームとしては使わない。
+- TFC風金属実装対象は`infused_iron`, `tainted_gold`, `sky`, `depth`。
+- 標準金属フォームは常時登録: ingot, double_ingot, sheet, double_sheet, rod。
+- TFC More Items系フォームは`tfcmu2`/metallum同様に`Optional`扱いで、`tfc_items`がロードされている場合のみ登録: foil, gear, heavy_sheet, nail, ring, rivet, screw, stamen, wire。
+- 溶融金属Fluidはmetallumと同様、TFC名前空間の`tfc:metal/<metal>` / `tfc:metal/flowing_<metal>`として登録する。
+- 金属レシピはTFCのwelding/anvil/heatingを基本にし、Nature's Aura本体インゴットからTFAuraインゴットへの変換、altar/offering/depth作成系のTFAura版を用意する。
+- 金属アイテムテクスチャは`tfaura:item/metal/<form>/<metal>`へ出力し、モデルはTFAura内テクスチャを参照する。
+- 金属テクスチャ生成は`.tmp/generate_tfaura_metal_textures.py`で行う。Nature's Aura本体ingotから`shadow`/`mid`/`highlight`/`glint`パレットを抽出し、TFCの`wrought_iron`標準フォームとTFC More Items互換フォームの輝度テンプレートへ補間適用する。
+- More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では参照repo（TFC-metallum-overhaul）の`compressed_iron`生成済みテクスチャを形状・輝度ベースとして使う。

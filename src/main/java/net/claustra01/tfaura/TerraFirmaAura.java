@@ -5,6 +5,8 @@ import net.claustra01.tfaura.common.TFAuraCreativeTabs;
 import net.claustra01.tfaura.common.block.TFAuraBlocks;
 import net.claustra01.tfaura.common.block.TFAuraWood;
 import net.claustra01.tfaura.common.blockentity.TFAuraBlockEntities;
+import net.claustra01.tfaura.common.fluid.TFAuraFluids;
+import net.claustra01.tfaura.common.item.TFAuraItems;
 import net.claustra01.tfaura.common.world.TFAuraFeatures;
 import de.ellpeck.naturesaura.api.NaturesAuraAPI;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +29,10 @@ public final class TerraFirmaAura {
     public TerraFirmaAura(IEventBus modEventBus) {
         TFAuraBlocks.BLOCKS.register(modEventBus);
         TFAuraBlocks.ITEMS.register(modEventBus);
+        TFAuraItems.ITEMS.register(modEventBus);
         TFAuraBlockEntities.BLOCK_ENTITIES.register(modEventBus);
+        TFAuraFluids.FLUID_TYPES.register(modEventBus);
+        TFAuraFluids.FLUIDS.register(modEventBus);
         TFAuraFeatures.FEATURES.register(modEventBus);
         TFAuraCreativeTabs.TABS.register(modEventBus);
 

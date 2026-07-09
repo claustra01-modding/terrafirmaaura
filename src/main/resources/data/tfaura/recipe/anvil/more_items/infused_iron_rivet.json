@@ -1,0 +1,1 @@
+{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:anvil","ingredient":{"item":"tfaura:metal/stamen/infused_iron"},"result":{"id":"tfaura:metal/rivet/infused_iron","count":5},"tier":3,"rules":["draw_not_last","bend_any","hit_any"]}
