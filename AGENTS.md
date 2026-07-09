@@ -51,8 +51,13 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - TFC More Items系フォームは`tfcmu2`/metallum同様に`Optional`扱いで、`tfc_items`がロードされている場合のみ登録: foil, gear, heavy_sheet, nail, ring, rivet, screw, stamen, wire。
 - 溶融金属Fluidはmetallumと同様、TFC名前空間の`tfc:metal/<metal>` / `tfc:metal/flowing_<metal>`として登録する。
 - 金属レシピはTFCのwelding/anvil/heatingを基本にし、Nature's Aura本体インゴットからTFAuraインゴットへの変換、altar/offering/depth作成系のTFAura版を用意する。
+- Nature's Aura装備・ツールは元の作業台レシピを同名上書きし、TFC式の中間素材を使う。装備対象金属は`infused_iron`, `sky`, `depth`のみで、`tainted_gold`には使い道のないtool head/unfinished armorを追加しない。
+- 装備・ツール用中間素材は`tfaura:metal/<form>/<metal>`で登録する。tool head/bladeは`pickaxe_head`, `axe_head`, `shovel_head`, `hoe_head`, `sword_blade`、未完成防具は`unfinished_helmet`, `unfinished_chestplate`, `unfinished_greaves`, `unfinished_boots`。
+- Nature's Auraツール完成レシピはTFCの`advanced_shaped_crafting`同様に中間素材 + `#c:rods/wooden`を使い、`tfc:copy_forging_bonus`を適用する。Nature's Aura防具完成レシピはTFCの`welding`同様にunfinished armor + sheet/double_sheetを使い、`bonus: copy_best`を適用する。
+- 装備・ツール用中間素材と完成済みNature's Aura装備はTFC heatingに対応する。完成品はTFC同様`use_durability: true`で溶かし戻し量を耐久値に連動させる。
 - 金属アイテムテクスチャは`tfaura:item/metal/<form>/<metal>`へ出力し、モデルはTFAura内テクスチャを参照する。
 - 金属テクスチャ生成は`.tmp/generate_tfaura_metal_textures.py`で行う。Nature's Aura本体ingotから`shadow`/`mid`/`highlight`/`glint`パレットを抽出し、TFCの`wrought_iron`標準フォームとTFC More Items互換フォームの輝度テンプレートへ補間適用する。
+- 装備・ツール用中間素材テクスチャ生成は`.tmp/generate_tfaura_equipment_recipes.py`で行う。TFCの`wrought_iron` tool head/unfinished armorを形状テンプレートにし、Nature's Aura本体ingotパレットへ再配色する。同スクリプトは中間素材レシピ、元装備レシピ上書き、heating、common item tags、item models、langも生成する。
 - More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では参照repo（TFC-metallum-overhaul）の`compressed_iron`生成済みテクスチャを形状・輝度ベースとして使う。
 - ancient wood / brilliant grass系テクスチャ生成は`.tmp/generate_ancient_stripped_textures.py`で行う。TFC oakのstripped block/log系item、TFC lumber、TFC bluegrassを入力に、Nature's Aura ancient planks/log/gold fiber寄りの落ち着いたパレットへ再配色する。
 - TFC/Arbor系植物向けaura効果は独自drain spot effectとして`tfaura:tfc_plant_boost`と`tfaura:tfc_plant_decay`を登録する。

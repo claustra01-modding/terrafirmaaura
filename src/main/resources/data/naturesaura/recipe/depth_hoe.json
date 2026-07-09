@@ -1,0 +1,1 @@
+{"type":"tfc:advanced_shaped_crafting","key":{"S":{"tag":"c:rods/wooden"},"X":{"item":"tfaura:metal/hoe_head/depth"}},"pattern":["X","S"],"result":{"modifiers":[{"type":"tfc:copy_forging_bonus"}],"stack":{"count":1,"id":"naturesaura:depth_hoe"}}}
