@@ -1,0 +1,30 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "tag": "c:stones"
+    },
+    {
+      "tag": "c:stones"
+    },
+    {
+      "tag": "c:stones"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "naturesaura:token_joy"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "naturesaura:nature_altar"
+  },
+  "time": 500
+}

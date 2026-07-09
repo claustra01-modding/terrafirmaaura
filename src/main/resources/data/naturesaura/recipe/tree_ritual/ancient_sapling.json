@@ -1,0 +1,31 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "tag": "tfaura:tree_ritual_saplings"
+    },
+    {
+      "tag": "minecraft:small_flowers"
+    },
+    {
+      "tag": "minecraft:small_flowers"
+    },
+    {
+      "tag": "c:seeds"
+    },
+    {
+      "tag": "tfaura:tree_ritual_sugarcanes"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "tfaura:wood/sapling/ancient",
+    "count": 2
+  },
+  "time": 200
+}

@@ -1,0 +1,24 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "naturesaura:eye"
+  },
+  "time": 250
+}

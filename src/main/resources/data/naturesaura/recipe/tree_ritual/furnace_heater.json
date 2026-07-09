@@ -1,0 +1,36 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "item": "naturesaura:infused_stone"
+    },
+    {
+      "item": "naturesaura:infused_stone"
+    },
+    {
+      "item": "tfaura:metal/ingot/tainted_gold"
+    },
+    {
+      "item": "tfaura:metal/ingot/infused_iron"
+    },
+    {
+      "item": "minecraft:fire_charge"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "tag": "tfaura:tree_ritual_magma_rocks"
+    },
+    {
+      "item": "naturesaura:token_fear"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "naturesaura:furnace_heater"
+  },
+  "time": 600
+}

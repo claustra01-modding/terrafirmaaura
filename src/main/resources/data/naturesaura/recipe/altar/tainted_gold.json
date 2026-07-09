@@ -1,0 +1,11 @@
+{
+  "type": "naturesaura:altar",
+  "input": {
+    "tag": "c:ingots/gold"
+  },
+  "output": {
+    "id": "tfaura:metal/ingot/tainted_gold"
+  },
+  "aura": 3000,
+  "time": 300
+}

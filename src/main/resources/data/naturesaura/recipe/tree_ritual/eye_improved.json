@@ -1,0 +1,30 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "item": "naturesaura:eye"
+    },
+    {
+      "item": "tfaura:metal/ingot/sky"
+    },
+    {
+      "item": "tfaura:metal/ingot/sky"
+    },
+    {
+      "item": "naturesaura:end_flower"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "naturesaura:eye_improved"
+  },
+  "time": 500
+}

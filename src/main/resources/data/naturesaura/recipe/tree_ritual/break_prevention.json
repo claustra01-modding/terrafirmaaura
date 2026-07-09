@@ -1,0 +1,24 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "item": "tfaura:metal/ingot/tainted_gold"
+    },
+    {
+      "item": "tfaura:metal/ingot/sky"
+    },
+    {
+      "item": "naturesaura:token_fear"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "naturesaura:break_prevention"
+  },
+  "time": 200
+}

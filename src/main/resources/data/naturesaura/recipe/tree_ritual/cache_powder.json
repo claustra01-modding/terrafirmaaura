@@ -1,0 +1,30 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "item": "naturesaura:gold_powder"
+    },
+    {
+      "item": "naturesaura:gold_powder"
+    },
+    {
+      "item": "tfaura:metal/ingot/sky"
+    },
+    {
+      "item": "naturesaura:aura_cache"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "components": {
+      "naturesaura:effect_powder_data": {
+        "effect": "naturesaura:cache_recharge"
+      }
+    },
+    "id": "naturesaura:effect_powder",
+    "count": 32
+  },
+  "time": 400
+}

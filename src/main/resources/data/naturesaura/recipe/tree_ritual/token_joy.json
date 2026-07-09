@@ -1,0 +1,37 @@
+{
+  "type": "naturesaura:tree_ritual",
+  "ingredients": [
+    {
+      "type": "neoforge:components",
+      "components": {
+        "naturesaura:aura_bottle_data": {
+          "aura_type": "naturesaura:overworld"
+        }
+      },
+      "items": "naturesaura:aura_bottle"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    },
+    {
+      "tag": "minecraft:small_flowers"
+    },
+    {
+      "tag": "c:foods/fruit"
+    },
+    {
+      "item": "tfc:torch"
+    },
+    {
+      "tag": "c:ingots/wrought_iron"
+    }
+  ],
+  "sapling": {
+    "tag": "tfaura:tree_ritual_saplings"
+  },
+  "output": {
+    "id": "naturesaura:token_joy",
+    "count": 2
+  },
+  "time": 200
+}

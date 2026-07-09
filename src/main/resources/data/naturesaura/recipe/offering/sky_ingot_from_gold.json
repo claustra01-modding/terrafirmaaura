@@ -1,0 +1,13 @@
+{
+  "type": "naturesaura:offering",
+  "input": {
+    "item": "tfaura:metal/ingot/tainted_gold"
+  },
+  "start_item": {
+    "item": "naturesaura:calling_spirit"
+  },
+  "output": {
+    "id": "tfaura:metal/ingot/sky",
+    "count": 2
+  }
+}
