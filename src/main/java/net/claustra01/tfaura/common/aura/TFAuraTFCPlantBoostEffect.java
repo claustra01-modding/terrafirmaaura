@@ -53,7 +53,7 @@ public class TFAuraTFCPlantBoostEffect extends TFAuraTFCPlantEffect {
         while (attempts-- >= 0) {
             BlockPos target = findNearbyTarget(level, spot, random, (state, pos) -> isBoostTarget(level, state, pos));
             if (target != null && boost(serverLevel, target, spot, random)) {
-                drainAura(level, target, spot, 4_500);
+                drainAura(level, target, spot, 1_000 + effectTier() * 1_500);
             }
         }
     }
@@ -74,7 +74,10 @@ public class TFAuraTFCPlantBoostEffect extends TFAuraTFCPlantEffect {
         if (block instanceof IGrassBlock) {
             return true;
         }
-        return block instanceof IDirtBlock && canBecomeGrass(level, state, pos);
+        if (block instanceof IDirtBlock) {
+            return effectTier() >= 2 && canBecomeGrass(level, state, pos);
+        }
+        return isSupportedNatureBlock(state);
     }
 
     private boolean boost(ServerLevel level, BlockPos pos, BlockPos spot, RandomSource random) {
@@ -90,23 +93,31 @@ public class TFAuraTFCPlantBoostEffect extends TFAuraTFCPlantEffect {
 
         if (block instanceof FruitTreeSaplingBlock) {
             TickingPlantBlockEntity.addTicks(level, pos, saplingBoostTicks());
-            return runRandomTicks(level, pos, state, random, 2);
+            return runRandomTicks(level, pos, state, random, Math.max(1, stagedRandomTickAttempts()));
         }
 
         if (block instanceof TFCBambooSaplingBlock) {
-            return runRandomTicks(level, pos, state, random, 3);
+            return runRandomTicks(level, pos, state, random, stagedRandomTickAttempts());
         }
 
         if (block instanceof CropBlock crop && level.getBlockEntity(pos) instanceof CropBlockEntity cropEntity) {
             return boostCrop(level, pos, state, crop, cropEntity);
         }
 
-        if (block instanceof IGrassBlock) {
-            return runRandomTicks(level, pos, state, random, 6);
+        if (block instanceof CropBlock) {
+            return false;
         }
 
-        if (block instanceof IDirtBlock dirt && canBecomeGrass(level, state, pos)) {
+        if (block instanceof IGrassBlock) {
+            return runRandomTicks(level, pos, state, random, stagedRandomTickAttempts() + 1);
+        }
+
+        if (effectTier() >= 2 && block instanceof IDirtBlock dirt && canBecomeGrass(level, state, pos)) {
             return level.setBlockAndUpdate(pos, dirt.getGrass());
+        }
+
+        if (isSupportedNatureBlock(state)) {
+            return runRandomTicks(level, pos, state, random, stagedRandomTickAttempts());
         }
 
         return false;
@@ -164,18 +175,18 @@ public class TFAuraTFCPlantBoostEffect extends TFAuraTFCPlantEffect {
     }
 
     private long saplingBoostTicks() {
-        return Mth.clamp(Math.abs(auraDeltaInArea) / 12L, 48_000L, 240_000L);
+        return Mth.clamp((long) (24_000L * effectIntensity()), 6_000L, 240_000L);
     }
 
     private long cropBoostTicks() {
-        return Mth.clamp(Math.abs(auraDeltaInArea) / 8L, 48_000L, 336_000L);
+        return Mth.clamp((long) (18_000L * effectIntensity()), 6_000L, 336_000L);
     }
 
     private int saplingRandomTickAttempts() {
-        return Mth.clamp((int) (saplingBoostTicks() / 24_000L), 3, 12);
+        return Mth.clamp(stagedRandomTickAttempts() + effectTier(), 1, 12);
     }
 
     private float directCropBoost() {
-        return Mth.clamp(Math.abs(auraDeltaInArea) / 4_000_000.0F, 0.08F, 0.35F);
+        return Mth.clamp(0.04F * effectIntensity(), 0.02F, 0.35F);
     }
 }

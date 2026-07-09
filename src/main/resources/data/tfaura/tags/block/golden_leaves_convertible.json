@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "#tfc:seasonal_leaves",
+    "#tfc:fruit_tree_leaves",
+    "tfaura:wood/leaves/ancient",
+    {
+      "id": "#beneath:leaves",
+      "required": false
+    },
+    {
+      "id": "#arborfirmacraft:leaves",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:leaves",
+      "required": false
+    },
+    {
+      "id": "#afc:leaves",
+      "required": false
+    }
+  ]
+}

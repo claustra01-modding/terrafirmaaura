@@ -1,0 +1,63 @@
+{
+  "replace": false,
+  "values": [
+    "#tfc:natural_regrowing_plants",
+    "#tfc:spreading_bushes",
+    "#tfc:spreading_bushes/living",
+    "#tfc:thorny_bushes",
+    "#tfc:fruit_tree_saplings",
+    "#tfc:bamboo_sapling",
+    "#tfc:grass",
+    "#minecraft:saplings",
+    "#minecraft:flowers",
+    "#minecraft:small_flowers",
+    {
+      "id": "#beneath:plants",
+      "required": false
+    },
+    {
+      "id": "#beneath:saplings",
+      "required": false
+    },
+    {
+      "id": "#beneath:leaves",
+      "required": false
+    },
+    {
+      "id": "#arborfirmacraft:plants",
+      "required": false
+    },
+    {
+      "id": "#arborfirmacraft:saplings",
+      "required": false
+    },
+    {
+      "id": "#arborfirmacraft:leaves",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:plants",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:saplings",
+      "required": false
+    },
+    {
+      "id": "#arbor_firmacraft:leaves",
+      "required": false
+    },
+    {
+      "id": "#afc:plants",
+      "required": false
+    },
+    {
+      "id": "#afc:saplings",
+      "required": false
+    },
+    {
+      "id": "#afc:leaves",
+      "required": false
+    }
+  ]
+}

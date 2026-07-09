@@ -40,7 +40,8 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - `aura_bloom`系植物は専用feature経由の自然生成時にblock entityへ`justGenerated`を立て、元mod同様に150,000 auraを生成する。
 - ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合は`naturesaura:decayed_leaves`へ変化する。
 - ancient leavesはTFC葉と同様に衝突判定を持たず、プレイヤーやEntityが通り抜けられる。
-- golden leavesはTFAura独自ブロックを作らず、Nature's Aura本体の`naturesaura:golden_leaves`を使う。`naturesaura:gold_fiber`をTFC葉へ使った場合は本体golden leavesへ変換し、本体golden leavesのrandom tick末尾にmixinでTFC葉への伝播補助を足す。
+- golden leavesはTFAura独自ブロック`tfaura:wood/leaves/golden`として実装する。Nature's Aura本体仕様に合わせ、stage 0〜3、stage 2以降の隣接葉伝播、stage 3の金色粒子、stage 3時のみ75%で`naturesaura:gold_leaf`ドロップを持つ。TFC葉同様に衝突判定なし。
+- `naturesaura:gold_fiber`を使ったgolden leaves変換対象はTFC/ArborFirmaCraft/TFAura/Beneath系の葉。TFCは`#tfc:seasonal_leaves`/`#tfc:fruit_tree_leaves`、他modは`#tfaura:golden_leaves_convertible`タグと`minecraft:leaves` + namespace判定で拾う。
 - TFCワールド生成は`#tfc:feature/land_plants`へplaced featureを追加し、各植物のplaced feature側で`tfc:climate`により温度・地下水・森林度を制限する。
 - Nature's Aura由来金属はTFAura側の独自アイテムとして実装し、Nature's Aura本体インゴットをそのままTFC金属フォームとしては使わない。
 - TFC風金属実装対象は`infused_iron`, `tainted_gold`, `sky`, `depth`。
@@ -52,9 +53,13 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 金属テクスチャ生成は`.tmp/generate_tfaura_metal_textures.py`で行う。Nature's Aura本体ingotから`shadow`/`mid`/`highlight`/`glint`パレットを抽出し、TFCの`wrought_iron`標準フォームとTFC More Items互換フォームの輝度テンプレートへ補間適用する。
 - More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では参照repo（TFC-metallum-overhaul）の`compressed_iron`生成済みテクスチャを形状・輝度ベースとして使う。
 - ancient wood / brilliant grass系テクスチャ生成は`.tmp/generate_ancient_stripped_textures.py`で行う。TFC oakのstripped block/log系item、TFC lumber、TFC bluegrassを入力に、Nature's Aura ancient planks/log/gold fiber寄りの落ち着いたパレットへ再配色する。
-- TFC植物向けaura効果は独自drain spot effectとして`tfaura:tfc_plant_boost`と`tfaura:tfc_plant_decay`を登録する。
+- TFC/Arbor系植物向けaura効果は独自drain spot effectとして`tfaura:tfc_plant_boost`と`tfaura:tfc_plant_decay`を登録する。
 - Nature's Auraの基本aura値は`IAuraChunk.DEFAULT_AURA = 1,000,000`。ただしdrain spot effectへ渡る`spotAura`と`IAuraChunk.getAuraAndSpotAmountInArea`の合算値は基本値からの差分として扱われ、`0`が中立/デフォルト、正値が余剰、負値が不足を表す。
-- 正のaura効果はNature's Auraの`plant_boost`と同じ差分条件（Overworld aura、周辺差分auraが`DEFAULT_AURA * 1.5`以上）を基準に発動し、TFC通常苗木、TFC果樹苗木、TFC竹苗、TFCのプレイヤー植え作物（`CropBlock`）、TFC grass/dirtにだけ作用する。
-- 正のauraではTFC苗木系の内部経過tickを大きく進めてrandom tickを即時試行し、作物は`CropBlockEntity.lastGrowthTick`を大きく巻き戻してTFC成長処理を進める。単体作物は成長が進まない場合に追加で直接成長を補助する。
-- 負のaura効果はNature's Auraの`grass_die`と同じ差分条件（drain spotと周辺差分auraが負）を基準に発動し、TFC grassを対応dirtへ戻す。TFC苗木系は経過tickをリセットし、高負荷時は消滅する。TFCのプレイヤー植え作物は成長tickを現在に戻してほぼ成長しないようにし、確率でdead crop化する。
-- 現時点でaura効果の対象にするTFC植物は苗木系・プレイヤー植え作物・grass blockのみ。野生作物、berry bush、その他TFC植物には広げない。
+- aura効果の段階は差分絶対値で判定する。tier 1は25%以上（250,000〜599,999）、tier 2は60%以上（600,000〜999,999）、tier 3は100%以上（1,000,000以上）。強度`intensity`は`abs(delta) / 1,000,000`を0.25〜2.0にclampする。
+- aura効果対象はTFC/TFAura/Beneath/ArborFirmaCraft/Arbor_FirmaCraft/AFC名前空間の植物系ブロック。`#tfaura:aura_nature_effects`、`#minecraft:leaves`、`#minecraft:saplings`、`#minecraft:flowers`、`#minecraft:small_flowers`、TFCの`natural_regrowing_plants`/`spreading_bushes`/`thorny_bushes`/`fruit_tree_saplings`/`bamboo_sapling`/`grass`/葉タグを対象にする。ただしTFAura golden leaves自体は対象外。
+- 正のaura効果はspotAuraが正、半径30の周辺差分auraが250,000以上で発動する。探索回数係数は`ceil(abs(delta) / 80,000 / spotCount)`（最大160）、探索距離は`abs(delta) / 100,000`を4〜45にclampする。
+- 正のauraのrandom tick試行はtier 1で1回、tier 2で3回、tier 3で`6 + floor(intensity * 2)`回。TFC通常苗木は追加でtier分を足し、1〜12回にclampする。
+- 正のauraの具体効果: TFC通常苗木はtick counterを`24,000 * intensity`（6,000〜240,000にclamp）進める。TFC果樹苗木も同量のTickingPlant tickを加える。TFC竹苗と汎用植物は段階別random tickを行う。TFC作物は`lastGrowthTick`を`18,000 * intensity`（6,000〜336,000にclamp）巻き戻し、進まない場合は成長量を`0.04 * intensity`（0.02〜0.35にclamp）だけ直接補助する。TFC grassは段階別random tick +1回、dirtからgrass化はtier 2以上かつ近くにgrassがある場合のみ。
+- 正のauraの消費量は成功対象ごとにtier 1で2,500、tier 2で4,000、tier 3で5,500 auraをdrainする。
+- 負のaura効果はspotAuraが負、半径50の周辺差分aura絶対値が250,000以上で発動する。探索回数係数は`ceil(abs(delta) / 90,000 / spotCount)`（最大400）、探索距離は`abs(delta) / 70,000`を4〜85にclampする。
+- 負のauraの具体効果: tier 1は主に成長遅延で、作物growthを0.015減らし、苗木系tick counterをresetする。tier 2は作物growthを`0.05 * intensity`（0.03〜0.12にclamp）減らし、dead crop化3〜12%、grass die 3%、苗木消滅2%、汎用非葉植物消滅2%。tier 3は作物growthを`0.12 * intensity`（0.08〜0.35にclamp）減らし、dead crop化12〜75%、grass die 25〜85%、苗木消滅8〜65%、汎用非葉植物消滅8〜55%、葉消滅1〜8%。

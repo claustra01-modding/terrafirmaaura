@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.75,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            },
+            {
+              "block": "tfaura:wood/leaves/golden",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "stage": "3"
+              }
+            }
+          ],
+          "name": "naturesaura:gold_leaf"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "tfaura:blocks/wood/leaves/golden"
+}

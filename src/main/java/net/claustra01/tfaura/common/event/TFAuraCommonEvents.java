@@ -2,7 +2,7 @@ package net.claustra01.tfaura.common.event;
 
 import de.ellpeck.naturesaura.items.ModItems;
 import net.claustra01.tfaura.TerraFirmaAura;
-import net.claustra01.tfaura.common.block.TFAuraGoldenLeaves;
+import net.claustra01.tfaura.common.block.TFAuraGoldenLeavesBlock;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -22,11 +22,11 @@ public final class TFAuraCommonEvents {
         }
 
         ItemStack stack = event.getItemStack();
-        if (!stack.is(ModItems.GOLD_FIBER) || !TFAuraGoldenLeaves.isTFCConvertibleLeaf(event.getLevel().getBlockState(event.getPos()))) {
+        if (!stack.is(ModItems.GOLD_FIBER) || !TFAuraGoldenLeavesBlock.isConvertibleLeaf(event.getLevel().getBlockState(event.getPos()))) {
             return;
         }
 
-        if (TFAuraGoldenLeaves.convert(event.getLevel(), event.getPos())) {
+        if (TFAuraGoldenLeavesBlock.convert(event.getLevel(), event.getPos())) {
             Player player = event.getPlayer();
             if (!event.getLevel().isClientSide && (player == null || !player.getAbilities().instabuild)) {
                 stack.shrink(1);
