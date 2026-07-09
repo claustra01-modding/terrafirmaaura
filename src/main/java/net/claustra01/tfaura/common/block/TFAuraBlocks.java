@@ -11,6 +11,7 @@ import net.dries007.tfc.common.blocks.wood.TFCFenceBlock;
 import net.dries007.tfc.common.blocks.wood.TFCFenceGateBlock;
 import net.dries007.tfc.common.blocks.wood.TFCSlabBlock;
 import net.dries007.tfc.common.blocks.wood.TFCStairBlock;
+import net.dries007.tfc.common.blocks.wood.Wood;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -40,8 +41,12 @@ public final class TFAuraBlocks {
 
     public static final DeferredBlock<ExtendedRotatedPillarBlock> ANCIENT_LOG = register("wood/log/ancient",
         () -> new ExtendedRotatedPillarBlock(logProperties(TFAuraWood.ANCIENT)));
+    public static final DeferredBlock<Block> STRIPPED_ANCIENT_LOG = register("wood/stripped_log/ancient",
+        Wood.BlockType.STRIPPED_LOG.create(TFAuraWood.ANCIENT));
     public static final DeferredBlock<ExtendedRotatedPillarBlock> ANCIENT_WOOD = register("wood/wood/ancient",
         () -> new ExtendedRotatedPillarBlock(logProperties(TFAuraWood.ANCIENT)));
+    public static final DeferredBlock<Block> STRIPPED_ANCIENT_WOOD = register("wood/stripped_wood/ancient",
+        Wood.BlockType.STRIPPED_WOOD.create(TFAuraWood.ANCIENT));
     public static final DeferredBlock<Block> ANCIENT_PLANKS = register("wood/planks/ancient",
         () -> new Block(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).properties()));
     public static final DeferredBlock<TFCStairBlock> ANCIENT_STAIRS = register("wood/stairs/ancient",
@@ -50,6 +55,8 @@ public final class TFAuraBlocks {
         () -> new TFCSlabBlock(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
     public static final DeferredBlock<TFCFenceBlock> ANCIENT_FENCE = register("wood/fence/ancient",
         () -> new TFCFenceBlock(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
+    public static final DeferredBlock<Block> ANCIENT_LOG_FENCE = register("wood/log_fence/ancient",
+        Wood.BlockType.LOG_FENCE.create(TFAuraWood.ANCIENT));
     public static final DeferredBlock<TFCFenceGateBlock> ANCIENT_FENCE_GATE = register("wood/fence_gate/ancient",
         () -> new TFCFenceGateBlock(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
 

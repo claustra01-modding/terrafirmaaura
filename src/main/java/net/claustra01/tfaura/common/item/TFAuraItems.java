@@ -15,6 +15,8 @@ public final class TFAuraItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TerraFirmaAura.MOD_ID);
 
+    public static final DeferredItem<Item> ANCIENT_LUMBER = ITEMS.register("wood/lumber/ancient", () -> new Item(new Item.Properties()));
+
     public static final Map<TFAuraMetal, DeferredItem<Item>> METAL_INGOTS = registerMetalItems("ingot", Metal.ItemType.INGOT);
     public static final Map<TFAuraMetal, DeferredItem<Item>> METAL_DOUBLE_INGOTS = registerMetalItems("double_ingot", Metal.ItemType.DOUBLE_INGOT);
     public static final Map<TFAuraMetal, DeferredItem<Item>> METAL_SHEETS = registerMetalItems("sheet", Metal.ItemType.SHEET);

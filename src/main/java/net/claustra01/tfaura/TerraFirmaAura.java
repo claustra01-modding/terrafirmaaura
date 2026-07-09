@@ -2,6 +2,7 @@ package net.claustra01.tfaura;
 
 import com.mojang.logging.LogUtils;
 import net.claustra01.tfaura.common.TFAuraCreativeTabs;
+import net.claustra01.tfaura.common.aura.TFAuraAuraEffects;
 import net.claustra01.tfaura.common.block.TFAuraBlocks;
 import net.claustra01.tfaura.common.block.TFAuraWood;
 import net.claustra01.tfaura.common.blockentity.TFAuraBlockEntities;
@@ -45,6 +46,8 @@ public final class TerraFirmaAura {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        TFAuraAuraEffects.register();
+
         event.enqueueWork(() -> {
             for (TFAuraWood wood : TFAuraWood.VALUES) {
                 BlockSetType.register(wood.getBlockSet());

@@ -24,13 +24,17 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 初期実装対象:
   - Nature's Aura由来の植物: `aura_bloom`, `aura_cactus`, `aura_mushroom`, `crimson_aura_mushroom`, `warped_aura_mushroom`。
   - brilliant fiber供給用の弱光源装飾植物: `brilliant_grass`。ブロックIDは`tfaura:plant/brilliant_grass`、ドロップは`naturesaura:gold_fiber`。
-  - Nature's Aura由来の古代木: log, wood, planks, stairs, slab, fence, fence gate, leaves, golden leaves, fallen leaves, twig, sapling, potted sapling。
+  - Nature's Aura由来の古代木: log, stripped log, wood, stripped wood, planks, lumber item, stairs, slab, fence, log fence, fence gate, leaves, golden leaves, fallen leaves, twig, sapling, potted sapling。
 - 植物の設置条件:
   - 通常植物・キノコはTFCの`BUSH_PLANTABLE_ON`。
   - サボテン系はTFCの`DRY_PLANT_PLANTABLE_ON`。
   - brilliant grassはTFCの`GRASS_PLANTABLE_ON`。
   - 苗木はTFCの`TREE_GROWS_ON`。
 - テクスチャと既存基本モデルはNature's Auraのアセットを参照し、TFC固有形状（落ち葉・小枝）はTFCのモデルparentを参照する。
+- 植物・苗木のアイテムモデルは`minecraft:item/generated`を使い、block/crossモデルをitem parentにしない。
+- ancient leaves / golden leaves / brilliant grass / ancient lumberはclient color handlerでNature's Aura寄りの色を付ける。saplingには色を付けない。brilliant grassの色は`naturesaura:gold_fiber`のitem colorに合わせる。
+- brilliant grassはTFAura側ではブロックとBlockItemのみ登録し、独自ドロップアイテムは作らない。ドロップは`naturesaura:gold_fiber`。
+- 古代木の追加木材は通常建材寄りのTFC block type（stripped log/wood, log fence, fence gate）とTFC標準のlumber item/木工レシピ/燃料定義まで対応する。door, trapdoor, button, pressure plateは現時点では追加しない。TFCのblock entity/UI前提の木材（chest, barrel, sluice等）はblock entity type互換性を確認してから追加する。
 - Nature's Auraの`ancient_tree`はconfigured featureのみで、元mod内に自然生成用placed feature/biome modifierが無いため、現時点では自然生成させない。
 - `aura_bloom`系植物は専用feature経由の自然生成時にblock entityへ`justGenerated`を立て、元mod同様に150,000 auraを生成する。
 - ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合は`naturesaura:decayed_leaves`へ変化する。
@@ -45,3 +49,9 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 金属アイテムテクスチャは`tfaura:item/metal/<form>/<metal>`へ出力し、モデルはTFAura内テクスチャを参照する。
 - 金属テクスチャ生成は`.tmp/generate_tfaura_metal_textures.py`で行う。Nature's Aura本体ingotから`shadow`/`mid`/`highlight`/`glint`パレットを抽出し、TFCの`wrought_iron`標準フォームとTFC More Items互換フォームの輝度テンプレートへ補間適用する。
 - More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では参照repo（TFC-metallum-overhaul）の`compressed_iron`生成済みテクスチャを形状・輝度ベースとして使う。
+- TFC植物向けaura効果は独自drain spot effectとして`tfaura:tfc_plant_boost`と`tfaura:tfc_plant_decay`を登録する。
+- Nature's Auraの基本aura値は`IAuraChunk.DEFAULT_AURA = 1,000,000`。ただしdrain spot effectへ渡る`spotAura`と`IAuraChunk.getAuraAndSpotAmountInArea`の合算値は基本値からの差分として扱われ、`0`が中立/デフォルト、正値が余剰、負値が不足を表す。
+- 正のaura効果はNature's Auraの`plant_boost`と同じ差分条件（Overworld aura、周辺差分auraが`DEFAULT_AURA * 1.5`以上）を基準に発動し、TFC通常苗木、TFC果樹苗木、TFC竹苗、TFCのプレイヤー植え作物（`CropBlock`）、TFC grass/dirtにだけ作用する。
+- 正のauraではTFC苗木系の内部経過tickを大きく進めてrandom tickを即時試行し、作物は`CropBlockEntity.lastGrowthTick`を大きく巻き戻してTFC成長処理を進める。単体作物は成長が進まない場合に追加で直接成長を補助する。
+- 負のaura効果はNature's Auraの`grass_die`と同じ差分条件（drain spotと周辺差分auraが負）を基準に発動し、TFC grassを対応dirtへ戻す。TFC苗木系は経過tickをリセットし、高負荷時は消滅する。TFCのプレイヤー植え作物は成長tickを現在に戻してほぼ成長しないようにし、確率でdead crop化する。
+- 現時点でaura効果の対象にするTFC植物は苗木系・プレイヤー植え作物・grass blockのみ。野生作物、berry bush、その他TFC植物には広げない。

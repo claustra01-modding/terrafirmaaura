@@ -81,11 +81,14 @@ public enum TFAuraWood implements RegistryWood {
     public Supplier<Block> getBlock(Wood.BlockType type) {
         return switch (type) {
             case LOG -> () -> TFAuraBlocks.ANCIENT_LOG.get();
+            case STRIPPED_LOG -> () -> TFAuraBlocks.STRIPPED_ANCIENT_LOG.get();
             case WOOD -> () -> TFAuraBlocks.ANCIENT_WOOD.get();
+            case STRIPPED_WOOD -> () -> TFAuraBlocks.STRIPPED_ANCIENT_WOOD.get();
             case PLANKS -> () -> TFAuraBlocks.ANCIENT_PLANKS.get();
             case STAIRS -> () -> TFAuraBlocks.ANCIENT_STAIRS.get();
             case SLAB -> () -> TFAuraBlocks.ANCIENT_SLAB.get();
             case FENCE -> () -> TFAuraBlocks.ANCIENT_FENCE.get();
+            case LOG_FENCE -> () -> TFAuraBlocks.ANCIENT_LOG_FENCE.get();
             case FENCE_GATE -> () -> TFAuraBlocks.ANCIENT_FENCE_GATE.get();
             case LEAVES -> () -> TFAuraBlocks.ANCIENT_LEAVES.get();
             case SAPLING -> () -> TFAuraBlocks.ANCIENT_SAPLING.get();

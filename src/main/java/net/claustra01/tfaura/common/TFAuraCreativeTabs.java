@@ -29,11 +29,15 @@ public final class TFAuraCreativeTabs {
             output.accept(TFAuraBlocks.BRILLIANT_GRASS.get());
             output.accept(TFAuraBlocks.ANCIENT_SAPLING.get());
             output.accept(TFAuraBlocks.ANCIENT_LOG.get());
+            output.accept(TFAuraBlocks.STRIPPED_ANCIENT_LOG.get());
             output.accept(TFAuraBlocks.ANCIENT_WOOD.get());
+            output.accept(TFAuraBlocks.STRIPPED_ANCIENT_WOOD.get());
             output.accept(TFAuraBlocks.ANCIENT_PLANKS.get());
+            output.accept(TFAuraItems.ANCIENT_LUMBER.get());
             output.accept(TFAuraBlocks.ANCIENT_STAIRS.get());
             output.accept(TFAuraBlocks.ANCIENT_SLAB.get());
             output.accept(TFAuraBlocks.ANCIENT_FENCE.get());
+            output.accept(TFAuraBlocks.ANCIENT_LOG_FENCE.get());
             output.accept(TFAuraBlocks.ANCIENT_FENCE_GATE.get());
             output.accept(TFAuraBlocks.ANCIENT_LEAVES.get());
             output.accept(TFAuraBlocks.GOLDEN_LEAVES.get());
