@@ -93,8 +93,6 @@ public enum TFAuraWood implements RegistryWood {
             case LEAVES -> () -> TFAuraBlocks.ANCIENT_LEAVES.get();
             case SAPLING -> () -> TFAuraBlocks.ANCIENT_SAPLING.get();
             case POTTED_SAPLING -> () -> TFAuraBlocks.POTTED_ANCIENT_SAPLING.get();
-            case FALLEN_LEAVES -> () -> TFAuraBlocks.FALLEN_ANCIENT_LEAVES.get();
-            case TWIG -> () -> TFAuraBlocks.ANCIENT_TWIG.get();
             default -> throw new IllegalArgumentException("Unsupported TerraFirmaAura wood block type: " + type);
         };
     }

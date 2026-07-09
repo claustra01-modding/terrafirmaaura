@@ -82,7 +82,9 @@ public class TFAuraTFCPlantBoostEffect extends TFAuraTFCPlantEffect {
         Block block = state.getBlock();
 
         if (block instanceof TFCSaplingBlock) {
-            TickCounterBlockEntity.addTicks(level, pos, saplingBoostTicks());
+            if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter) {
+                counter.increaseCounter(saplingBoostTicks());
+            }
             return runRandomTicks(level, pos, state, random, saplingRandomTickAttempts());
         }
 

@@ -1,1 +1,1 @@
-{"variants":{"axis=y":{"model":"naturesaura:block/ancient_bark"},"axis=x":{"model":"naturesaura:block/ancient_bark_horizontal","x":90,"y":90},"axis=z":{"model":"naturesaura:block/ancient_bark_horizontal","x":90}}}
+{"variants":{"axis=y":{"model":"tfaura:block/wood/stripped_log/ancient"},"axis=x":{"model":"tfaura:block/wood/stripped_log/ancient","x":90,"y":90},"axis=z":{"model":"tfaura:block/wood/stripped_log/ancient","x":90}}}

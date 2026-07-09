@@ -90,7 +90,9 @@ public class TFAuraTFCPlantDecayEffect extends TFAuraTFCPlantEffect {
         }
 
         if (block instanceof TFCSaplingBlock) {
-            TickCounterBlockEntity.reset(level, pos);
+            if (level.getBlockEntity(pos) instanceof TickCounterBlockEntity counter) {
+                counter.resetCounter();
+            }
             if (random.nextFloat() < disappearanceChance()) {
                 level.destroyBlock(pos, false);
             }

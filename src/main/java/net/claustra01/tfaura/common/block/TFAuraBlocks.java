@@ -2,8 +2,8 @@ package net.claustra01.tfaura.common.block;
 
 import java.util.function.Supplier;
 import net.claustra01.tfaura.TerraFirmaAura;
+import net.claustra01.tfaura.common.blockentity.TFAuraBlockEntities;
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blockentities.TFCBlockEntities;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.wood.ExtendedRotatedPillarBlock;
@@ -36,7 +36,7 @@ public final class TFAuraBlocks {
         () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.CRIMSON_STEM).lightLevel(state -> 3), TFCTags.Blocks.BUSH_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
     public static final DeferredBlock<TFAuraPlantBlock> WARPED_AURA_MUSHROOM = register("plant/warped_aura_mushroom",
         () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.WARPED_STEM).lightLevel(state -> 3), TFCTags.Blocks.BUSH_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
-    public static final DeferredBlock<TFAuraPlantBlock> BRILLIANT_GRASS = register("plant/brilliant_grass",
+    public static final DeferredBlock<TFAuraPlantBlock> BRILLIANT_GRASS = registerNoItem("plant/brilliant_grass",
         () -> new TFAuraPlantBlock(plantProperties(MapColor.GOLD).lightLevel(state -> 5), TFCTags.Blocks.GRASS_PLANTABLE_ON, TFAuraPlantBlock.GRASS_SHAPE));
 
     public static final DeferredBlock<ExtendedRotatedPillarBlock> ANCIENT_LOG = register("wood/log/ancient",
@@ -64,13 +64,9 @@ public final class TFAuraBlocks {
         () -> new TFAuraAncientLeavesBlock(leavesProperties().properties()));
     public static final DeferredBlock<TFAuraGoldenLeavesBlock> GOLDEN_LEAVES = register("wood/leaves/golden",
         () -> new TFAuraGoldenLeavesBlock(leavesProperties().mapColor(MapColor.GOLD).lightLevel(state -> 5).properties()));
-    public static final DeferredBlock<TFAuraFallenLeavesBlock> FALLEN_ANCIENT_LEAVES = register("wood/fallen_leaves/ancient",
-        () -> new TFAuraFallenLeavesBlock(ExtendedProperties.of(MapColor.PLANT).strength(0.05F).sound(SoundType.GRASS).randomTicks().noOcclusion().isViewBlocking(TFCBlocks::never).isSuffocating(TFCBlocks::never).properties()));
-    public static final DeferredBlock<TFAuraTwigBlock> ANCIENT_TWIG = register("wood/twig/ancient",
-        () -> new TFAuraTwigBlock(ExtendedProperties.of(MapColor.WOOD).strength(0.05F).sound(SoundType.WOOD).noCollission().noOcclusion().properties()));
 
     public static final DeferredBlock<TFAuraSaplingBlock> ANCIENT_SAPLING = register("wood/sapling/ancient",
-        () -> new TFAuraSaplingBlock(TFAuraWood.ANCIENT.tree(), ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFCBlockEntities.TICK_COUNTER), TFAuraWood.ANCIENT.ticksToGrow()));
+        () -> new TFAuraSaplingBlock(TFAuraWood.ANCIENT.tree(), ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFAuraBlockEntities.TICK_COUNTER), TFAuraWood.ANCIENT.ticksToGrow()));
     public static final DeferredBlock<FlowerPotBlock> POTTED_ANCIENT_SAPLING = registerNoItem("wood/potted_sapling/ancient",
         () -> new FlowerPotBlock(ANCIENT_SAPLING.get(), ExtendedProperties.of(Blocks.FLOWER_POT).noOcclusion().properties()));
 
@@ -100,6 +96,7 @@ public final class TFAuraBlocks {
             .sound(SoundType.GRASS)
             .defaultInstrument()
             .randomTicks()
+            .noCollission()
             .noOcclusion()
             .isViewBlocking(TFCBlocks::never)
             .isSuffocating(TFCBlocks::never)

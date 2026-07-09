@@ -5,7 +5,6 @@ import net.claustra01.tfaura.TerraFirmaAura;
 import net.claustra01.tfaura.common.block.TFAuraBlocks;
 import net.claustra01.tfaura.common.block.TFAuraGoldenLeavesBlock;
 import net.claustra01.tfaura.common.block.TFAuraWood;
-import net.claustra01.tfaura.common.item.TFAuraItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -23,9 +22,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 @EventBusSubscriber(modid = TerraFirmaAura.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public final class TFAuraClientEvents {
     private static final int ANCIENT_LEAVES_COLOR = 15031191;
-    private static final int ANCIENT_LUMBER_COLOR = 10202936;
     private static final int GOLDEN_LEAVES_COLOR = 15924992;
-    private static final int GOLD_FIBER_COLOR = -852224;
 
     private TFAuraClientEvents() {
     }
@@ -51,11 +48,10 @@ public final class TFAuraClientEvents {
             TFAuraBlocks.WARPED_AURA_MUSHROOM,
             TFAuraBlocks.BRILLIANT_GRASS,
             TFAuraBlocks.ANCIENT_SAPLING,
-            TFAuraBlocks.POTTED_ANCIENT_SAPLING,
-            TFAuraBlocks.ANCIENT_TWIG
+            TFAuraBlocks.POTTED_ANCIENT_SAPLING
         ).forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), cutout));
 
-        Stream.of(TFAuraBlocks.ANCIENT_LEAVES, TFAuraBlocks.GOLDEN_LEAVES, TFAuraBlocks.FALLEN_ANCIENT_LEAVES)
+        Stream.of(TFAuraBlocks.ANCIENT_LEAVES, TFAuraBlocks.GOLDEN_LEAVES)
             .forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), layer -> Minecraft.useFancyGraphics() ? layer == cutoutMipped : layer == solid));
     }
 
@@ -63,15 +59,12 @@ public final class TFAuraClientEvents {
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         event.register((state, level, pos, tintIndex) -> ANCIENT_LEAVES_COLOR, TFAuraBlocks.ANCIENT_LEAVES.get());
         event.register(TFAuraClientEvents::goldenLeavesColor, TFAuraBlocks.GOLDEN_LEAVES.get());
-        event.register((state, level, pos, tintIndex) -> GOLD_FIBER_COLOR, TFAuraBlocks.BRILLIANT_GRASS.get());
     }
 
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         event.register((stack, tintIndex) -> ANCIENT_LEAVES_COLOR, TFAuraBlocks.ANCIENT_LEAVES.get());
-        event.register((stack, tintIndex) -> ANCIENT_LUMBER_COLOR, TFAuraItems.ANCIENT_LUMBER.get());
         event.register((stack, tintIndex) -> GOLDEN_LEAVES_COLOR, TFAuraBlocks.GOLDEN_LEAVES.get());
-        event.register((stack, tintIndex) -> GOLD_FIBER_COLOR, TFAuraBlocks.BRILLIANT_GRASS.get());
     }
 
     private static int goldenLeavesColor(BlockState state, BlockAndTintGetter level, BlockPos pos, int tintIndex) {

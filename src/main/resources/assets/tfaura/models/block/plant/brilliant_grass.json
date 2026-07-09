@@ -1,1 +1,1 @@
-{"parent":"minecraft:block/cross","textures":{"cross":"naturesaura:item/gold_fiber"},"render_type":"cutout"}
+{"parent":"minecraft:block/cross","textures":{"cross":"tfaura:block/plant/brilliant_grass"},"render_type":"cutout"}

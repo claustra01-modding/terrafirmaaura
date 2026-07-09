@@ -22,6 +22,9 @@ public final class TFAuraBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TFAuraAncientLeavesBlockEntity>> ANCIENT_LEAVES = BLOCK_ENTITIES.register("ancient_leaves",
         () -> BlockEntityType.Builder.of(TFAuraAncientLeavesBlockEntity::new, TFAuraBlocks.ANCIENT_LEAVES.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TFAuraTickCounterBlockEntity>> TICK_COUNTER = BLOCK_ENTITIES.register("tick_counter",
+        () -> BlockEntityType.Builder.of(TFAuraTickCounterBlockEntity::new, TFAuraBlocks.ANCIENT_SAPLING.get()).build(null));
+
     private TFAuraBlockEntities() {
     }
 }

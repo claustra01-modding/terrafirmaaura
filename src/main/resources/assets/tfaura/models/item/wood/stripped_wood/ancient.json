@@ -1,1 +1,1 @@
-{"parent":"naturesaura:block/ancient_bark"}
+{"parent":"minecraft:item/generated","textures":{"layer0":"tfaura:item/wood/stripped_wood/ancient"}}
