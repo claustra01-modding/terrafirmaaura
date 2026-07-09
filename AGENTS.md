@@ -10,3 +10,27 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 名前空間は`net.claustra01.tfaura`、mod名は`TerraFirmaAura`とする
 
 ## (以下好きに追記して良い)
+
+## 現在の実装メモ
+
+- mod idは`tfaura`、Javaパッケージは`net.claustra01.tfaura`。
+- 依存関係はTerraFirmaCraft、Nature's Aura、Patchouliを必須扱いにする。
+- 初期ID規則:
+  - TFC対応植物は`tfaura:plant/<name>`。
+  - TFC対応古代木は`tfaura:wood/<type>/ancient`。
+  - TFC対応worldgen植物featureは`tfaura:plant/<name>`。
+- 初期実装対象:
+  - Nature's Aura由来の植物: `aura_bloom`, `aura_cactus`, `aura_mushroom`, `crimson_aura_mushroom`, `warped_aura_mushroom`。
+  - brilliant fiber供給用の弱光源装飾植物: `brilliant_grass`。ブロックIDは`tfaura:plant/brilliant_grass`、ドロップは`naturesaura:gold_fiber`。
+  - Nature's Aura由来の古代木: log, wood, planks, stairs, slab, fence, fence gate, leaves, golden leaves, fallen leaves, twig, sapling, potted sapling。
+- 植物の設置条件:
+  - 通常植物・キノコはTFCの`BUSH_PLANTABLE_ON`。
+  - サボテン系はTFCの`DRY_PLANT_PLANTABLE_ON`。
+  - brilliant grassはTFCの`GRASS_PLANTABLE_ON`。
+  - 苗木はTFCの`TREE_GROWS_ON`。
+- テクスチャと既存基本モデルはNature's Auraのアセットを参照し、TFC固有形状（落ち葉・小枝）はTFCのモデルparentを参照する。
+- Nature's Auraの`ancient_tree`はconfigured featureのみで、元mod内に自然生成用placed feature/biome modifierが無いため、現時点では自然生成させない。
+- `aura_bloom`系植物は専用feature経由の自然生成時にblock entityへ`justGenerated`を立て、元mod同様に150,000 auraを生成する。
+- ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合は`naturesaura:decayed_leaves`へ変化する。
+- golden leavesの侵蝕はTFC葉タグ（`tfc:seasonal_leaves`, `tfc:fruit_tree_leaves`, `minecraft:leaves`）にも対応する。`naturesaura:gold_fiber`をTFC葉へ使った場合は`tfaura:wood/leaves/golden`へ変換する。
+- TFCワールド生成は`#tfc:feature/land_plants`へplaced featureを追加し、各植物のplaced feature側で`tfc:climate`により温度・地下水・森林度を制限する。
