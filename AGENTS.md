@@ -50,6 +50,7 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 標準金属フォームは常時登録: ingot, double_ingot, sheet, double_sheet, rod。
 - TFC More Items系フォームは`tfcmu2`/metallum同様に`Optional`扱いで、`tfc_items`がロードされている場合のみ登録: foil, gear, heavy_sheet, nail, ring, rivet, screw, stamen, wire。
 - 溶融金属Fluidはmetallumと同様、TFC名前空間の`tfc:metal/<metal>` / `tfc:metal/flowing_<metal>`として登録する。
+- 溶融金属Fluidの表示はTFC/Metallum 1.21.1と同様、`RegisterClientExtensionsEvent`で`FluidRendererExtension`を登録し、`tfc:block/molten_still`/`tfc:block/molten_flow`へ金属色tintを乗せる。`assets/tfc/blockstates/fluid/metal/<metal>.json`と`assets/tfc/models/block/fluid/metal/<metal>.json`もTFC名前空間側へ追加する。
 - 金属レシピはTFCのwelding/anvil/heatingを基本にし、Nature's Aura本体インゴットからTFAuraインゴットへの変換、altar/offering/depth作成系のTFAura版を用意する。
 - Nature's Aura装備・ツールは元の作業台レシピを同名上書きし、TFC式の中間素材を使う。装備対象金属は`infused_iron`, `sky`, `depth`のみで、`tainted_gold`には使い道のないtool head/unfinished armorを追加しない。
 - 装備・ツール用中間素材は`tfaura:metal/<form>/<metal>`で登録する。tool head/bladeは`pickaxe_head`, `axe_head`, `shovel_head`, `hoe_head`, `sword_blade`、未完成防具は`unfinished_helmet`, `unfinished_chestplate`, `unfinished_greaves`, `unfinished_boots`。

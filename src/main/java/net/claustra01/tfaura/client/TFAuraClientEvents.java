@@ -6,14 +6,20 @@ import net.claustra01.tfaura.TerraFirmaAura;
 import net.claustra01.tfaura.common.block.TFAuraBlocks;
 import net.claustra01.tfaura.common.block.TFAuraGoldenLeavesBlock;
 import net.claustra01.tfaura.common.block.TFAuraWood;
+import net.claustra01.tfaura.common.fluid.TFAuraFluids;
+import net.claustra01.tfaura.common.item.TFAuraMetal;
+import net.dries007.tfc.client.extensions.FluidRendererExtension;
+import net.dries007.tfc.util.Helpers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,6 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 @EventBusSubscriber(modid = TerraFirmaAura.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public final class TFAuraClientEvents {
     private static final int ANCIENT_LEAVES_COLOR = 15031191;
+    private static final ResourceLocation MOLTEN_STILL = Helpers.identifier("block/molten_still");
+    private static final ResourceLocation MOLTEN_FLOW = Helpers.identifier("block/molten_flow");
 
     private TFAuraClientEvents() {
     }
@@ -65,6 +73,19 @@ public final class TFAuraClientEvents {
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         event.register((stack, tintIndex) -> ANCIENT_LEAVES_COLOR, TFAuraBlocks.ANCIENT_LEAVES.get());
         event.register((stack, tintIndex) -> TFAuraGoldenLeavesBlock.COLOR, TFAuraBlocks.GOLDEN_LEAVES.get());
+    }
+
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        for (TFAuraMetal metal : TFAuraMetal.VALUES) {
+            event.registerFluidType(new FluidRendererExtension(
+                0xFF000000 | metal.color(),
+                MOLTEN_STILL,
+                MOLTEN_FLOW,
+                null,
+                null
+            ), TFAuraFluids.METAL_FLUIDS.get(metal).getType());
+        }
     }
 
     private static int goldenLeavesColor(BlockState state, BlockAndTintGetter level, BlockPos pos, int tintIndex) {

@@ -11,10 +11,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 
 public enum TFAuraMetal implements RegistryMetal {
-    INFUSED_IRON("infused_iron", Rarity.UNCOMMON, 3, 1535.0F),
-    TAINTED_GOLD("tainted_gold", Rarity.UNCOMMON, 1, 1060.0F),
-    SKY("sky", Rarity.RARE, 5, 1540.0F),
-    DEPTH("depth", Rarity.EPIC, 6, 1600.0F);
+    INFUSED_IRON("infused_iron", Rarity.UNCOMMON, 3, 1535.0F, 0x3BAC42),
+    TAINTED_GOLD("tainted_gold", Rarity.UNCOMMON, 1, 1060.0F, 0xAC672A),
+    SKY("sky", Rarity.RARE, 5, 1540.0F, 0x8FD7F8),
+    DEPTH("depth", Rarity.EPIC, 6, 1600.0F, 0x5E4C67);
 
     public static final TFAuraMetal[] VALUES = values();
 
@@ -22,12 +22,14 @@ public enum TFAuraMetal implements RegistryMetal {
     private final Rarity rarity;
     private final int anvilTier;
     private final float meltingTemperature;
+    private final int color;
 
-    TFAuraMetal(String serializedName, Rarity rarity, int anvilTier, float meltingTemperature) {
+    TFAuraMetal(String serializedName, Rarity rarity, int anvilTier, float meltingTemperature, int color) {
         this.serializedName = serializedName;
         this.rarity = rarity;
         this.anvilTier = anvilTier;
         this.meltingTemperature = meltingTemperature;
+        this.color = color;
     }
 
     @Override
@@ -41,6 +43,10 @@ public enum TFAuraMetal implements RegistryMetal {
 
     public float meltingTemperature() {
         return meltingTemperature;
+    }
+
+    public int color() {
+        return color;
     }
 
     @Override
