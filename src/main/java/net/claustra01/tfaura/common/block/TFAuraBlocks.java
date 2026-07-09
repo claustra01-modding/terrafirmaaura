@@ -62,8 +62,6 @@ public final class TFAuraBlocks {
 
     public static final DeferredBlock<TFAuraAncientLeavesBlock> ANCIENT_LEAVES = register("wood/leaves/ancient",
         () -> new TFAuraAncientLeavesBlock(leavesProperties().properties()));
-    public static final DeferredBlock<TFAuraGoldenLeavesBlock> GOLDEN_LEAVES = register("wood/leaves/golden",
-        () -> new TFAuraGoldenLeavesBlock(leavesProperties().mapColor(MapColor.GOLD).lightLevel(state -> 5).properties()));
 
     public static final DeferredBlock<TFAuraSaplingBlock> ANCIENT_SAPLING = register("wood/sapling/ancient",
         () -> new TFAuraSaplingBlock(TFAuraWood.ANCIENT.tree(), ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFAuraBlockEntities.TICK_COUNTER), TFAuraWood.ANCIENT.ticksToGrow()));

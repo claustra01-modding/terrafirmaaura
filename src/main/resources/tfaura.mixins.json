@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.claustra01.tfaura.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockGoldenLeavesMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
