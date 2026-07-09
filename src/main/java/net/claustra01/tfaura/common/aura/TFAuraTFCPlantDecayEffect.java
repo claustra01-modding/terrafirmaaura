@@ -3,6 +3,9 @@ package net.claustra01.tfaura.common.aura;
 import de.ellpeck.naturesaura.api.aura.chunk.IAuraChunk;
 import de.ellpeck.naturesaura.api.aura.chunk.IDrainSpotEffect;
 import net.claustra01.tfaura.TerraFirmaAura;
+import net.claustra01.tfaura.common.block.TFAuraBlocks;
+import net.claustra01.tfaura.common.block.TFAuraGoldenLeavesBlock;
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.CropBlockEntity;
 import net.dries007.tfc.common.blockentities.TickCounterBlockEntity;
 import net.dries007.tfc.common.blockentities.TickingPlantBlockEntity;
@@ -18,7 +21,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,7 +38,7 @@ public class TFAuraTFCPlantDecayEffect extends TFAuraTFCPlantEffect {
 
     @Override
     public ItemStack getDisplayIcon() {
-        return new ItemStack(Items.DEAD_BUSH);
+        return new ItemStack(TFAuraBlocks.DECAYED_LEAVES.get());
     }
 
     @Override
@@ -119,6 +121,11 @@ public class TFAuraTFCPlantDecayEffect extends TFAuraTFCPlantEffect {
             return;
         }
 
+        if (isLeafDecayTarget(state)) {
+            level.setBlockAndUpdate(pos, TFAuraBlocks.DECAYED_LEAVES.get().defaultBlockState());
+            return;
+        }
+
         if (isSupportedNatureBlock(state) && random.nextFloat() < genericPlantDisappearanceChance(state)) {
             level.destroyBlock(pos, false);
         }
@@ -158,8 +165,8 @@ public class TFAuraTFCPlantDecayEffect extends TFAuraTFCPlantEffect {
     }
 
     private float genericPlantDisappearanceChance(BlockState state) {
-        if (state.is(BlockTags.LEAVES)) {
-            return effectTier() >= 3 ? Mth.clamp(0.015F * effectIntensity(), 0.01F, 0.08F) : 0.0F;
+        if (isLeafDecayTarget(state)) {
+            return 0.0F;
         }
         if (state.is(BlockTags.SAPLINGS)) {
             return saplingDisappearanceChance();
@@ -169,5 +176,13 @@ public class TFAuraTFCPlantDecayEffect extends TFAuraTFCPlantEffect {
             case 3 -> Mth.clamp(0.1F * effectIntensity(), 0.08F, 0.55F);
             default -> 0.0F;
         };
+    }
+
+    private boolean isLeafDecayTarget(BlockState state) {
+        return isSupportedNatureBlock(state)
+            && (state.is(BlockTags.LEAVES)
+                || state.is(TFAuraGoldenLeavesBlock.CONVERTIBLE_LEAVES)
+                || state.is(TFCTags.Blocks.SEASONAL_LEAVES)
+                || state.is(TFCTags.Blocks.FRUIT_TREE_LEAVES));
     }
 }

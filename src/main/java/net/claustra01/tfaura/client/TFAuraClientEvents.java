@@ -51,7 +51,7 @@ public final class TFAuraClientEvents {
             TFAuraBlocks.POTTED_ANCIENT_SAPLING
         ).forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), cutout));
 
-        Stream.of(TFAuraBlocks.ANCIENT_LEAVES, TFAuraBlocks.GOLDEN_LEAVES)
+        Stream.of(TFAuraBlocks.ANCIENT_LEAVES, TFAuraBlocks.GOLDEN_LEAVES, TFAuraBlocks.DECAYED_LEAVES)
             .forEach(block -> ItemBlockRenderTypes.setRenderLayer(block.get(), layer -> Minecraft.useFancyGraphics() ? layer == cutoutMipped : layer == solid));
     }
 

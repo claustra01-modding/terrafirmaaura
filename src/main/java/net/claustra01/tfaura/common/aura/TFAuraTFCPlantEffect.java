@@ -5,6 +5,7 @@ import de.ellpeck.naturesaura.api.aura.chunk.IAuraChunk;
 import de.ellpeck.naturesaura.api.aura.chunk.IDrainSpotEffect;
 import java.util.Set;
 import net.claustra01.tfaura.TerraFirmaAura;
+import net.claustra01.tfaura.common.block.TFAuraDecayedLeavesBlock;
 import net.claustra01.tfaura.common.block.TFAuraGoldenLeavesBlock;
 import net.dries007.tfc.common.TFCTags;
 import net.minecraft.core.BlockPos;
@@ -141,7 +142,7 @@ abstract class TFAuraTFCPlantEffect implements IDrainSpotEffect {
 
     protected boolean isSupportedNatureBlock(BlockState state) {
         Block block = state.getBlock();
-        if (block instanceof TFAuraGoldenLeavesBlock) {
+        if (block instanceof TFAuraGoldenLeavesBlock || block instanceof TFAuraDecayedLeavesBlock) {
             return false;
         }
 

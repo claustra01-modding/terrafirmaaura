@@ -40,6 +40,7 @@ public final class TFAuraCreativeTabs {
             output.accept(TFAuraBlocks.ANCIENT_FENCE_GATE.get());
             output.accept(TFAuraBlocks.ANCIENT_LEAVES.get());
             output.accept(TFAuraBlocks.GOLDEN_LEAVES.get());
+            output.accept(TFAuraBlocks.DECAYED_LEAVES.get());
             for (TFAuraMetal metal : TFAuraMetal.VALUES) {
                 output.accept(TFAuraItems.METAL_INGOTS.get(metal).get());
                 output.accept(TFAuraItems.METAL_DOUBLE_INGOTS.get(metal).get());

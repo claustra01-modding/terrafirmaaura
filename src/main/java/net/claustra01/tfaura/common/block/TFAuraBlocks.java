@@ -6,7 +6,7 @@ import net.claustra01.tfaura.common.blockentity.TFAuraBlockEntities;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.blocks.wood.ExtendedRotatedPillarBlock;
+import net.dries007.tfc.common.blocks.wood.LogBlock;
 import net.dries007.tfc.common.blocks.wood.TFCFenceBlock;
 import net.dries007.tfc.common.blocks.wood.TFCFenceGateBlock;
 import net.dries007.tfc.common.blocks.wood.TFCSlabBlock;
@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -39,14 +40,14 @@ public final class TFAuraBlocks {
     public static final DeferredBlock<TFAuraPlantBlock> BRILLIANT_GRASS = registerNoItem("plant/brilliant_grass",
         () -> new TFAuraPlantBlock(plantProperties(MapColor.GOLD).lightLevel(state -> 5), TFCTags.Blocks.GRASS_PLANTABLE_ON, TFAuraPlantBlock.GRASS_SHAPE));
 
-    public static final DeferredBlock<ExtendedRotatedPillarBlock> ANCIENT_LOG = register("wood/log/ancient",
-        () -> new ExtendedRotatedPillarBlock(logProperties(TFAuraWood.ANCIENT)));
     public static final DeferredBlock<Block> STRIPPED_ANCIENT_LOG = register("wood/stripped_log/ancient",
         Wood.BlockType.STRIPPED_LOG.create(TFAuraWood.ANCIENT));
-    public static final DeferredBlock<ExtendedRotatedPillarBlock> ANCIENT_WOOD = register("wood/wood/ancient",
-        () -> new ExtendedRotatedPillarBlock(logProperties(TFAuraWood.ANCIENT)));
     public static final DeferredBlock<Block> STRIPPED_ANCIENT_WOOD = register("wood/stripped_wood/ancient",
         Wood.BlockType.STRIPPED_WOOD.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<LogBlock> ANCIENT_LOG = register("wood/log/ancient",
+        () -> new LogBlock(logProperties(TFAuraWood.ANCIENT), () -> STRIPPED_ANCIENT_LOG.get()));
+    public static final DeferredBlock<LogBlock> ANCIENT_WOOD = register("wood/wood/ancient",
+        () -> new LogBlock(logProperties(TFAuraWood.ANCIENT), () -> STRIPPED_ANCIENT_WOOD.get()));
     public static final DeferredBlock<Block> ANCIENT_PLANKS = register("wood/planks/ancient",
         () -> new Block(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).properties()));
     public static final DeferredBlock<TFCStairBlock> ANCIENT_STAIRS = register("wood/stairs/ancient",
@@ -64,6 +65,8 @@ public final class TFAuraBlocks {
         () -> new TFAuraAncientLeavesBlock(leavesProperties().properties()));
     public static final DeferredBlock<TFAuraGoldenLeavesBlock> GOLDEN_LEAVES = register("wood/leaves/golden",
         () -> new TFAuraGoldenLeavesBlock(leavesProperties().mapColor(MapColor.GOLD).strength(0.2F).properties()));
+    public static final DeferredBlock<TFAuraDecayedLeavesBlock> DECAYED_LEAVES = register("wood/leaves/decayed",
+        () -> new TFAuraDecayedLeavesBlock(leavesProperties().mapColor(MapColor.COLOR_GRAY).strength(0.2F).properties()));
 
     public static final DeferredBlock<TFAuraSaplingBlock> ANCIENT_SAPLING = register("wood/sapling/ancient",
         () -> new TFAuraSaplingBlock(TFAuraWood.ANCIENT.tree(), ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFAuraBlockEntities.TICK_COUNTER), TFAuraWood.ANCIENT.ticksToGrow()));
@@ -83,11 +86,16 @@ public final class TFAuraBlocks {
     }
 
     private static ExtendedProperties woodProperties(TFAuraWood wood) {
-        return ExtendedProperties.of(wood.woodColor()).sound(SoundType.WOOD);
+        return ExtendedProperties.of(wood.woodColor())
+            .sound(SoundType.WOOD)
+            .instrument(NoteBlockInstrument.BASS);
     }
 
     private static ExtendedProperties logProperties(TFAuraWood wood) {
-        return woodProperties(wood).strength(2.5F).flammableLikeLogs();
+        return woodProperties(wood)
+            .strength(8.0F)
+            .requiresCorrectToolForDrops()
+            .flammableLikeLogs();
     }
 
     private static ExtendedProperties leavesProperties() {

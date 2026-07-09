@@ -2,7 +2,6 @@ package net.claustra01.tfaura.common.block;
 
 import de.ellpeck.naturesaura.api.NaturesAuraAPI;
 import de.ellpeck.naturesaura.api.aura.container.IAuraContainer;
-import de.ellpeck.naturesaura.blocks.ModBlocks;
 import net.claustra01.tfaura.common.blockentity.TFAuraAncientLeavesBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -71,7 +70,7 @@ public class TFAuraAncientLeavesBlock extends LeavesBlock implements EntityBlock
             return;
         }
         if (ancientLeaves.container.getStoredAura() <= 0) {
-            level.setBlockAndUpdate(pos, ModBlocks.DECAYED_LEAVES.defaultBlockState());
+            level.setBlockAndUpdate(pos, TFAuraBlocks.DECAYED_LEAVES.get().defaultBlockState());
         }
     }
 

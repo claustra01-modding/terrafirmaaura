@@ -38,9 +38,11 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 古代木の追加木材は通常建材寄りのTFC block type（stripped log/wood, log fence, fence gate）とTFC標準のlumber item/木工レシピ/燃料定義まで対応する。fallen leavesとtwigは現時点では追加しない。door, trapdoor, button, pressure plateは現時点では追加しない。TFCのblock entity/UI前提の木材（chest, barrel, sluice等）はblock entity type互換性を確認してから追加する。
 - Nature's Auraの`ancient_tree`はconfigured featureのみで、元mod内に自然生成用placed feature/biome modifierが無いため、現時点では自然生成させない。
 - `aura_bloom`系植物は専用feature経由の自然生成時にblock entityへ`justGenerated`を立て、元mod同様に150,000 auraを生成する。
-- ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合は`naturesaura:decayed_leaves`へ変化する。
+- ancient log/woodはTFCの`LogBlock`を使い、自然logと同等に硬さ8.0・正しい工具要求・斧ストリップ・TFC一括伐採に対応する。sapling/worldgenで生成される幹は`branch_direction=down`を付け、手置きlogはTFC同様`none`のまま一括伐採対象外にする。
+- ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合はTFAura版`tfaura:wood/leaves/decayed`へ変化する。
 - ancient leavesはTFC葉と同様に衝突判定を持たず、プレイヤーやEntityが通り抜けられる。
 - golden leavesはTFAura独自ブロック`tfaura:wood/leaves/golden`として実装する。Nature's Aura本体仕様に合わせ、stage 0〜3、stage 2以降の隣接葉伝播、stage 3の金色粒子、stage 3時のみ75%で`naturesaura:gold_leaf`ドロップを持つ。TFC葉同様に衝突判定なし。
+- decayed leavesはTFAura独自ブロック`tfaura:wood/leaves/decayed`として実装する。Nature's Aura本体仕様に合わせ、ランダムtickで空気へ消える。TFC葉同様に衝突判定なし。
 - `naturesaura:gold_fiber`を使ったgolden leaves変換対象はTFC/ArborFirmaCraft/TFAura/Beneath系の葉。TFCは`#tfc:seasonal_leaves`/`#tfc:fruit_tree_leaves`、他modは`#tfaura:golden_leaves_convertible`タグと`minecraft:leaves` + namespace判定で拾う。
 - TFCワールド生成は`#tfc:feature/land_plants`へplaced featureを追加し、各植物のplaced feature側で`tfc:climate`により温度・地下水・森林度を制限する。
 - Nature's Aura由来金属はTFAura側の独自アイテムとして実装し、Nature's Aura本体インゴットをそのままTFC金属フォームとしては使わない。
@@ -62,4 +64,9 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 正のauraの具体効果: TFC通常苗木はtick counterを`24,000 * intensity`（6,000〜240,000にclamp）進める。TFC果樹苗木も同量のTickingPlant tickを加える。TFC竹苗と汎用植物は段階別random tickを行う。TFC作物は`lastGrowthTick`を`18,000 * intensity`（6,000〜336,000にclamp）巻き戻し、進まない場合は成長量を`0.04 * intensity`（0.02〜0.35にclamp）だけ直接補助する。TFC grassは段階別random tick +1回、dirtからgrass化はtier 2以上かつ近くにgrassがある場合のみ。
 - 正のauraの消費量は成功対象ごとにtier 1で2,500、tier 2で4,000、tier 3で5,500 auraをdrainする。
 - 負のaura効果はspotAuraが負、半径50の周辺差分aura絶対値が250,000以上で発動する。探索回数係数は`ceil(abs(delta) / 90,000 / spotCount)`（最大400）、探索距離は`abs(delta) / 70,000`を4〜85にclampする。
-- 負のauraの具体効果: tier 1は主に成長遅延で、作物growthを0.015減らし、苗木系tick counterをresetする。tier 2は作物growthを`0.05 * intensity`（0.03〜0.12にclamp）減らし、dead crop化3〜12%、grass die 3%、苗木消滅2%、汎用非葉植物消滅2%。tier 3は作物growthを`0.12 * intensity`（0.08〜0.35にclamp）減らし、dead crop化12〜75%、grass die 25〜85%、苗木消滅8〜65%、汎用非葉植物消滅8〜55%、葉消滅1〜8%。
+- 負のauraの具体効果: tier 1は主に成長遅延で、作物growthを0.015減らし、苗木系tick counterをresetする。tier 2は作物growthを`0.05 * intensity`（0.03〜0.12にclamp）減らし、dead crop化3〜12%、grass die 3%、苗木消滅2%、汎用非葉植物消滅2%。tier 3は作物growthを`0.12 * intensity`（0.08〜0.35にclamp）減らし、dead crop化12〜75%、grass die 25〜85%、苗木消滅8〜65%、汎用非葉植物消滅8〜55%。葉はNature's Aura本体のGrassDieEffectに合わせ、直接破壊せず`tfaura:wood/leaves/decayed`へ変換し、その後decayed leaves自身のrandom tickで空気へ消える。
+- 葉のdecayed化対象はTFC/TFAura/Beneath/ArborFirmaCraft/Arbor_FirmaCraft/AFC名前空間で、`#minecraft:leaves`、`#tfaura:golden_leaves_convertible`、またはTFC葉タグに入る対応葉。TFAura golden leavesとTFAura decayed leaves自身は対象外。
+- Natural Altarの構成ブロックはNature's Aura本体の`data/naturesaura/tags/block/altar_*`を拡張して対応する。TFC通常木材は`#minecraft:planks`、TFC岩石レンガは`#minecraft:stone_bricks`経由で利用でき、TFC chiseled rockは`altar_fancy_brick`へ明示追加する。TFAura ancient planksとArbor系planksタグも`altar_wood`へ追加する。
+- Ritual of the ForestはNature's Aura本体の`data/naturesaura/recipe/tree_ritual/*`を同名上書きし、中心苗木を`#tfaura:tree_ritual_saplings`へ差し替える。このタグは`#minecraft:saplings`、TFAura ancient sapling、Arbor系saplings optional tagsを含む。TFC果樹苗と竹苗はRitual対象にしない。
+- Tree Ritual内のNature's Aura金属素材はTFAura金属へ寄せる。`ancient_sapling` ritualは`tfaura:wood/sapling/ancient`を出力し、stone/grain/seed/sugarcane/meat/fish等はTFC環境向けのTFAura item tagで受ける。
+- Nature's Aura本体の主要素材生成レシピは同名上書きでTFAura金属へ寄せる。altarのinfused iron/tainted gold、offeringのsky ingot、depth ingot creationはTFAura metal ingotを出力する。
