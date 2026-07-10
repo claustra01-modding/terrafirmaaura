@@ -7,6 +7,7 @@ import net.claustra01.tfaura.common.block.TFAuraBlocks;
 import net.claustra01.tfaura.common.block.TFAuraWood;
 import net.claustra01.tfaura.common.blockentity.TFAuraBlockEntities;
 import net.claustra01.tfaura.common.fluid.TFAuraFluids;
+import net.claustra01.tfaura.common.integration.TFAuraNaturesAuraCompat;
 import net.claustra01.tfaura.common.item.TFAuraItems;
 import net.claustra01.tfaura.common.world.TFAuraFeatures;
 import de.ellpeck.naturesaura.api.NaturesAuraAPI;
@@ -56,6 +57,7 @@ public final class TerraFirmaAura {
 
             FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
             pot.addPlant(TFAuraBlocks.ANCIENT_SAPLING.getId(), TFAuraBlocks.POTTED_ANCIENT_SAPLING);
+            TFAuraNaturesAuraCompat.register();
         });
     }
 

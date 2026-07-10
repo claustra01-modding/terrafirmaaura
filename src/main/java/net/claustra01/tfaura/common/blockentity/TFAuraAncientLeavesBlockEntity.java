@@ -9,7 +9,23 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TFAuraAncientLeavesBlockEntity extends BlockEntityImpl {
-    public final NaturalAuraContainer container = new NaturalAuraContainer(NaturesAuraAPI.TYPE_OVERWORLD, 2000, 500);
+    private static final int AURA_COLOR = 13522057;
+
+    public final NaturalAuraContainer container = new NaturalAuraContainer(NaturesAuraAPI.TYPE_OVERWORLD, 2000, 500) {
+        @Override
+        public int getAuraColor() {
+            return AURA_COLOR;
+        }
+
+        @Override
+        public int drainAura(int amount, boolean simulate) {
+            int drained = super.drainAura(amount, simulate);
+            if (drained > 0 && !simulate) {
+                TFAuraAncientLeavesBlockEntity.this.sendToClients();
+            }
+            return drained;
+        }
+    };
 
     public TFAuraAncientLeavesBlockEntity(BlockPos pos, BlockState state) {
         super(TFAuraBlockEntities.ANCIENT_LEAVES.get(), pos, state);

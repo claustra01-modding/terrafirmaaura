@@ -69,7 +69,14 @@ public class TFAuraAncientLeavesBlock extends LeavesBlock implements EntityBlock
         if (!(blockEntity instanceof TFAuraAncientLeavesBlockEntity ancientLeaves)) {
             return;
         }
-        if (ancientLeaves.container.getStoredAura() <= 0) {
+        IAuraContainer container = level.getCapability(
+            NaturesAuraAPI.AURA_CONTAINER_BLOCK_CAPABILITY,
+            ancientLeaves.getBlockPos(),
+            ancientLeaves.getBlockState(),
+            ancientLeaves,
+            null
+        );
+        if (container != null && container.getStoredAura() <= 0) {
             level.setBlockAndUpdate(pos, TFAuraBlocks.DECAYED_LEAVES.get().defaultBlockState());
         }
     }

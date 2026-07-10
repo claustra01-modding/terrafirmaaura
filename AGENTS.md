@@ -38,8 +38,11 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - 古代木の追加木材は通常建材寄りのTFC block type（stripped log/wood, log fence, fence gate）とTFC標準のlumber item/木工レシピ/燃料定義まで対応する。fallen leavesとtwigは現時点では追加しない。door, trapdoor, button, pressure plateは現時点では追加しない。TFCのblock entity/UI前提の木材（chest, barrel, sluice等）はblock entity type互換性を確認してから追加する。
 - Nature's Auraの`ancient_tree`はconfigured featureのみで、元mod内に自然生成用placed feature/biome modifierが無いため、現時点では自然生成させない。
 - `aura_bloom`系植物は専用feature経由の自然生成時にblock entityへ`justGenerated`を立て、元mod同様に150,000 auraを生成する。
+- Herbivorous AbsorberはNature's Aura本体同様`#minecraft:small_flowers`を参照するため、Offering Table対応で追加したTFC小型花tag付与でTFC花も消費対象になる。
+- Swamp HomiはNature's Aura本体の`BOTANIST_PICKAXE_CONVERSIONS`へTFC rockのcobble/bricksと、それらのslab/stair/wallのclean -> mossy変換を追加し、本体同様に逆変換でmossy側を消費して5,000 auraを生成できるようにする。
+- Shooting MarkはTFC投射物として`TFCEntities.THROWN_JAVELIN`を30,000 aura、`TFCEntities.GLOW_ARROW`を45,000 auraで追加する。TFC loose rockは1.21.1-4.2.5ではgroundcoverの設置/回収ブロックで、投射物Entityではないため対象外。
 - ancient log/woodはTFCの`LogBlock`を使い、自然logと同等に硬さ8.0・正しい工具要求・斧ストリップ・TFC一括伐採に対応する。sapling/worldgenで生成される幹は`branch_direction=down`を付け、手置きlogはTFC同様`none`のまま一括伐採対象外にする。
-- ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合はTFAura版`tfaura:wood/leaves/decayed`へ変化する。
+- ancient leavesは専用block entityとNature's Aura aura capabilityを持ち、保持auraが尽きた場合はTFAura版`tfaura:wood/leaves/decayed`へ変化する。内部containerは本家同様`NaturalAuraContainer(TYPE_OVERWORLD, 2000, 500)`、aura color `13522057`、drain時client syncを持つ。
 - ancient leavesはTFC葉と同様に衝突判定を持たず、プレイヤーやEntityが通り抜けられる。
 - golden leavesはTFAura独自ブロック`tfaura:wood/leaves/golden`として実装する。Nature's Aura本体仕様に合わせ、stage 0〜3、stage 2以降の隣接葉伝播、stage 3の金色粒子、stage 3時のみ75%で`naturesaura:gold_leaf`ドロップを持つ。TFC葉同様に衝突判定なし。
 - decayed leavesはTFAura独自ブロック`tfaura:wood/leaves/decayed`として実装する。Nature's Aura本体仕様に合わせ、ランダムtickで空気へ消える。TFC葉同様に衝突判定なし。
