@@ -8,8 +8,8 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - 形状の追加・削除、条件付き有効化の変更、ID規則の変更を優先して反映する。
 - 依存元Modの取得・展開・一時解析（jar展開や素材抽出など）は、リポジトリ直下の `.tmp` で行う。
 - 名前空間は `net.claustra01.tfaura`、mod名は `TerraFirmaAura` とする。
-- aura生成・消費コンテンツの一覧、概要、実装済み数値は `docs/aura_content.md` に記録する。
-- 検討段階でまだ実装していない aura 消費対応は、方針が確定するまで `docs/aura_content.md` には書かない。
+- aura生成・消費コンテンツの一覧、概要、実装済み数値、未対応分の方針案は `docs/aura_content.md` に記録する。
+- 未対応分は対応状態を明記し、実装済み内容と混同しないようにする。
 
 ## 基本情報
 
