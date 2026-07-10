@@ -77,3 +77,5 @@ Neoforge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する
 - Tree Ritual内のNature's Aura金属素材はTFAura金属へ寄せる。`ancient_sapling` ritualは`tfaura:wood/sapling/ancient`を出力する。レシピ素材はTFC素材またはTFCが供給するcommon tagへ寄せ、`tfc:torch`や`tfc:poured_glass`のような明確な1:1対応はレシピへ直接置換する。TFCに相当品がない素材は元の`minecraft:*`のまま残し、複数候補が必要なsugarcane/magma rocks/grass類だけTFAura item tagで受ける。
 - Nature's Aura本体の主要素材生成レシピは同名上書きでTFAura金属へ寄せる。altarのinfused iron/tainted gold、offeringのsky ingot、depth ingot creationはTFAura metal ingotを出力する。
 - Nature's Auraの`gold_powder`通常レシピはTFC石臼`type: tfc:quern`へ同名上書きし、`naturesaura:gold_leaf`から`naturesaura:gold_powder`を2個出す。`gold_brick`は`naturesaura:gold_fiber` + `#tfaura:tfc_stone_bricks`でクラフトする。このタグは通常TFC rock bricksのみを含み、cracked/mossy/chiseledやvanilla bricks/fire bricksは含めない。
+- Offering Table周囲に置く花はNature's Aura本体の判定に合わせて`#minecraft:small_flowers`で互換対応する。TFAura植物に加え、TFCの小型花をTFAura側の同タグにも明示追加する。
+- TFAura creative tabのアイコンはancient wood lumber（`tfaura:wood/lumber/ancient`）を使う。
