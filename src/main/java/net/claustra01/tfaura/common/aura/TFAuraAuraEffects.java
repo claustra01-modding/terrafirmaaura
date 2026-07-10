@@ -12,7 +12,7 @@ public final class TFAuraAuraEffects {
         ResourceLocation animal = ResourceLocation.fromNamespaceAndPath(NaturesAuraAPI.MOD_ID, "animal");
         ResourceLocation anger = ResourceLocation.fromNamespaceAndPath(NaturesAuraAPI.MOD_ID, "anger");
 
-        NaturesAuraAPI.DRAIN_SPOT_EFFECTS.put(animal, TFAuraTFCAnimalGrowthEffect::new);
+        NaturesAuraAPI.DRAIN_SPOT_EFFECTS.put(animal, TFAuraTFCAnimalBreedingEffect::new);
         NaturesAuraAPI.DRAIN_SPOT_EFFECTS.put(anger, TFAuraTFCAngerEffect::new);
         NaturesAuraAPI.DRAIN_SPOT_EFFECTS.put(TFAuraTFCPlantBoostEffect.NAME, TFAuraTFCPlantBoostEffect::new);
         NaturesAuraAPI.DRAIN_SPOT_EFFECTS.put(TFAuraTFCPlantDecayEffect.NAME, TFAuraTFCPlantDecayEffect::new);

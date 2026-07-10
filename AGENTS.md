@@ -74,7 +74,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 - aura生成・消費コンテンツの一覧と概要は `docs/aura_content.md` を参照する。
 - TFC/Arbor系植物向けaura効果は独自drain spot effectとして `tfaura:tfc_plant_boost` と `tfaura:tfc_plant_decay` を登録する。
-- Increase of Fertility（`naturesaura:animal`）はTFAura側で差し替え、TFC動物の成長促進・阻害効果として扱う。正のauraは本家同様Effect Powder必須で、周辺aura差分1,500,000以上、半径5〜35、試行数最大50。TFC家畜のchildはbirth tickを0.5 TFC日 * intensityだけ過去へ動かし、TFC wild animalのchildはtier別確率で成体化する。負のauraは粉不要で、差分絶対値250,000以上、半径5〜45、試行数最大80。TFC家畜のchildはbirth tickを0.25 TFC日 * intensityだけ未来へ動かし、最大で現在+3 TFC日まで遅延する。
+- Increase of Fertility（`naturesaura:animal`）はTFAura側で差し替え、TFC家畜の繁殖促進効果として扱う。正のaura + Effect Powderのみで発動し、成長促進・成長阻害は行わない。TFC本体のready条件（成体、親密度0.3以上、空腹でない、未受精、交配クールダウン終了、同class異性）を満たす近距離ペアだけを対象にし、メス側の `getBreedOffspring(server, male)` を呼ぶことで、哺乳類の妊娠・遺伝子保存、卵産み系の有精卵フラグなどをTFC本体処理へ委ねる。発動条件と確率は本家AnimalEffect相当で、周辺aura差分1,500,000以上、半径5〜35、chance最大50、成功時3,500 auraを消費する。
 - Mineral Amassing（`naturesaura:ore_spawn`）はTFC鉱床・岩種・鉱石品質と衝突するため全次元で利用不可にする。Tree Ritualレシピは `neoforge:false` で削除する。既存アイテムやcreative取得分のランタイム無効化は考慮しない。
 - Inexplicable Anger（`naturesaura:anger`）は本家のNeutralMob対象を維持した上で、TFC家畜・野生動物にも拡張する。TFC predator系はBrainの `ATTACK_TARGET` と `Activity.FIGHT` も設定し、TFC AIへ伝わりやすくする。
 - ancient leavesは専用block entityとNature's Aura aura capabilityを持つ。内部containerは本家同様 `NaturalAuraContainer(TYPE_OVERWORLD, 2000, 500)`、aura color `13522057`、drain時client syncを持ち、保持auraが尽きた場合は `tfaura:wood/leaves/decayed` へ変化する。

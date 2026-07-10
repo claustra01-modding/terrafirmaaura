@@ -262,7 +262,7 @@
   - ID: `naturesaura:animal`
   - コンテンツ概要: 本家では正のaura過多とEffect Powderにより、周辺動物の繁殖や卵孵化を促す効果。
   - 対応状態: TFC代替実装済み。
-  - TFC方針: 本家IDのままdrain spot effectを差し替え、TFC動物の成長促進・阻害効果として扱う。正のauraではEffect Powder必須でTFC家畜のbirth tickを過去へ動かし、TFC野生動物の子どもは確率で成体化する。負のauraでは粉不要でTFC家畜のbirth tickを未来へ動かし、成長を遅らせる。性別・妊娠・親密度・繁殖成立は直接変更しない。
+  - TFC方針: 本家IDのままdrain spot effectを差し替え、TFC家畜の繁殖促進効果として扱う。成長促進・成長阻害は行わない。TFC本体のready条件を満たした近距離ペアだけを対象にし、メス側の `getBreedOffspring(server, male)` を呼ぶことで、哺乳類の妊娠・遺伝子保存、卵産み系の有精卵フラグなどをTFC本体処理へ委ねる。
 
 - **Natural Storage**
   - ID: `naturesaura:cache_recharge`
@@ -472,20 +472,17 @@
   - ID: `naturesaura:effect_powder`
   - コンテンツ概要: aura imbalance effectを粉として持ち運び、指定地点で発生させる。
   - 対応状態: 一部対応済み。
-  - TFC方針: Tree RitualレシピはTFC苗木・素材へ置換済み。plant boost/decayはTFAura独自効果でTFC植物へ拡張済み。animalはTFC動物成長効果へ差し替え済み。ore_spawnはレシピ削除で通常入手不可。nether_grass/cache系は現状維持し、Beneath/Nether植生やAura Cache/Trove方針に合わせて別途検討する。
+  - TFC方針: Tree RitualレシピはTFC苗木・素材へ置換済み。plant boost/decayはTFAura独自効果でTFC植物へ拡張済み。animalはTFC家畜繁殖促進へ差し替え済み。ore_spawnはレシピ削除で通常入手不可。nether_grass/cache系は現状維持し、Beneath/Nether植生やAura Cache/Trove方針に合わせて別途検討する。
 
 ## TFC動物aura効果の数値
 
-- 本家 `naturesaura:animal` のIDを維持し、TFAura側のTFC動物成長効果に差し替える。
-- 正のaura効果は本家Increase of Fertilityに寄せ、spot auraが正、半径30の周辺差分auraが1,500,000以上、かつEffect Powderが有効な場合のみ発動する。
-- 正のaura探索は `ceil(abs(delta) / 500,000 / spotCount)`、最大50回。探索半径は `abs(delta) / 150,000` を5〜35にclampする。
-- 正のauraでTFC家畜childへ成功した場合、birth tickを `28,800 * 0.5 * intensity` だけ過去へ動かす。`intensity` は `abs(delta) / 1,000,000` を0.25〜2.0にclampし、実移動量は3,600〜57,600 tickにclampする。
-- 正のauraでTFC野生動物childへ成功した場合、tier 1で12%、tier 2で25%、tier 3で `0.35 * intensity`（35〜75%）の確率で成体化する。
-- 正のaura消費量は成功対象ごとにtier 1で2,500、tier 2で4,000、tier 3で5,500 aura。
-- 負のaura効果はspot auraが負、半径50の周辺差分aura絶対値が250,000以上で発動する。Effect Powderは不要。
-- 負のaura探索は `ceil(abs(delta) / 200,000 / spotCount)`、最大80回。探索半径は `abs(delta) / 120,000` を5〜45にclampする。
-- 負のauraでTFC家畜childへ成功した場合、birth tickを `28,800 * 0.25 * intensity` だけ未来へ動かす。実移動量は1,800〜28,800 tickにclampし、最大で現在+3 TFC日まで遅延する。
-- 負のauraはTFC野生動物の成長を巻き戻さない。TFC野生動物は公開された年齢tickを持たず、子ども状態が低頻度ランダムで解除される実装のため。
+- 本家 `naturesaura:animal` のIDを維持し、TFAura側のTFC家畜繁殖促進効果に差し替える。
+- 発動条件は本家Increase of Fertilityに寄せ、spot auraが正、半径30の周辺差分auraが1,500,000以上、かつEffect Powderが有効な場合のみ。
+- update間隔は本家同様200 game ticks。chanceは `ceil(abs(delta) / 500,000 / spotCount)`、最大50。探索半径は `abs(delta) / 150,000` を5〜35にclampする。
+- 対象は `Animal` かつ `TFCAnimalProperties` を持つTFC家畜。野生動物の成長・繁殖には干渉しない。
+- TFC ready条件は本体の `canMate` / `isReadyToMate` に従う。つまり成体、親密度0.3以上、空腹でない、未受精、交配クールダウン終了、同class異性のペアだけが対象。
+- 成功処理はメス側の `getBreedOffspring(server, male)` を呼ぶ。哺乳類は `MammalProperties.onFertilized` により `fertilized=true`、`pregnantTime=currentCalendarDay`、遺伝子保存を行う。卵産み系はTFCの有精卵フラグに乗る。
+- 成功時はオスへ `setLastMatedNow()` を適用し、3,500 auraを消費する。成長tick、birth tick、妊娠日数、hatchDaysは変更しない。
 
 ## TFC植物aura効果の数値
 
