@@ -127,110 +127,190 @@
 - **Altar of Birthing**
   - ID: `naturesaura:animal_spawner`
   - コンテンツ概要: Spirit of Birthingとmobに対応する素材を消費し、auraを使ってEntityをスポーンする。
-  - 対応状態: 未対応。
-  - TFC方針: TFC家畜・野生動物だけを別レシピ化し、家畜は年齢・性別・飼育価値を壊さない範囲に限定する。野生動物はspawn egg的乱用を避け、aura量と素材コストを高めにする。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFC家畜・野生動物の年齢・性別・飼育価値と衝突しやすいため保留する。`[Disabled]` tooltipを追加し、本体レシピを `neoforge:false` 条件で削除する。
 
 - **Extraneous Firestarter**
   - ID: `naturesaura:furnace_heater`
   - コンテンツ概要: 隣接furnace系設備をaura消費で加熱・稼働補助する。
-  - 対応状態: 一部対応済み。
-  - TFC方針: Tree RitualレシピはTFC素材へ置換済み。TFC firepit/forge/charcoal forge/bloomery/blast furnaceの熱・燃料消費を直接いじれるか確認し、難しい場合はTFC加熱設備には効かない旨を明確化する。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFC firepit/forge/charcoal forge/bloomery/blast furnaceの熱体系とvanilla furnace補助が噛み合わないため保留する。`[Disabled]` tooltipを追加し、Tree Ritualレシピを `neoforge:false` 条件で削除する。
 
 - **Armorer's Aid**
   - ID: `naturesaura:blast_furnace_booster`
   - コンテンツ概要: vanilla blast furnaceをaura消費で高速化する。
-  - 対応状態: 未対応。
-  - TFC方針: TFC blast furnaceは金属精錬・温度体系が別物なので、単純高速化ではなく燃料効率または温度維持補助に寄せる。安全にhookできない場合はレシピ削除またはvanilla専用扱いを検討する。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFC blast furnaceは金属精錬・温度体系が別物なので保留する。`[Disabled]` tooltipを追加し、本体レシピを `neoforge:false` 条件で削除する。
 
 - **World Eye**
   - ID: `naturesaura:chunk_loader`
   - コンテンツ概要: redstone信号に応じた範囲のchunkを、継続aura消費で読み込む。
-  - 対応状態: 未対応。
-  - TFC方針: obsidian/spyglass等の1:1相当を優先して素材置換する。サーバー負荷が大きいため、config尊重と高コスト維持を前提にする。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。サーバー負荷が大きいため、configと本家コストを尊重する。
 
 - **Ender Crate**
   - ID: `naturesaura:ender_crate`
   - コンテンツ概要: 離れたEnder Crate間で同一ストレージを共有し、操作時にauraを消費する。
-  - 対応状態: 未対応。
-  - TFC方針: 木箱・chest材をTFC木材へ寄せ、容量や携帯性でTFC容器を迂回しすぎないようレシピコストを上げる。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFC容器体系との追加調整は現時点では行わない。
 
 - **Rails of the Worlds**
   - ID: `naturesaura:dimension_rail_overworld`, `naturesaura:dimension_rail_nether`, `naturesaura:dimension_rail_end`
   - コンテンツ概要: minecartを次元間転送し、その際にauraを消費する。
-  - 対応状態: 未対応。
-  - TFC方針: rail/minecart素材をTFC金属へ寄せる。BeneathやTFC Netherとの座標倍率・到着安全性を確認し、Entity入りcart不可の本家制約は維持する。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。BeneathやTFC Netherとの座標倍率・到着安全性の追加調整は現時点では行わない。
 
 - **Aura Field Creator**
   - ID: `naturesaura:field_creator`
   - コンテンツ概要: 2点間にブロック破壊フィールドを張り、起動・維持・破壊でauraを消費する。
-  - 対応状態: 未対応。
-  - TFC方針: 硬さ・正しいtool・支柱/崩落・鉱石採掘制約に合わせ、TFC rock/oreを雑に自動破壊できないよう対象制限または追加コストを入れる。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFC rock/oreや崩落制約への追加制限は現時点では行わない。
 
 - **Imperceptible Builder**
   - ID: `naturesaura:placer`
   - コンテンツ概要: 内部inventoryのブロックをaura消費で自動設置する。
-  - 対応状態: 未対応。
-  - TFC方針: 支柱/崩落、TFC block entity、容器NBT、large vessel等の設置制約を確認し、危険なブロックはdeny list化する。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFC block entityや崩落制約のdeny list化は現時点では行わない。
 
 - **Energetic Aura Forge**
   - ID: `naturesaura:rf_converter`
   - コンテンツ概要: auraをForge Energyへ変換する。
-  - 対応状態: 未対応。
-  - TFC方針: TFC単体ではFE前提が薄いため、素材レシピへ寄せるだけに留めるか、FE系mod存在時のみ積極対応する。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFC単体ではFE前提が薄いため保留する。`[Disabled]` tooltipを追加し、本体レシピを `neoforge:false` 条件で削除する。
 
 - **Winter's Calling**
   - ID: `naturesaura:snow_creator`
   - コンテンツ概要: auraを消費して周囲に雪や氷を作る。
-  - 対応状態: 未対応。
-  - TFC方針: 気候・季節・淡水/塩水と矛盾しない条件に寄せ、温暖地での無制限氷生成は高コスト化または制限する。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFCの気候・季節・淡水/塩水と矛盾しやすいため保留する。`[Disabled]` tooltipを追加し、本体レシピを `neoforge:false` 条件で削除する。
 
 - **Everlasting Spring**
   - ID: `naturesaura:spring`
   - コンテンツ概要: auraを消費して水を供給し、cauldron充填、farmland灌漑、lava変換などを行う。
-  - 対応状態: 未対応。
-  - TFC方針: fresh water/salt water/hot water等を候補に分け、TFCの水源・水没・流体容器と矛盾しない出力だけ許可する。
+  - 対応状態: 対応済み。
+  - TFC方針: 内部tankをmixinで `tfc:river_water` 供給へ差し替え、TFC流体容器からは淡水として扱えるようにする。BucketPickupもTFC淡水入り木製バケツへ差し替える。受け入れ判定は `#tfc:any_fresh_water` 相当。aura消費量、farmland ticket、lava変換、cauldron/sponge挙動は本家仕様を維持する。レシピ石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ置換する。
 
 - **Shifting Sundial**
   - ID: `naturesaura:time_changer`
   - コンテンツ概要: auraを消費して時刻を変更する。
-  - 対応状態: 未対応。
-  - TFC方針: TFC calendar、季節、作物成長、家畜年齢への影響が大きいため、TFCワールドでは無効化も含めて慎重に検討する。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFC calendar、季節、作物成長、家畜年齢への追加調整は現時点では行わない。
 
 - **Cloudshifter**
   - ID: `naturesaura:weather_changer`
   - コンテンツ概要: auraを消費して天候を変更する。
-  - 対応状態: 未対応。
-  - TFC方針: TFC気候・降雨・積雪と整合させる必要があるため、天候変換テーブルをTFC climateに合わせる。
+  - 対応状態: 未対応（再検討）。
+  - TFC方針: TFCは `WorldTracker` とclimate modelで雨・雷を駆動し、vanilla `/weather clear/rain` も無効化しているため、vanilla天候仕様と同等ではない。現時点では機能変更せず、TFC climateへどう介入するかを再検討する。
 
 - **Hopper Enhancement**
   - ID: `naturesaura:hopper_upgrade`
   - コンテンツ概要: hopper周辺のitem移送を拡張し、処理時にauraを消費する。
-  - 対応状態: 未対応。
-  - TFC方針: レシピ素材をTFC hopper相当・金属材へ寄せる。機能面はTFCの重量/サイズ制約を無視しすぎる場合だけ制限する。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFCの重量/サイズ制約への追加制限は現時点では行わない。
 
 - **Lamp of Sanctuary**
   - ID: `naturesaura:spawn_lamp`
   - コンテンツ概要: redstone入力時に範囲内のmob spawnを止め、そのたびに少量のauraを消費する。
-  - 対応状態: 未対応。
-  - TFC方針: 野生動物スポーンやBeneath/Nether mobまで止めるかを確認し、敵対mob抑止を主目的にする。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFC野生動物スポーンへの追加調整は現時点では行わない。
 
 - **Redstone Aura Vaporizer**
   - ID: `naturesaura:aura_timer`
   - コンテンツ概要: Bottled Auraを時間として蒸発させ、完了時にredstone pulseを出す。
-  - 対応状態: 未対応。
-  - TFC方針: bottle作成・aura type入手経路をTFC素材へ寄せる。機能はredstone装置なので基本現状維持でよい。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。bottle作成・aura type入手経路の追加調整は現時点では行わない。
 
 - **Aura Attraction Cart**
   - ID: `naturesaura:mover_cart`
   - コンテンツ概要: activator railで周辺auraを掴み、minecart移動に合わせてaura spotを移送する。
-  - 対応状態: 未対応。
-  - TFC方針: minecart/rail素材をTFC金属へ寄せ、aura損失は本家維持。TFC世界で長距離aura輸送が強すぎる場合は追加損失を検討する。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。長距離aura輸送への追加損失は現時点では行わない。
 
 - **Aura Imbalance Ward**
   - ID: `naturesaura:lower_limiter`
   - コンテンツ概要: 低aura時に隣接デバイスを停止させ、負のaura影響を避ける保護装置。自身はauraを消費しない。
-  - 対応状態: 未対応。
-  - TFC方針: TFCの負のaura効果拡張と相性がよいため、素材レシピだけTFC化する方針。
+  - 対応状態: 現状維持。
+  - TFC方針: 機能面は本家仕様のまま。TFCの負のaura効果拡張との追加連携は現時点では行わない。
+
+## Aura増減エフェクト
+
+- **Vegetational Increase**
+  - ID: `naturesaura:plant_boost`
+  - コンテンツ概要: 正のaura過多とEffect Powderにより、周囲の植物成長を促進する本家効果。
+  - 対応状態: 一部対応済み。
+  - TFC方針: 本家効果はvanilla植物向けとして維持し、TFC/TFAura/Beneath/Arbor系植物には `tfaura:tfc_plant_boost` を追加登録して補助する。
+
+- **Natural Decay**
+  - ID: `naturesaura:grass_die`
+  - コンテンツ概要: 負のaura不足により、草・葉・植物を劣化または消滅させる本家効果。
+  - 対応状態: 一部対応済み。
+  - TFC方針: 本家効果は維持し、TFC/TFAura/Beneath/Arbor系植物には `tfaura:tfc_plant_decay` を追加登録する。葉は直接消さずdecayed leavesへ変換してからランダムtickで消える。
+
+- **TFC植物boost**
+  - ID: `tfaura:tfc_plant_boost`
+  - コンテンツ概要: 正のaura過多がTFC系自然ブロックへ与える成長促進効果。
+  - 対応状態: 独自実装済み。
+  - TFC方針: TFC/TFAura/Beneath/Arbor系植物の成長を段階的に補助し、成功対象ごとにauraをdrainする。
+
+- **TFC植物decay**
+  - ID: `tfaura:tfc_plant_decay`
+  - コンテンツ概要: 負のaura不足がTFC系自然ブロックへ与える枯死・劣化効果。
+  - 対応状態: 独自実装済み。
+  - TFC方針: TFC/TFAura/Beneath/Arbor系植物を段階的に弱らせる。葉は `tfaura:wood/leaves/decayed` へ変換する。
+
+- **Increase of Fertility**
+  - ID: `naturesaura:animal`
+  - コンテンツ概要: 正のaura過多とEffect Powderにより、周辺動物の繁殖や卵孵化を促す本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: TFC家畜の年齢・性別・妊娠・親密度と干渉しうるため、現時点ではTFC動物へ拡張しない。
+
+- **Natural Storage**
+  - ID: `naturesaura:cache_recharge`
+  - コンテンツ概要: 正のaura過多とEffect Powderにより、プレイヤー所持のAura Cache / Aura Troveを自然充填する本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: Aura Cache / Aura Trove素材レシピのTFC化方針に合わせる。効果自体は本家仕様を維持する。
+
+- **Mineral Amassing**
+  - ID: `naturesaura:ore_spawn`
+  - コンテンツ概要: 強い正のaura過多とEffect Powderにより、石やnetherrack中へ鉱石を生成する本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: TFC鉱床・岩種・鉱石品質のバランスと大きく衝突するため、TFC鉱石へは拡張しない。
+
+- **Crimson Overgrowth**
+  - ID: `naturesaura:nether_grass`
+  - コンテンツ概要: Netherの正のaura過多とEffect Powderにより、netherrackを本家Nether grass系へ変化させる効果。
+  - 対応状態: 現状維持。
+  - TFC方針: Beneath/Nether植生への拡張は未実装。本家Nether用途として維持する。
+
+- **Crimson Decay**
+  - ID: `naturesaura:nether_decay`
+  - コンテンツ概要: Netherの負のaura不足により、周囲のNether地形をsoul soil/soul sand等へ劣化させ、火も発生させる本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: BeneathやTFC Nether地形への拡張は未実装。本家仕様を維持する。
+
+- **Inexplicable Anger**
+  - ID: `naturesaura:anger`
+  - コンテンツ概要: 負のaura不足により、通常は中立のmobを怒らせる本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: TFC動物AI・野生動物の攻撃性へは現時点では拡張しない。
+
+- **Breathlessness**
+  - ID: `naturesaura:breathless`
+  - コンテンツ概要: 負のaura不足により、酸素を使う生物へ窒息・弱体寄りの悪影響を与える本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: TFC体温・健康・水分システムとは直接連携しない。
+
+- **Unstable Outbreak**
+  - ID: `naturesaura:explosions`
+  - コンテンツ概要: 極端な負のaura不足で、周囲に爆発を起こす本家効果。
+  - 対応状態: 現状維持。
+  - TFC方針: TFC地盤崩落や鉱床との追加連携は行わず、本家仕様を維持する。
+
+- **内部aura調整**
+  - ID: `naturesaura:replenishing`, `naturesaura:spread`, `naturesaura:balance`
+  - コンテンツ概要: aura containerからspotへauraを戻す処理、spot間の拡散・均衡化など、本家内部のaura調整効果。
+  - 対応状態: 現状維持。
+  - TFC方針: TFC自然ブロック対応とは独立した基盤処理として本家仕様を維持する。
 
 ## Aura保持・移送
 
@@ -245,18 +325,6 @@
   - コンテンツ概要: auraを蓄える携帯container。自然回復効果やプレイヤー消費アイテムの供給源になる。
   - 対応状態: 未対応。
   - TFC方針: 素材をTFC金属・革・容器へ寄せ、容量や充填速度は本家維持を基本にする。
-
-- **TFC植物boost**
-  - ID: `tfaura:tfc_plant_boost`
-  - コンテンツ概要: 正のaura過多が自然に与える成長促進効果。
-  - 対応状態: 独自実装済み。
-  - TFC方針: TFC/TFAura/Beneath/Arbor系植物の成長を補助し、成功対象ごとにauraをdrainする。
-
-- **TFC植物decay**
-  - ID: `tfaura:tfc_plant_decay`
-  - コンテンツ概要: 負のaura不足が自然に与える枯死・劣化効果。
-  - 対応状態: 独自実装済み。
-  - TFC方針: TFC/TFAura/Beneath/Arbor系植物を段階的に弱らせる。葉は直接破壊せず `tfaura:wood/leaves/decayed` へ変換する。
 
 - **Ancient Leaves保持aura**
   - ID: `tfaura:wood/leaves/ancient`

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SWS",
+    "WEW",
+    "SWS"
+  ],
+  "key": {
+    "S": {
+      "tag": "tfaura:tfc_stone_bricks"
+    },
+    "W": {
+      "type": "tfc:fluid_content",
+      "fluid": {
+        "amount": 1000,
+        "tag": "tfc:any_fresh_water"
+      }
+    },
+    "E": {
+      "item": "naturesaura:token_euphoria"
+    }
+  },
+  "result": {
+    "id": "naturesaura:spring"
+  }
+}

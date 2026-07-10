@@ -67,7 +67,9 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - `gold_powder` はTFC石臼 `type: tfc:quern` へ同名上書きし、`naturesaura:gold_leaf` から `naturesaura:gold_powder` を2個出す。
 - `gold_brick` は `naturesaura:gold_fiber` + `#tfaura:tfc_stone_bricks` でクラフトする。このタグは通常TFC rock bricksのみを含み、cracked/mossy/chiseledやvanilla bricks/fire bricksは含めない。
 - Offering Table周囲に置く花はNature's Aura本体の判定に合わせて `#minecraft:small_flowers` で互換対応する。TFAura植物に加え、TFCの小型花をTFAura側の同タグにも明示追加する。
-- Canopy Diminisher（`naturesaura:oak_generator`）とDisentangler of Mortals（`naturesaura:animal_generator`）はTFC環境では保留扱いにし、`[Disabled]` tooltipを追加して同名レシピを `neoforge:false` 条件で削除する。
+- Canopy Diminisher（`naturesaura:oak_generator`）、Disentangler of Mortals（`naturesaura:animal_generator`）、Altar of Birthing（`naturesaura:animal_spawner`）、Extraneous Firestarter（`naturesaura:furnace_heater`）、Armorer's Aid（`naturesaura:blast_furnace_booster`）、Energetic Aura Forge（`naturesaura:rf_converter`）、Winter's Calling（`naturesaura:snow_creator`）はTFC環境では保留扱いにし、`[Disabled]` tooltipを追加して同名レシピを `neoforge:false` 条件で削除する。
+- Everlasting Spring（`naturesaura:spring`）は内部tankをmixinでTFC淡水（`tfc:river_water`）供給へ差し替える。BucketPickupの戻り値もTFC淡水入り木製バケツに差し替える。消費aura量とlava/cauldron/sponge/farmland ticket等の本家挙動は維持する。レシピの石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ寄せる。
+- Cloudshifter（`naturesaura:weather_changer`）はTFCの天候が `WorldTracker` とclimate modelで駆動し、vanilla `/weather clear/rain` もTFC側で無効化されるため、vanilla同等ではない。現時点では機能変更せず再検討扱いにする。
 
 ## Aura連携
 
@@ -77,6 +79,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - Herbivorous AbsorberはNature's Aura本体同様 `#minecraft:small_flowers` を参照するため、Offering Table対応で追加したTFC小型花tag付与でTFC花も消費対象になる。
 - Swamp HomiはNature's Aura本体の `BOTANIST_PICKAXE_CONVERSIONS` へTFC rockのcobble/bricksと、それらのslab/stair/wallのclean -> mossy変換を追加する。
 - Shooting MarkはTFC投射物として `TFCEntities.THROWN_JAVELIN` を30,000 aura、`TFCEntities.GLOW_ARROW` を45,000 auraで追加する。TFC loose rockは1.21.1-4.2.5ではgroundcoverの設置/回収ブロックで、投射物Entityではないため対象外。
+- Everlasting SpringはNature's Aura本体の `BlockEntitySpring$InfiniteTank` へmixinし、FluidHandler経由の表示・drain対象を `tfc:river_water` にする。受け入れ判定は `#tfc:any_fresh_water` 相当とし、TFC木製バケツ等のFluidHandler容器からは淡水として扱われる。`BlockSpring#pickupBlock` の戻り値は、元の2500 aura消費に成功した場合だけTFC淡水入り木製バケツへ差し替える。
 
 ## 生成スクリプト
 

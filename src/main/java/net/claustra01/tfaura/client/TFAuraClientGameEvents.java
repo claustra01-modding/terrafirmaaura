@@ -10,11 +10,20 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
+import java.util.Set;
+
 @SuppressWarnings("removal")
 @EventBusSubscriber(modid = TerraFirmaAura.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
 public final class TFAuraClientGameEvents {
-    private static final ResourceLocation CANOPY_DIMINISHER = ResourceLocation.fromNamespaceAndPath("naturesaura", "oak_generator");
-    private static final ResourceLocation DISENTANGLER_OF_MORTALS = ResourceLocation.fromNamespaceAndPath("naturesaura", "animal_generator");
+    private static final Set<ResourceLocation> DISABLED_ITEMS = Set.of(
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "oak_generator"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "animal_generator"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "animal_spawner"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "furnace_heater"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "blast_furnace_booster"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "rf_converter"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "snow_creator")
+    );
 
     private TFAuraClientGameEvents() {
     }
@@ -22,7 +31,7 @@ public final class TFAuraClientGameEvents {
     @SubscribeEvent
     public static void addItemTooltip(ItemTooltipEvent event) {
         ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(event.getItemStack().getItem());
-        if (CANOPY_DIMINISHER.equals(itemId) || DISENTANGLER_OF_MORTALS.equals(itemId)) {
+        if (DISABLED_ITEMS.contains(itemId)) {
             event.getToolTip().add(Component.literal("[Disabled]").withStyle(ChatFormatting.DARK_RED));
         }
     }
