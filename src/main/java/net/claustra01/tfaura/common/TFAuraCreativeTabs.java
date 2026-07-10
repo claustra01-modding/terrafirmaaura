@@ -21,7 +21,7 @@ public final class TFAuraCreativeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = TABS.register("main", () -> CreativeModeTab.builder()
         .title(Component.translatable("itemGroup.tfaura"))
         .withTabsBefore(CreativeModeTabs.NATURAL_BLOCKS)
-        .icon(() -> new ItemStack(TFAuraBlocks.AURA_BLOOM.get()))
+        .icon(() -> new ItemStack(TFAuraItems.ANCIENT_LUMBER.get()))
         .displayItems((parameters, output) -> {
             output.accept(TFAuraBlocks.AURA_BLOOM.get());
             output.accept(TFAuraBlocks.AURA_CACTUS.get());
