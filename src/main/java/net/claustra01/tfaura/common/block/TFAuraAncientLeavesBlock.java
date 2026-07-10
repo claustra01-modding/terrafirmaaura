@@ -8,12 +8,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TFAuraAncientLeavesBlock extends LeavesBlock implements EntityBlock {
+public class TFAuraAncientLeavesBlock extends TFAuraLeavesBlock implements EntityBlock {
     private static final int PARTICLE_COLOR = 13387648;
 
     public TFAuraAncientLeavesBlock(BlockBehaviour.Properties properties) {
@@ -64,7 +63,9 @@ public class TFAuraAncientLeavesBlock extends LeavesBlock implements EntityBlock
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.randomTick(state, level, pos, random);
+        if (decayIfUnsupported(state, level, pos, random)) {
+            return;
+        }
         BlockEntity blockEntity = level.getBlockEntity(pos);
         if (!(blockEntity instanceof TFAuraAncientLeavesBlockEntity ancientLeaves)) {
             return;

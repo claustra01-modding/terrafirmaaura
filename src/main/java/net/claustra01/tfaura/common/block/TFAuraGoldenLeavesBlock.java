@@ -15,13 +15,12 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
-public class TFAuraGoldenLeavesBlock extends LeavesBlock {
+public class TFAuraGoldenLeavesBlock extends TFAuraLeavesBlock {
     public static final int HIGHEST_STAGE = 3;
     public static final int COLOR = 15924992;
     public static final IntegerProperty STAGE = IntegerProperty.create("stage", 0, HIGHEST_STAGE);
@@ -41,8 +40,8 @@ public class TFAuraGoldenLeavesBlock extends LeavesBlock {
 
         if (!level.isClientSide) {
             BlockState newState = TFAuraBlocks.GOLDEN_LEAVES.get().defaultBlockState()
-                .setValue(LeavesBlock.DISTANCE, oldState.hasProperty(LeavesBlock.DISTANCE) ? oldState.getValue(LeavesBlock.DISTANCE) : 1)
-                .setValue(LeavesBlock.PERSISTENT, oldState.hasProperty(LeavesBlock.PERSISTENT) && oldState.getValue(LeavesBlock.PERSISTENT));
+                .setValue(DISTANCE, oldState.hasProperty(DISTANCE) ? oldState.getValue(DISTANCE) : 1)
+                .setValue(PERSISTENT, oldState.hasProperty(PERSISTENT) && oldState.getValue(PERSISTENT));
             level.setBlockAndUpdate(pos, newState);
         }
         return true;
@@ -84,7 +83,9 @@ public class TFAuraGoldenLeavesBlock extends LeavesBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.randomTick(state, level, pos, random);
+        if (decayIfUnsupported(state, level, pos, random)) {
+            return;
+        }
         int stage = state.getValue(STAGE);
         if (stage < HIGHEST_STAGE) {
             level.setBlockAndUpdate(pos, state.setValue(STAGE, stage + 1));
