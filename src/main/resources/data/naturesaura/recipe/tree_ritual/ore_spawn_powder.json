@@ -1,30 +1,20 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:false"
+    }
+  ],
   "type": "naturesaura:tree_ritual",
   "ingredients": [
     {
-      "item": "naturesaura:gold_powder"
-    },
-    {
-      "item": "naturesaura:gold_powder"
-    },
-    {
-      "tag": "c:ores/diamond"
-    },
-    {
-      "tag": "c:ores/redstone"
+      "item": "minecraft:air"
     }
   ],
   "sapling": {
     "tag": "tfaura:tree_ritual_saplings"
   },
   "output": {
-    "components": {
-      "naturesaura:effect_powder_data": {
-        "effect": "naturesaura:ore_spawn"
-      }
-    },
-    "id": "naturesaura:effect_powder",
-    "count": 4
+    "id": "naturesaura:effect_powder"
   },
-  "time": 400
+  "time": 1
 }

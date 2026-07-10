@@ -67,19 +67,21 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - `gold_powder` はTFC石臼 `type: tfc:quern` へ同名上書きし、`naturesaura:gold_leaf` から `naturesaura:gold_powder` を2個出す。
 - `gold_brick` は `naturesaura:gold_fiber` + `#tfaura:tfc_stone_bricks` でクラフトする。このタグは通常TFC rock bricksのみを含み、cracked/mossy/chiseledやvanilla bricks/fire bricksは含めない。
 - Offering Table周囲に置く花はNature's Aura本体の判定に合わせて `#minecraft:small_flowers` で互換対応する。TFAura植物に加え、TFCの小型花をTFAura側の同タグにも明示追加する。
-- Canopy Diminisher（`naturesaura:oak_generator`）、Disentangler of Mortals（`naturesaura:animal_generator`）、Altar of Birthing（`naturesaura:animal_spawner`）、Extraneous Firestarter（`naturesaura:furnace_heater`）、Armorer's Aid（`naturesaura:blast_furnace_booster`）、Energetic Aura Forge（`naturesaura:rf_converter`）、Winter's Calling（`naturesaura:snow_creator`）はTFC環境では保留扱いにし、`[Disabled]` tooltipを追加して同名レシピを `neoforge:false` 条件で削除する。
-- Everlasting Spring（`naturesaura:spring`）は内部tankをmixinでTFC淡水（`tfc:river_water`）供給へ差し替える。BucketPickupの戻り値もTFC淡水入り木製バケツに差し替える。消費aura量とlava/cauldron/sponge/farmland ticket等の本家挙動は維持する。レシピの石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ寄せる。
-- Cloudshifter（`naturesaura:weather_changer`）はTFCの天候が `WorldTracker` とclimate modelで駆動し、vanilla `/weather clear/rain` もTFC側で無効化されるため、vanilla同等ではない。現時点では機能変更せず再検討扱いにする。
+- Canopy Diminisher（`naturesaura:oak_generator`）、Disentangler of Mortals（`naturesaura:animal_generator`）、Altar of Birthing（`naturesaura:animal_spawner`）、Extraneous Firestarter（`naturesaura:furnace_heater`）、Armorer's Aid（`naturesaura:blast_furnace_booster`）、Energetic Aura Forge（`naturesaura:rf_converter`）、Winter's Calling（`naturesaura:snow_creator`）、Cloudshifter（`naturesaura:weather_changer`）はTFC環境では保留扱いにし、`[Disabled]` tooltipを追加して同名レシピを `neoforge:false` 条件で削除する。
+- Everlasting Spring（`naturesaura:spring`）はFluidHandlerとBucketPickupを本家同様のvanilla waterのまま維持する。TFC木製バケツ等の特殊容器へ差し替えるmixinは使わない。消費aura量とlava/cauldron/sponge/farmland ticket等の本家挙動も維持する。レシピの石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ寄せる。
 
 ## Aura連携
 
 - aura生成・消費コンテンツの一覧と概要は `docs/aura_content.md` を参照する。
 - TFC/Arbor系植物向けaura効果は独自drain spot effectとして `tfaura:tfc_plant_boost` と `tfaura:tfc_plant_decay` を登録する。
+- Increase of Fertility（`naturesaura:animal`）はTFAura側で差し替え、TFC動物の成長促進・阻害効果として扱う。正のauraは本家同様Effect Powder必須で、周辺aura差分1,500,000以上、半径5〜35、試行数最大50。TFC家畜のchildはbirth tickを0.5 TFC日 * intensityだけ過去へ動かし、TFC wild animalのchildはtier別確率で成体化する。負のauraは粉不要で、差分絶対値250,000以上、半径5〜45、試行数最大80。TFC家畜のchildはbirth tickを0.25 TFC日 * intensityだけ未来へ動かし、最大で現在+3 TFC日まで遅延する。
+- Mineral Amassing（`naturesaura:ore_spawn`）はTFC鉱床・岩種・鉱石品質と衝突するため全次元で利用不可にする。Tree Ritualレシピは `neoforge:false` で削除する。既存アイテムやcreative取得分のランタイム無効化は考慮しない。
+- Inexplicable Anger（`naturesaura:anger`）は本家のNeutralMob対象を維持した上で、TFC家畜・野生動物にも拡張する。TFC predator系はBrainの `ATTACK_TARGET` と `Activity.FIGHT` も設定し、TFC AIへ伝わりやすくする。
 - ancient leavesは専用block entityとNature's Aura aura capabilityを持つ。内部containerは本家同様 `NaturalAuraContainer(TYPE_OVERWORLD, 2000, 500)`、aura color `13522057`、drain時client syncを持ち、保持auraが尽きた場合は `tfaura:wood/leaves/decayed` へ変化する。
 - Herbivorous AbsorberはNature's Aura本体同様 `#minecraft:small_flowers` を参照するため、Offering Table対応で追加したTFC小型花tag付与でTFC花も消費対象になる。
 - Swamp HomiはNature's Aura本体の `BOTANIST_PICKAXE_CONVERSIONS` へTFC rockのcobble/bricksと、それらのslab/stair/wallのclean -> mossy変換を追加する。
 - Shooting MarkはTFC投射物として `TFCEntities.THROWN_JAVELIN` を30,000 aura、`TFCEntities.GLOW_ARROW` を45,000 auraで追加する。TFC loose rockは1.21.1-4.2.5ではgroundcoverの設置/回収ブロックで、投射物Entityではないため対象外。
-- Everlasting SpringはNature's Aura本体の `BlockEntitySpring$InfiniteTank` へmixinし、FluidHandler経由の表示・drain対象を `tfc:river_water` にする。受け入れ判定は `#tfc:any_fresh_water` 相当とし、TFC木製バケツ等のFluidHandler容器からは淡水として扱われる。`BlockSpring#pickupBlock` の戻り値は、元の2500 aura消費に成功した場合だけTFC淡水入り木製バケツへ差し替える。
+- Everlasting SpringはFluidHandler経由の表示・drain対象を本家同様 `minecraft:water` のままにする。`BlockSpring#pickupBlock` も本家戻り値を維持し、鉄バケツで汲んだ場合はvanilla water bucketになる。
 
 ## 生成スクリプト
 

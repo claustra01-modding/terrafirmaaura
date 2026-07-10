@@ -188,7 +188,7 @@
   - ID: `naturesaura:spring`
   - コンテンツ概要: auraを消費して水を供給し、cauldron充填、farmland灌漑、lava変換などを行う。
   - 対応状態: 対応済み。
-  - TFC方針: 内部tankをmixinで `tfc:river_water` 供給へ差し替え、TFC流体容器からは淡水として扱えるようにする。BucketPickupもTFC淡水入り木製バケツへ差し替える。受け入れ判定は `#tfc:any_fresh_water` 相当。aura消費量、farmland ticket、lava変換、cauldron/sponge挙動は本家仕様を維持する。レシピ石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ置換する。
+  - TFC方針: FluidHandlerとBucketPickupは本家同様 `minecraft:water` のまま維持する。TFC木製バケツ等へ差し替えるmixinは使わない。aura消費量、farmland ticket、lava変換、cauldron/sponge挙動は本家仕様を維持する。レシピ石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ置換する。
 
 - **Shifting Sundial**
   - ID: `naturesaura:time_changer`
@@ -199,8 +199,8 @@
 - **Cloudshifter**
   - ID: `naturesaura:weather_changer`
   - コンテンツ概要: auraを消費して天候を変更する。
-  - 対応状態: 未対応（再検討）。
-  - TFC方針: TFCは `WorldTracker` とclimate modelで雨・雷を駆動し、vanilla `/weather clear/rain` も無効化しているため、vanilla天候仕様と同等ではない。現時点では機能変更せず、TFC climateへどう介入するかを再検討する。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFCは `WorldTracker` とclimate modelで雨・雷を駆動し、vanilla `/weather clear/rain` も無効化しているため、vanilla天候仕様と同等ではない。`[Disabled]` tooltipを追加し、本体レシピを `neoforge:false` 条件で削除する。
 
 - **Hopper Enhancement**
   - ID: `naturesaura:hopper_upgrade`
@@ -260,9 +260,9 @@
 
 - **Increase of Fertility**
   - ID: `naturesaura:animal`
-  - コンテンツ概要: 正のaura過多とEffect Powderにより、周辺動物の繁殖や卵孵化を促す本家効果。
-  - 対応状態: 現状維持。
-  - TFC方針: TFC家畜の年齢・性別・妊娠・親密度と干渉しうるため、現時点ではTFC動物へ拡張しない。
+  - コンテンツ概要: 本家では正のaura過多とEffect Powderにより、周辺動物の繁殖や卵孵化を促す効果。
+  - 対応状態: TFC代替実装済み。
+  - TFC方針: 本家IDのままdrain spot effectを差し替え、TFC動物の成長促進・阻害効果として扱う。正のauraではEffect Powder必須でTFC家畜のbirth tickを過去へ動かし、TFC野生動物の子どもは確率で成体化する。負のauraでは粉不要でTFC家畜のbirth tickを未来へ動かし、成長を遅らせる。性別・妊娠・親密度・繁殖成立は直接変更しない。
 
 - **Natural Storage**
   - ID: `naturesaura:cache_recharge`
@@ -273,8 +273,8 @@
 - **Mineral Amassing**
   - ID: `naturesaura:ore_spawn`
   - コンテンツ概要: 強い正のaura過多とEffect Powderにより、石やnetherrack中へ鉱石を生成する本家効果。
-  - 対応状態: 現状維持。
-  - TFC方針: TFC鉱床・岩種・鉱石品質のバランスと大きく衝突するため、TFC鉱石へは拡張しない。
+  - 対応状態: 無効化済み。
+  - TFC方針: TFC鉱床・岩種・鉱石品質のバランスと大きく衝突するため、overworld/nether等の次元を問わず通常入手できないようにする。Tree Ritualレシピを `neoforge:false` 条件で削除する。既存アイテムやcreative取得分のランタイム無効化は考慮しない。
 
 - **Crimson Overgrowth**
   - ID: `naturesaura:nether_grass`
@@ -291,8 +291,8 @@
 - **Inexplicable Anger**
   - ID: `naturesaura:anger`
   - コンテンツ概要: 負のaura不足により、通常は中立のmobを怒らせる本家効果。
-  - 対応状態: 現状維持。
-  - TFC方針: TFC動物AI・野生動物の攻撃性へは現時点では拡張しない。
+  - 対応状態: TFC拡張済み。
+  - TFC方針: 本家のNeutralMob対象は維持し、TFC家畜・野生動物も対象に追加する。TFC predator系にはBrainの `ATTACK_TARGET` と `Activity.FIGHT` も設定し、TFC AIへ怒り状態を伝える。
 
 - **Breathlessness**
   - ID: `naturesaura:breathless`
@@ -472,7 +472,20 @@
   - ID: `naturesaura:effect_powder`
   - コンテンツ概要: aura imbalance effectを粉として持ち運び、指定地点で発生させる。
   - 対応状態: 一部対応済み。
-  - TFC方針: Tree RitualレシピはTFC苗木・素材へ置換済み。plant boost/decayはTFAura独自効果でTFC植物へ拡張済み。animal/ore_spawn/nether_grass/cache系は未対応で、animalはTFC家畜年齢・繁殖、oreはTFC鉱床生成、nether_grassはBeneath/Nether植生、cacheはAura Cache/Trove方針に合わせて検討する。
+  - TFC方針: Tree RitualレシピはTFC苗木・素材へ置換済み。plant boost/decayはTFAura独自効果でTFC植物へ拡張済み。animalはTFC動物成長効果へ差し替え済み。ore_spawnはレシピ削除で通常入手不可。nether_grass/cache系は現状維持し、Beneath/Nether植生やAura Cache/Trove方針に合わせて別途検討する。
+
+## TFC動物aura効果の数値
+
+- 本家 `naturesaura:animal` のIDを維持し、TFAura側のTFC動物成長効果に差し替える。
+- 正のaura効果は本家Increase of Fertilityに寄せ、spot auraが正、半径30の周辺差分auraが1,500,000以上、かつEffect Powderが有効な場合のみ発動する。
+- 正のaura探索は `ceil(abs(delta) / 500,000 / spotCount)`、最大50回。探索半径は `abs(delta) / 150,000` を5〜35にclampする。
+- 正のauraでTFC家畜childへ成功した場合、birth tickを `28,800 * 0.5 * intensity` だけ過去へ動かす。`intensity` は `abs(delta) / 1,000,000` を0.25〜2.0にclampし、実移動量は3,600〜57,600 tickにclampする。
+- 正のauraでTFC野生動物childへ成功した場合、tier 1で12%、tier 2で25%、tier 3で `0.35 * intensity`（35〜75%）の確率で成体化する。
+- 正のaura消費量は成功対象ごとにtier 1で2,500、tier 2で4,000、tier 3で5,500 aura。
+- 負のaura効果はspot auraが負、半径50の周辺差分aura絶対値が250,000以上で発動する。Effect Powderは不要。
+- 負のaura探索は `ceil(abs(delta) / 200,000 / spotCount)`、最大80回。探索半径は `abs(delta) / 120,000` を5〜45にclampする。
+- 負のauraでTFC家畜childへ成功した場合、birth tickを `28,800 * 0.25 * intensity` だけ未来へ動かす。実移動量は1,800〜28,800 tickにclampし、最大で現在+3 TFC日まで遅延する。
+- 負のauraはTFC野生動物の成長を巻き戻さない。TFC野生動物は公開された年齢tickを持たず、子ども状態が低頻度ランダムで解除される実装のため。
 
 ## TFC植物aura効果の数値
 

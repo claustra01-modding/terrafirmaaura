@@ -22,7 +22,8 @@ public final class TFAuraClientGameEvents {
         ResourceLocation.fromNamespaceAndPath("naturesaura", "furnace_heater"),
         ResourceLocation.fromNamespaceAndPath("naturesaura", "blast_furnace_booster"),
         ResourceLocation.fromNamespaceAndPath("naturesaura", "rf_converter"),
-        ResourceLocation.fromNamespaceAndPath("naturesaura", "snow_creator")
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "snow_creator"),
+        ResourceLocation.fromNamespaceAndPath("naturesaura", "weather_changer")
     );
 
     private TFAuraClientGameEvents() {
