@@ -1,1 +1,1 @@
-{"type":"tfc:advanced_shaped_crafting","key":{"S":{"tag":"c:rods/wooden"},"X":{"item":"tfaura:metal/sword_blade/depth"}},"pattern":["X","S"],"result":{"modifiers":[{"type":"tfc:copy_forging_bonus"}],"stack":{"count":1,"id":"naturesaura:depth_sword"}}}
+{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/depth"},"S":{"tag":"c:rods/wooden"}},"pattern":["X","X","S"],"result":{"count":1,"id":"naturesaura:depth_sword"}}

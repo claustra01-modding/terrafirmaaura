@@ -53,10 +53,9 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - TFC風金属は `infused_iron`, `tainted_gold`, `sky`, `depth` を対象にする。
 - 標準フォームは ingot, double_ingot, sheet, double_sheet, rod。`tfc_items` がロードされている場合のみ foil, gear, heavy_sheet, nail, ring, rivet, screw, stamen, wire を登録する。
 - 溶融金属FluidはTFC名前空間の `tfc:metal/<metal>` / `tfc:metal/flowing_<metal>` として登録する。表示はTFC/Metallum同様 `FluidRendererExtension` で `tfc:block/molten_still` / `tfc:block/molten_flow` に金属色tintを乗せる。
-- Nature's Aura装備・ツールは元の作業台レシピを同名上書きし、TFC式の中間素材を使う。装備対象金属は `infused_iron`, `sky`, `depth` のみで、`tainted_gold` にはtool head/unfinished armorを追加しない。
-- tool head/bladeは `pickaxe_head`, `axe_head`, `shovel_head`, `hoe_head`, `sword_blade`。未完成防具は `unfinished_helmet`, `unfinished_chestplate`, `unfinished_greaves`, `unfinished_boots`。
-- ツール完成レシピはTFC `advanced_shaped_crafting` 同様に中間素材 + `#c:rods/wooden` を使い、`tfc:copy_forging_bonus` を適用する。防具完成レシピはTFC `welding` 同様にunfinished armor + sheet/double_sheetを使い、`bonus: copy_best` を適用する。
-- 装備・ツール用中間素材と完成済みNature's Aura装備はTFC heatingに対応する。完成品は `use_durability: true` で溶かし戻し量を耐久値に連動させる。
+- Nature's Aura装備・ツールは元レシピを同名上書きし、TFAura金属のingotから通常の作業台で直接クラフトする。tool head/bladeやunfinished armorなどの中間素材は登録しない。
+- ツールは `#c:ingots/<metal>` + `#c:rods/wooden`、防具は `#c:ingots/<metal>` を使う。対象金属は `infused_iron`, `sky`, `depth` のみとする。
+- 完成済みNature's Aura装備・ツールはTFC heatingに対応する。溶かし戻し量はクラフトに使うingot数に合わせ、`use_durability: true` で耐久値に連動させる。
 
 ## レシピ・タグ連携
 
@@ -87,5 +86,5 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 - ancient wood / brilliant grass系テクスチャ生成は `.tmp/generate_ancient_stripped_textures.py` で行う。TFC oakのstripped block/log系item、TFC lumber、TFC bluegrassを入力にする。
 - 金属テクスチャ生成は `.tmp/generate_tfaura_metal_textures.py` で行う。Nature's Aura本体ingotからパレットを抽出し、TFCの `wrought_iron` 標準フォームとTFC More Items互換フォームの輝度テンプレートへ補間適用する。
-- 金属登録・基本レシピ生成は `.tmp/generate_tfaura_metals.py`、装備・ツール用中間素材/レシピ/テクスチャ生成は `.tmp/generate_tfaura_equipment_recipes.py` を使う。
+- 金属登録・基本レシピ生成は `.tmp/generate_tfaura_metals.py`、装備・ツールの直接クラフトレシピと完成品heating生成は `.tmp/generate_tfaura_equipment_recipes.py` を使う。
 - More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では参照repo（TFC-metallum-overhaul）の `compressed_iron` 生成済みテクスチャを形状・輝度ベースとして使う。

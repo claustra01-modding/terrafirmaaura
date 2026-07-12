@@ -1,1 +1,1 @@
-{"type":"tfc:heating","ingredient":{"item":"naturesaura:depth_axe"},"result_fluid":{"amount":100,"id":"tfc:metal/depth"},"temperature":1600.0,"use_durability":true}
+{"type":"tfc:heating","ingredient":{"item":"naturesaura:depth_axe"},"result_fluid":{"amount":300,"id":"tfc:metal/depth"},"temperature":1600.0,"use_durability":true}

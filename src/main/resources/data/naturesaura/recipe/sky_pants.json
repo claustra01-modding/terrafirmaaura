@@ -1,1 +1,1 @@
-{"type":"tfc:welding","bonus":"copy_best","first_input":{"item":"tfaura:metal/unfinished_greaves/sky"},"second_input":{"tag":"c:sheets/sky"},"result":{"count":1,"id":"naturesaura:sky_pants"},"tier":4}
+{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/sky"}},"pattern":["XXX","X X","X X"],"result":{"count":1,"id":"naturesaura:sky_pants"}}

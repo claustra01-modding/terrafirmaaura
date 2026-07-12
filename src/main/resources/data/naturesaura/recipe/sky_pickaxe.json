@@ -1,1 +1,1 @@
-{"type":"tfc:advanced_shaped_crafting","key":{"S":{"tag":"c:rods/wooden"},"X":{"item":"tfaura:metal/pickaxe_head/sky"}},"pattern":["X","S"],"result":{"modifiers":[{"type":"tfc:copy_forging_bonus"}],"stack":{"count":1,"id":"naturesaura:sky_pickaxe"}}}
+{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/sky"},"S":{"tag":"c:rods/wooden"}},"pattern":["XXX"," S "," S "],"result":{"count":1,"id":"naturesaura:sky_pickaxe"}}

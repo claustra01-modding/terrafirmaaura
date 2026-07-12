@@ -1,1 +1,0 @@
-{"type":"tfc:anvil","apply_bonus":true,"ingredient":{"tag":"c:double_sheets/sky"},"result":{"count":1,"id":"tfaura:metal/unfinished_helmet/sky"},"rules":["hit_last","bend_second_last","bend_third_last"],"tier":5}

@@ -1,1 +1,1 @@
-{"type":"tfc:welding","bonus":"copy_best","first_input":{"item":"tfaura:metal/unfinished_chestplate/infused_iron"},"second_input":{"tag":"c:double_sheets/infused_iron"},"result":{"count":1,"id":"naturesaura:infused_iron_chest"},"tier":2}
+{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/infused_iron"}},"pattern":["X X","XXX","XXX"],"result":{"count":1,"id":"naturesaura:infused_iron_chest"}}

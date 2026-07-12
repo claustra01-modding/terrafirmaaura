@@ -1,1 +1,0 @@
-{"type":"tfc:anvil","apply_bonus":true,"ingredient":{"tag":"c:double_ingots/infused_iron"},"result":{"count":1,"id":"tfaura:metal/sword_blade/infused_iron"},"rules":["hit_last","bend_second_last","bend_third_last"],"tier":3}

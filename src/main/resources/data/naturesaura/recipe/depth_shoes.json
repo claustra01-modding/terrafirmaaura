@@ -1,1 +1,1 @@
-{"type":"tfc:welding","bonus":"copy_best","first_input":{"item":"tfaura:metal/unfinished_boots/depth"},"second_input":{"tag":"c:sheets/depth"},"result":{"count":1,"id":"naturesaura:depth_shoes"},"tier":5}
+{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/depth"}},"pattern":["X X","X X"],"result":{"count":1,"id":"naturesaura:depth_shoes"}}

@@ -1,1 +1,1 @@
-{"type":"tfc:welding","bonus":"copy_best","first_input":{"item":"tfaura:metal/unfinished_boots/infused_iron"},"second_input":{"tag":"c:sheets/infused_iron"},"result":{"count":1,"id":"naturesaura:infused_iron_shoes"},"tier":2}
+{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/infused_iron"}},"pattern":["X X","X X"],"result":{"count":1,"id":"naturesaura:infused_iron_shoes"}}

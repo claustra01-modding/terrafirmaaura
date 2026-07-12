@@ -4,8 +4,6 @@ import net.claustra01.tfaura.TerraFirmaAura;
 import net.claustra01.tfaura.common.block.TFAuraBlocks;
 import net.claustra01.tfaura.common.item.TFAuraItems;
 import net.claustra01.tfaura.common.item.TFAuraItems.TFAuraMoreItemType;
-import net.claustra01.tfaura.common.item.TFAuraItems.TFAuraToolHeadType;
-import net.claustra01.tfaura.common.item.TFAuraItems.TFAuraUnfinishedArmorType;
 import net.claustra01.tfaura.common.item.TFAuraMetal;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -49,15 +47,6 @@ public final class TFAuraCreativeTabs {
                 output.accept(TFAuraItems.METAL_SHEETS.get(metal).get());
                 output.accept(TFAuraItems.METAL_DOUBLE_SHEETS.get(metal).get());
                 output.accept(TFAuraItems.METAL_RODS.get(metal).get());
-
-                if (TFAuraItems.TOOL_HEADS.containsKey(metal)) {
-                    for (TFAuraToolHeadType type : TFAuraToolHeadType.VALUES) {
-                        output.accept(TFAuraItems.TOOL_HEADS.get(metal).get(type).get());
-                    }
-                    for (TFAuraUnfinishedArmorType type : TFAuraUnfinishedArmorType.VALUES) {
-                        output.accept(TFAuraItems.UNFINISHED_ARMOR.get(metal).get(type).get());
-                    }
-                }
 
                 if (TFAuraItems.MORE_METAL_ITEMS.containsKey(metal)) {
                     for (TFAuraMoreItemType type : TFAuraMoreItemType.VALUES) {
