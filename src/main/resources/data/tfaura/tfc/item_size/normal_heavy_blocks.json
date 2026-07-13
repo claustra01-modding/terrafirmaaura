@@ -1,0 +1,18 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:gold_brick"
+    },
+    {
+      "item": "naturesaura:gold_nether_brick"
+    },
+    {
+      "item": "naturesaura:infused_brick"
+    },
+    {
+      "item": "naturesaura:infused_stone"
+    }
+  ],
+  "size": "normal",
+  "weight": "heavy"
+}

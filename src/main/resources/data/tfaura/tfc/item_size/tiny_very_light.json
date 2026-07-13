@@ -1,0 +1,54 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:birth_spirit"
+    },
+    {
+      "item": "naturesaura:calling_spirit"
+    },
+    {
+      "item": "naturesaura:clock_hand"
+    },
+    {
+      "item": "naturesaura:crimson_meal"
+    },
+    {
+      "item": "naturesaura:effect_powder"
+    },
+    {
+      "item": "naturesaura:gold_fiber"
+    },
+    {
+      "item": "naturesaura:gold_leaf"
+    },
+    {
+      "item": "naturesaura:gold_powder"
+    },
+    {
+      "item": "naturesaura:token_anger"
+    },
+    {
+      "item": "naturesaura:token_euphoria"
+    },
+    {
+      "item": "naturesaura:token_fear"
+    },
+    {
+      "item": "naturesaura:token_grief"
+    },
+    {
+      "item": "naturesaura:token_joy"
+    },
+    {
+      "item": "naturesaura:token_rage"
+    },
+    {
+      "item": "naturesaura:token_sorrow"
+    },
+    {
+      "item": "naturesaura:token_terror"
+    }
+  ],
+  "size": "tiny",
+  "weight": "very_light"
+}

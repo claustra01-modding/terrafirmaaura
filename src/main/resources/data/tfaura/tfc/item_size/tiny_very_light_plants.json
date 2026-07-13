@@ -1,0 +1,42 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:ancient_leaves"
+    },
+    {
+      "item": "naturesaura:ancient_sapling"
+    },
+    {
+      "item": "naturesaura:aura_bloom"
+    },
+    {
+      "item": "naturesaura:aura_cactus"
+    },
+    {
+      "item": "naturesaura:aura_mushroom"
+    },
+    {
+      "item": "naturesaura:crimson_aura_mushroom"
+    },
+    {
+      "item": "naturesaura:decayed_leaves"
+    },
+    {
+      "item": "naturesaura:end_flower"
+    },
+    {
+      "item": "naturesaura:golden_leaves"
+    },
+    {
+      "item": "naturesaura:nether_grass"
+    },
+    {
+      "item": "naturesaura:nether_wart_mushroom"
+    },
+    {
+      "item": "naturesaura:warped_aura_mushroom"
+    }
+  ],
+  "size": "tiny",
+  "weight": "very_light"
+}

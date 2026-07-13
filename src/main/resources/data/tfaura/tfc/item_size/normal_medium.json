@@ -1,0 +1,21 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:aura_cache"
+    },
+    {
+      "item": "naturesaura:aura_trove"
+    },
+    {
+      "item": "naturesaura:bottle_two_the_rebottling"
+    },
+    {
+      "item": "naturesaura:book"
+    },
+    {
+      "item": "naturesaura:mover_cart"
+    }
+  ],
+  "size": "normal",
+  "weight": "medium"
+}

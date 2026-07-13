@@ -1,0 +1,18 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:depth_ingot_block"
+    },
+    {
+      "item": "naturesaura:infused_iron_block"
+    },
+    {
+      "item": "naturesaura:sky_ingot_block"
+    },
+    {
+      "item": "naturesaura:tainted_gold_block"
+    }
+  ],
+  "size": "huge",
+  "weight": "very_heavy"
+}

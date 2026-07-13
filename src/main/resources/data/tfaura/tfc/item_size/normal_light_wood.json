@@ -1,0 +1,12 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:ancient_planks"
+    },
+    {
+      "item": "naturesaura:ancient_stick"
+    }
+  ],
+  "size": "normal",
+  "weight": "light"
+}

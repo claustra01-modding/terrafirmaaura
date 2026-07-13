@@ -1,0 +1,87 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:depth_axe"
+    },
+    {
+      "item": "naturesaura:depth_chest"
+    },
+    {
+      "item": "naturesaura:depth_helmet"
+    },
+    {
+      "item": "naturesaura:depth_hoe"
+    },
+    {
+      "item": "naturesaura:depth_pants"
+    },
+    {
+      "item": "naturesaura:depth_pickaxe"
+    },
+    {
+      "item": "naturesaura:depth_shoes"
+    },
+    {
+      "item": "naturesaura:depth_shovel"
+    },
+    {
+      "item": "naturesaura:depth_sword"
+    },
+    {
+      "item": "naturesaura:infused_iron_axe"
+    },
+    {
+      "item": "naturesaura:infused_iron_chest"
+    },
+    {
+      "item": "naturesaura:infused_iron_helmet"
+    },
+    {
+      "item": "naturesaura:infused_iron_hoe"
+    },
+    {
+      "item": "naturesaura:infused_iron_pants"
+    },
+    {
+      "item": "naturesaura:infused_iron_pickaxe"
+    },
+    {
+      "item": "naturesaura:infused_iron_shoes"
+    },
+    {
+      "item": "naturesaura:infused_iron_shovel"
+    },
+    {
+      "item": "naturesaura:infused_iron_sword"
+    },
+    {
+      "item": "naturesaura:sky_axe"
+    },
+    {
+      "item": "naturesaura:sky_chest"
+    },
+    {
+      "item": "naturesaura:sky_helmet"
+    },
+    {
+      "item": "naturesaura:sky_hoe"
+    },
+    {
+      "item": "naturesaura:sky_pants"
+    },
+    {
+      "item": "naturesaura:sky_pickaxe"
+    },
+    {
+      "item": "naturesaura:sky_shoes"
+    },
+    {
+      "item": "naturesaura:sky_shovel"
+    },
+    {
+      "item": "naturesaura:sky_sword"
+    }
+  ],
+  "size": "very_large",
+  "weight": "very_heavy"
+}

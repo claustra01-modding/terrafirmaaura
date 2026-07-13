@@ -1,0 +1,66 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:aura_bottle"
+    },
+    {
+      "item": "naturesaura:break_prevention"
+    },
+    {
+      "item": "naturesaura:cave_finder"
+    },
+    {
+      "item": "naturesaura:color_changer"
+    },
+    {
+      "item": "naturesaura:death_ring"
+    },
+    {
+      "item": "naturesaura:end_city_finder"
+    },
+    {
+      "item": "naturesaura:ender_access"
+    },
+    {
+      "item": "naturesaura:eye"
+    },
+    {
+      "item": "naturesaura:eye_improved"
+    },
+    {
+      "item": "naturesaura:farming_stencil"
+    },
+    {
+      "item": "naturesaura:fortress_finder"
+    },
+    {
+      "item": "naturesaura:light_staff"
+    },
+    {
+      "item": "naturesaura:loot_finder"
+    },
+    {
+      "item": "naturesaura:multiblock_maker"
+    },
+    {
+      "item": "naturesaura:netherite_finder"
+    },
+    {
+      "item": "naturesaura:outpost_finder"
+    },
+    {
+      "item": "naturesaura:pet_reviver"
+    },
+    {
+      "item": "naturesaura:range_visualizer"
+    },
+    {
+      "item": "naturesaura:shockwave_creator"
+    },
+    {
+      "item": "naturesaura:vacuum_bottle"
+    }
+  ],
+  "size": "small",
+  "weight": "light"
+}

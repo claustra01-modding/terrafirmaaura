@@ -1,0 +1,12 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:ancient_bark"
+    },
+    {
+      "item": "naturesaura:ancient_log"
+    }
+  ],
+  "size": "very_large",
+  "weight": "heavy"
+}
