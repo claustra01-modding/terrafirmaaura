@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LNL",
+    "NGN",
+    "LNL"
+  ],
+  "key": {
+    "N": {
+      "tag": "c:nuggets/gold"
+    },
+    "G": {
+      "tag": "tfaura:tfc_grasses"
+    },
+    "L": {
+      "tag": "minecraft:leaves"
+    }
+  },
+  "result": {
+    "id": "naturesaura:gold_fiber",
+    "count": 4
+  }
+}

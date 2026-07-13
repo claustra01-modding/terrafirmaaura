@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " SG",
+    " RT",
+    "R  "
+  ],
+  "key": {
+    "R": {
+      "item": "tfaura:wood/lumber/ancient"
+    },
+    "S": {
+      "item": "tfaura:metal/ingot/sky"
+    },
+    "T": {
+      "item": "naturesaura:token_terror"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "result": {
+    "id": "naturesaura:light_staff"
+  }
+}

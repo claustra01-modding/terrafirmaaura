@@ -59,6 +59,10 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 ## レシピ・タグ連携
 
+- Nature's Aura本体の全recipe IDをTFAura側で上書きする。TFCに明確な相当品がある素材はTFC itemへ、岩石・金属・宝石など種類を許容すべき素材は既存のTFC/Common tagへ置換し、Nether/End固有素材など相当品がないものは維持する。
+- Nature's Aura本体の `infused_iron`, `tainted_gold`, `sky_ingot`, `depth_ingot` を要求・出力するレシピは、対応する `tfaura:metal/ingot/<metal>` へ統一する。古代木素材の参照もTFAura ancient woodへ統一し、本体古代木のクラフトレシピ6種は二重系統を避けるため無効化する。
+- vanilla grass素材は存在しないTFC単一grassへ固定せず、TFCの陸生grassを列挙した `#tfaura:tfc_grasses` で受ける。
+- Altar of Birthingが無効な間は `animal_spawner/*` の全spawn recipeも `neoforge:false` で無効化する。
 - Natural Altarの構成ブロックはNature's Aura本体の `data/naturesaura/tags/block/altar_*` を拡張して対応する。TFC通常木材は `#minecraft:planks`、TFC岩石レンガは `#minecraft:stone_bricks` 経由で利用でき、TFC chiseled rockは `altar_fancy_brick` へ明示追加する。TFAura ancient planksとArbor系planksタグも `altar_wood` へ追加する。
 - Ritual of the ForestはNature's Aura本体の `data/naturesaura/recipe/tree_ritual/*` を同名上書きし、中心苗木を `#tfaura:tree_ritual_saplings` へ差し替える。TFC果樹苗・竹苗・2x2成長前提のsaplingは対象にしない。
 - Tree Ritual内のNature's Aura金属素材はTFAura金属へ寄せる。TFCに相当品がない素材は元の `minecraft:*` のまま残し、複数候補が必要なsugarcane/magma rocksだけTFAura item tagで受ける。植物素材は本家の花系要求に寄せ、必要なら `#minecraft:small_flowers` を使う。
@@ -82,9 +86,16 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - Shooting MarkはTFC投射物として `TFCEntities.THROWN_JAVELIN` を30,000 aura、`TFCEntities.GLOW_ARROW` を45,000 auraで追加する。TFC loose rockは1.21.1-4.2.5ではgroundcoverの設置/回収ブロックで、投射物Entityではないため対象外。
 - Everlasting SpringはFluidHandler経由の表示・drain対象を本家同様 `minecraft:water` のままにする。`BlockSpring#pickupBlock` も本家戻り値を維持し、鉄バケツで汲んだ場合はvanilla water bucketになる。
 
+## Item Size / Weight
+
+- Nature's Auraの全アイテムに `tfc:item_size` データを追加する。粉・token・植物はtiny/very light、携帯アクセサリはsmall/light、ingotはlarge/medium、装備・ツールはvery large/very heavyを基本とする。
+- 機能ブロックはlarge/heavy、金属storage blockはhuge/very heavy、古代原木はvery large/heavy、slab/stairはsmall/lightとしてTFC既存分類に寄せる。
+- TFAura金属フォームはCommon tag経由でTFC本体のingot/sheet/rod等の既存size/weight定義を利用する。
+
 ## 生成スクリプト
 
 - ancient wood / brilliant grass系テクスチャ生成は `.tmp/generate_ancient_stripped_textures.py` で行う。TFC oakのstripped block/log系item、TFC lumber、TFC bluegrassを入力にする。
 - 金属テクスチャ生成は `.tmp/generate_tfaura_metal_textures.py` で行う。Nature's Aura本体ingotからパレットを抽出し、TFCの `wrought_iron` 標準フォームとTFC More Items互換フォームの輝度テンプレートへ補間適用する。
 - 金属登録・基本レシピ生成は `.tmp/generate_tfaura_metals.py`、装備・ツールの直接クラフトレシピと完成品heating生成は `.tmp/generate_tfaura_equipment_recipes.py` を使う。
+- Nature's Aura全レシピのTFC素材置換とitem size/weight生成は `.tmp/generate_naturesaura_tfc_compat.py` を使う。
 - More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では参照repo（TFC-metallum-overhaul）の `compressed_iron` 生成済みテクスチャを形状・輝度ベースとして使う。

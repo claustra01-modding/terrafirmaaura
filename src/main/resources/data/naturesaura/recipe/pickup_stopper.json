@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CIC",
+    "CDC",
+    "CIC"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:slime_ball"
+    },
+    "I": {
+      "item": "tfaura:metal/ingot/infused_iron"
+    },
+    "C": {
+      "tag": "c:cobblestones/normal"
+    }
+  },
+  "result": {
+    "id": "naturesaura:pickup_stopper"
+  }
+}

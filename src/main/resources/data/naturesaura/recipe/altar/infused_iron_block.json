@@ -1,0 +1,11 @@
+{
+  "type": "naturesaura:altar",
+  "input": {
+    "tag": "c:storage_blocks/wrought_iron"
+  },
+  "output": {
+    "id": "naturesaura:infused_iron_block"
+  },
+  "aura": 135000,
+  "time": 700
+}

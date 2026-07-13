@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "III",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "tfaura:metal/ingot/tainted_gold"
+    }
+  },
+  "result": {
+    "id": "naturesaura:tainted_gold_block"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SES",
+    "WBW",
+    "BBB"
+  ],
+  "key": {
+    "W": {
+      "item": "tfc:food/wheat_grain"
+    },
+    "S": {
+      "item": "tfc:seeds/wheat"
+    },
+    "E": {
+      "item": "naturesaura:eye"
+    },
+    "B": {
+      "item": "naturesaura:infused_brick"
+    }
+  },
+  "result": {
+    "id": "naturesaura:animal_container"
+  }
+}

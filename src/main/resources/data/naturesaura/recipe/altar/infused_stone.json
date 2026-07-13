@@ -1,0 +1,11 @@
+{
+  "type": "naturesaura:altar",
+  "input": {
+    "tag": "c:stones/raw"
+  },
+  "output": {
+    "id": "naturesaura:infused_stone"
+  },
+  "aura": 7500,
+  "time": 40
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IA ",
+    "AGA",
+    " AS"
+  ],
+  "key": {
+    "A": {
+      "item": "tfaura:wood/planks/ancient"
+    },
+    "I": {
+      "item": "tfaura:metal/ingot/infused_iron"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "S": {
+      "item": "tfaura:wood/lumber/ancient"
+    }
+  },
+  "result": {
+    "id": "naturesaura:range_visualizer"
+  }
+}

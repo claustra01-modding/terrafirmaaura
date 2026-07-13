@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    "CWC",
+    "ICI"
+  ],
+  "key": {
+    "C": {
+      "tag": "c:cobblestones/mossy"
+    },
+    "I": {
+      "item": "tfaura:metal/ingot/infused_iron"
+    },
+    "W": {
+      "item": "naturesaura:token_joy"
+    }
+  },
+  "result": {
+    "id": "naturesaura:moss_generator"
+  }
+}
