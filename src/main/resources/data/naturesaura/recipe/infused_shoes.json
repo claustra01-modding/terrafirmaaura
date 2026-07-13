@@ -1,1 +1,17 @@
-{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/infused_iron"}},"pattern":["X X","X X"],"result":{"count":1,"id":"naturesaura:infused_iron_shoes"}}
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": {
+      "tag": "c:ingots/infused_iron"
+    }
+  },
+  "pattern": [
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "naturesaura:infused_iron_shoes"
+  }
+}

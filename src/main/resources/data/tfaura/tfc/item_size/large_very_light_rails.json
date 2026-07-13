@@ -1,0 +1,15 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:dimension_rail_end"
+    },
+    {
+      "item": "naturesaura:dimension_rail_nether"
+    },
+    {
+      "item": "naturesaura:dimension_rail_overworld"
+    }
+  ],
+  "size": "large",
+  "weight": "very_light"
+}

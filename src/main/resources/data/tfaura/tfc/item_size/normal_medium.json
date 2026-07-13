@@ -1,19 +1,31 @@
 {
   "ingredient": [
     {
-      "item": "naturesaura:aura_cache"
-    },
-    {
-      "item": "naturesaura:aura_trove"
+      "item": "naturesaura:aura_bottle"
     },
     {
       "item": "naturesaura:bottle_two_the_rebottling"
     },
     {
-      "item": "naturesaura:book"
+      "item": "naturesaura:cave_finder"
     },
     {
-      "item": "naturesaura:mover_cart"
+      "item": "naturesaura:end_city_finder"
+    },
+    {
+      "item": "naturesaura:fortress_finder"
+    },
+    {
+      "item": "naturesaura:loot_finder"
+    },
+    {
+      "item": "naturesaura:netherite_finder"
+    },
+    {
+      "item": "naturesaura:outpost_finder"
+    },
+    {
+      "item": "naturesaura:vacuum_bottle"
     }
   ],
   "size": "normal",

@@ -4,21 +4,15 @@
       "item": "naturesaura:ancient_slab"
     },
     {
-      "item": "naturesaura:ancient_stairs"
-    },
-    {
       "item": "naturesaura:infused_brick_slab"
-    },
-    {
-      "item": "naturesaura:infused_brick_stairs"
     },
     {
       "item": "naturesaura:infused_slab"
     },
     {
-      "item": "naturesaura:infused_stairs"
+      "item": "tfaura:wood/slab/ancient"
     }
   ],
   "size": "small",
-  "weight": "light"
+  "weight": "very_light"
 }

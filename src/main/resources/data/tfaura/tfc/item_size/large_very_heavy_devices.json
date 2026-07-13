@@ -1,0 +1,39 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:animal_generator"
+    },
+    {
+      "item": "naturesaura:animal_spawner"
+    },
+    {
+      "item": "naturesaura:blast_furnace_booster"
+    },
+    {
+      "item": "naturesaura:chorus_generator"
+    },
+    {
+      "item": "naturesaura:chunk_loader"
+    },
+    {
+      "item": "naturesaura:furnace_heater"
+    },
+    {
+      "item": "naturesaura:generator_limit_remover"
+    },
+    {
+      "item": "naturesaura:oak_generator"
+    },
+    {
+      "item": "naturesaura:rf_converter"
+    },
+    {
+      "item": "naturesaura:snow_creator"
+    },
+    {
+      "item": "naturesaura:weather_changer"
+    }
+  ],
+  "size": "large",
+  "weight": "very_heavy"
+}

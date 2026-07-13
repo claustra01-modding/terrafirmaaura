@@ -1,10 +1,10 @@
 {
   "ingredient": [
     {
-      "item": "naturesaura:ancient_planks"
+      "item": "naturesaura:ancient_stick"
     },
     {
-      "item": "naturesaura:ancient_stick"
+      "item": "tfaura:wood/lumber/ancient"
     }
   ],
   "size": "normal",

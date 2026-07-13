@@ -62,6 +62,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - Nature's Aura本体の全recipe IDをTFAura側で上書きする。TFCに明確な相当品がある素材はTFC itemへ、岩石・金属・宝石など種類を許容すべき素材は既存のTFC/Common tagへ置換し、Nether/End固有素材など相当品がないものは維持する。
 - Nature's Aura本体の `infused_iron`, `tainted_gold`, `sky_ingot`, `depth_ingot` を要求・出力するレシピは、対応する `tfaura:metal/ingot/<metal>` へ統一する。古代木素材の参照もTFAura ancient woodへ統一し、本体古代木のクラフトレシピ6種は二重系統を避けるため無効化する。
 - vanilla grass素材は存在しないTFC単一grassへ固定せず、TFCの陸生grassを列挙した `#tfaura:tfc_grasses` で受ける。
+- Nature's Auraレシピで木材を材料に使う箇所はplanksではなくTFC lumberへ統一する。汎用planks tagは `#tfc:lumber`、TFAura ancient planksの直接参照は `tfaura:wood/lumber/ancient` へ置換し、レシピ出力としてのplanksは変更しない。
 - Altar of Birthingが無効な間は `animal_spawner/*` の全spawn recipeも `neoforge:false` で無効化する。
 - Natural Altarの構成ブロックはNature's Aura本体の `data/naturesaura/tags/block/altar_*` を拡張して対応する。TFC通常木材は `#minecraft:planks`、TFC岩石レンガは `#minecraft:stone_bricks` 経由で利用でき、TFC chiseled rockは `altar_fancy_brick` へ明示追加する。TFAura ancient planksとArbor系planksタグも `altar_wood` へ追加する。
 - Ritual of the ForestはNature's Aura本体の `data/naturesaura/recipe/tree_ritual/*` を同名上書きし、中心苗木を `#tfaura:tree_ritual_saplings` へ差し替える。TFC果樹苗・竹苗・2x2成長前提のsaplingは対象にしない。
@@ -88,8 +89,10 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 ## Item Size / Weight
 
-- Nature's Auraの全アイテムに `tfc:item_size` データを追加する。粉・token・植物はtiny/very light、携帯アクセサリはsmall/light、ingotはlarge/medium、装備・ツールはvery large/very heavyを基本とする。
-- 機能ブロックはlarge/heavy、金属storage blockはhuge/very heavy、古代原木はvery large/heavy、slab/stairはsmall/lightとしてTFC既存分類に寄せる。
+- Nature's Auraの全実アイテムモデルに `tfc:item_size` データを追加し、`docs/item_size.md` の分類表を正とする。見た目だけで決めず、TFC本体の明示定義、クラス別フォールバック、最も近い既存設備の順で決定する。
+- TFCの基底値は一般Itemがvery small/very light、一般BlockItemがsmall/light。主要な明示値はplants・powdersがtiny/very light、ingotがlarge/medium、logsがvery large/medium、slabがsmall/very light、stairsがsmall/light、railsがlarge/very light、toolsがvery large/very heavy、armorがlarge/very heavy。
+- Nature's Aura本家ancient woodとTFAura ancient woodは同形状ごとに同じ値へ揃える。ancient stickは `#c:rods/wooden` のTFC値、TFAura lumberもレシピ上の代替関係に合わせてnormal/lightへ揃える。
+- 機能ブロックは一律分類せず、table/chest/minecart/bloomery/power loom/grill等のTFC類似設備を個別に参照する。通常の建材・金属storage block・葉・苗木はBlockItem基底のsmall/lightとする。
 - TFAura金属フォームはCommon tag経由でTFC本体のingot/sheet/rod等の既存size/weight定義を利用する。
 
 ## 生成スクリプト

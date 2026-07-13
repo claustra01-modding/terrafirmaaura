@@ -1,13 +1,7 @@
 {
   "ingredient": [
     {
-      "item": "naturesaura:birth_spirit"
-    },
-    {
       "item": "naturesaura:calling_spirit"
-    },
-    {
-      "item": "naturesaura:clock_hand"
     },
     {
       "item": "naturesaura:crimson_meal"
@@ -16,37 +10,49 @@
       "item": "naturesaura:effect_powder"
     },
     {
-      "item": "naturesaura:gold_fiber"
-    },
-    {
       "item": "naturesaura:gold_leaf"
     },
     {
       "item": "naturesaura:gold_powder"
     },
     {
-      "item": "naturesaura:token_anger"
+      "item": "naturesaura:aura_bloom"
     },
     {
-      "item": "naturesaura:token_euphoria"
+      "item": "naturesaura:aura_cactus"
     },
     {
-      "item": "naturesaura:token_fear"
+      "item": "naturesaura:aura_mushroom"
     },
     {
-      "item": "naturesaura:token_grief"
+      "item": "naturesaura:crimson_aura_mushroom"
     },
     {
-      "item": "naturesaura:token_joy"
+      "item": "naturesaura:end_flower"
     },
     {
-      "item": "naturesaura:token_rage"
+      "item": "naturesaura:nether_grass"
     },
     {
-      "item": "naturesaura:token_sorrow"
+      "item": "naturesaura:nether_wart_mushroom"
     },
     {
-      "item": "naturesaura:token_terror"
+      "item": "naturesaura:warped_aura_mushroom"
+    },
+    {
+      "item": "tfaura:plant/aura_bloom"
+    },
+    {
+      "item": "tfaura:plant/aura_cactus"
+    },
+    {
+      "item": "tfaura:plant/aura_mushroom"
+    },
+    {
+      "item": "tfaura:plant/crimson_aura_mushroom"
+    },
+    {
+      "item": "tfaura:plant/warped_aura_mushroom"
     }
   ],
   "size": "tiny",

@@ -1,0 +1,18 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:auto_crafter"
+    },
+    {
+      "item": "naturesaura:nature_altar"
+    },
+    {
+      "item": "naturesaura:offering_table"
+    },
+    {
+      "item": "naturesaura:wood_stand"
+    }
+  ],
+  "size": "large",
+  "weight": "light"
+}

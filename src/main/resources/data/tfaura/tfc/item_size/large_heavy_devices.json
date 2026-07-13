@@ -4,46 +4,16 @@
       "item": "naturesaura:animal_container"
     },
     {
-      "item": "naturesaura:animal_generator"
-    },
-    {
-      "item": "naturesaura:animal_spawner"
-    },
-    {
       "item": "naturesaura:aura_detector"
     },
     {
       "item": "naturesaura:aura_timer"
     },
     {
-      "item": "naturesaura:auto_crafter"
-    },
-    {
-      "item": "naturesaura:blast_furnace_booster"
-    },
-    {
-      "item": "naturesaura:chorus_generator"
-    },
-    {
-      "item": "naturesaura:chunk_loader"
-    },
-    {
       "item": "naturesaura:conversion_catalyst"
     },
     {
       "item": "naturesaura:crushing_catalyst"
-    },
-    {
-      "item": "naturesaura:dimension_rail_end"
-    },
-    {
-      "item": "naturesaura:dimension_rail_nether"
-    },
-    {
-      "item": "naturesaura:dimension_rail_overworld"
-    },
-    {
-      "item": "naturesaura:ender_crate"
     },
     {
       "item": "naturesaura:field_creator"
@@ -53,12 +23,6 @@
     },
     {
       "item": "naturesaura:flower_generator"
-    },
-    {
-      "item": "naturesaura:furnace_heater"
-    },
-    {
-      "item": "naturesaura:generator_limit_remover"
     },
     {
       "item": "naturesaura:grated_chute"
@@ -76,15 +40,6 @@
       "item": "naturesaura:moss_generator"
     },
     {
-      "item": "naturesaura:nature_altar"
-    },
-    {
-      "item": "naturesaura:oak_generator"
-    },
-    {
-      "item": "naturesaura:offering_table"
-    },
-    {
       "item": "naturesaura:pickup_stopper"
     },
     {
@@ -100,13 +55,7 @@
       "item": "naturesaura:projectile_generator"
     },
     {
-      "item": "naturesaura:rf_converter"
-    },
-    {
       "item": "naturesaura:slime_split_generator"
-    },
-    {
-      "item": "naturesaura:snow_creator"
     },
     {
       "item": "naturesaura:spawn_lamp"
@@ -116,12 +65,6 @@
     },
     {
       "item": "naturesaura:time_changer"
-    },
-    {
-      "item": "naturesaura:weather_changer"
-    },
-    {
-      "item": "naturesaura:wood_stand"
     }
   ],
   "size": "large",

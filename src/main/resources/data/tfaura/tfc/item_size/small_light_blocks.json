@@ -1,0 +1,81 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:ancient_leaves"
+    },
+    {
+      "item": "naturesaura:ancient_planks"
+    },
+    {
+      "item": "naturesaura:ancient_sapling"
+    },
+    {
+      "item": "naturesaura:ancient_stairs"
+    },
+    {
+      "item": "naturesaura:decayed_leaves"
+    },
+    {
+      "item": "naturesaura:depth_ingot_block"
+    },
+    {
+      "item": "naturesaura:gold_brick"
+    },
+    {
+      "item": "naturesaura:gold_nether_brick"
+    },
+    {
+      "item": "naturesaura:golden_leaves"
+    },
+    {
+      "item": "naturesaura:infused_brick"
+    },
+    {
+      "item": "naturesaura:infused_brick_stairs"
+    },
+    {
+      "item": "naturesaura:infused_iron_block"
+    },
+    {
+      "item": "naturesaura:infused_stairs"
+    },
+    {
+      "item": "naturesaura:infused_stone"
+    },
+    {
+      "item": "naturesaura:sky_ingot_block"
+    },
+    {
+      "item": "naturesaura:tainted_gold_block"
+    },
+    {
+      "item": "tfaura:wood/planks/ancient"
+    },
+    {
+      "item": "tfaura:wood/stairs/ancient"
+    },
+    {
+      "item": "tfaura:wood/fence/ancient"
+    },
+    {
+      "item": "tfaura:wood/log_fence/ancient"
+    },
+    {
+      "item": "tfaura:wood/fence_gate/ancient"
+    },
+    {
+      "item": "tfaura:wood/leaves/ancient"
+    },
+    {
+      "item": "tfaura:wood/leaves/golden"
+    },
+    {
+      "item": "tfaura:wood/leaves/decayed"
+    },
+    {
+      "item": "tfaura:wood/sapling/ancient"
+    }
+  ],
+  "size": "small",
+  "weight": "light"
+}

@@ -1,0 +1,42 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:depth_chest"
+    },
+    {
+      "item": "naturesaura:depth_helmet"
+    },
+    {
+      "item": "naturesaura:depth_pants"
+    },
+    {
+      "item": "naturesaura:depth_shoes"
+    },
+    {
+      "item": "naturesaura:infused_iron_chest"
+    },
+    {
+      "item": "naturesaura:infused_iron_helmet"
+    },
+    {
+      "item": "naturesaura:infused_iron_pants"
+    },
+    {
+      "item": "naturesaura:infused_iron_shoes"
+    },
+    {
+      "item": "naturesaura:sky_chest"
+    },
+    {
+      "item": "naturesaura:sky_helmet"
+    },
+    {
+      "item": "naturesaura:sky_pants"
+    },
+    {
+      "item": "naturesaura:sky_shoes"
+    }
+  ],
+  "size": "large",
+  "weight": "very_heavy"
+}

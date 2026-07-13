@@ -1,0 +1,12 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:aura_cache"
+    },
+    {
+      "item": "naturesaura:aura_trove"
+    }
+  ],
+  "size": "normal",
+  "weight": "heavy"
+}

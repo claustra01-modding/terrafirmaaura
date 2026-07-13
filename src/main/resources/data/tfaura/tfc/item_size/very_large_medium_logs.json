@@ -1,0 +1,24 @@
+{
+  "ingredient": [
+    {
+      "item": "naturesaura:ancient_bark"
+    },
+    {
+      "item": "naturesaura:ancient_log"
+    },
+    {
+      "item": "tfaura:wood/log/ancient"
+    },
+    {
+      "item": "tfaura:wood/stripped_log/ancient"
+    },
+    {
+      "item": "tfaura:wood/wood/ancient"
+    },
+    {
+      "item": "tfaura:wood/stripped_wood/ancient"
+    }
+  ],
+  "size": "very_large",
+  "weight": "medium"
+}

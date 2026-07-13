@@ -1,1 +1,18 @@
-{"type":"minecraft:crafting_shaped","category":"equipment","key":{"X":{"tag":"c:ingots/depth"}},"pattern":["XXX","X X","X X"],"result":{"count":1,"id":"naturesaura:depth_pants"}}
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "X": {
+      "tag": "c:ingots/depth"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "X X",
+    "X X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "naturesaura:depth_pants"
+  }
+}
