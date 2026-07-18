@@ -71,7 +71,8 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - `gold_powder` はTFC石臼 `type: tfc:quern` へ同名上書きし、`naturesaura:gold_leaf` から `naturesaura:gold_powder` を2個出す。
 - `gold_brick` は `naturesaura:gold_fiber` + `#tfaura:tfc_stone_bricks` でクラフトする。このタグは通常TFC rock bricksのみを含み、cracked/mossy/chiseledやvanilla bricks/fire bricksは含めない。
 - Offering Table周囲に置く花はNature's Aura本体の判定に合わせて `#minecraft:small_flowers` で互換対応する。TFAura植物に加え、TFCの小型花をTFAura側の同タグにも明示追加する。
-- Canopy Diminisher（`naturesaura:oak_generator`）、Disentangler of Mortals（`naturesaura:animal_generator`）、Altar of Birthing（`naturesaura:animal_spawner`）、Extraneous Firestarter（`naturesaura:furnace_heater`）、Armorer's Aid（`naturesaura:blast_furnace_booster`）、Energetic Aura Forge（`naturesaura:rf_converter`）、Winter's Calling（`naturesaura:snow_creator`）、Cloudshifter（`naturesaura:weather_changer`）はTFC環境では保留扱いにし、`[Disabled]` tooltipを追加して同名レシピを `neoforge:false` 条件で削除する。
+- Canopy Diminisher（`naturesaura:oak_generator`）、Disentangler of Mortals（`naturesaura:animal_generator`）、Altar of Birthing（`naturesaura:animal_spawner`）、Extraneous Firestarter（`naturesaura:furnace_heater`）、Armorer's Aid（`naturesaura:blast_furnace_booster`）、Winter's Calling（`naturesaura:snow_creator`）、Cloudshifter（`naturesaura:weather_changer`）はTFC環境では保留扱いにし、`[Disabled]` tooltipを追加して同名レシピを `neoforge:false` 条件で削除する。
+- Energetic Aura Forge（`naturesaura:rf_converter`）は本体のAura -> Forge Energy一方向変換を有効化する。multiblock、Aura閾値、変換速度、`auraToRFRatio` は本体仕様を維持し、レシピのsky ingot 2個だけTFAura sky ing 2枚へ置換する。redstone block、token 2種、conversion catalystは相当品がないため維持する。
 - Everlasting Spring（`naturesaura:spring`）はFluidHandlerとBucketPickupを本家同様のvanilla waterのまま維持する。TFC木製バケツ等の特殊容器へ差し替えるmixinは使わない。消費aura量とlava/cauldron/sponge/farmland ticket等の本家挙動も維持する。レシピの石材は `#tfaura:tfc_stone_bricks`、水素材は `tfc:fluid_content` の `#tfc:any_fresh_water` へ寄せる。
 
 ## Aura連携

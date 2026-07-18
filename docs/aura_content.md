@@ -175,8 +175,8 @@
 - **Energetic Aura Forge**
   - ID: `naturesaura:rf_converter`
   - コンテンツ概要: auraをForge Energyへ変換する。
-  - 対応状態: 無効化済み。
-  - TFC方針: TFC単体ではFE前提が薄いため保留する。`[Disabled]` tooltipを追加し、本体レシピを `neoforge:false` 条件で削除する。
+  - 対応状態: 対応済み。
+  - TFC方針: 本体のAura -> Forge Energy一方向変換、multiblock、Aura閾値・変換速度・config比率は維持する。レシピはredstone block、token 2種、conversion catalystに加え、sky ingot 2個をTFAura sky ingot 2枚へ置換する。`[Disabled]` tooltipは付与しない。
 
 - **Winter's Calling**
   - ID: `naturesaura:snow_creator`
