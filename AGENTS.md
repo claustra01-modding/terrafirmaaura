@@ -28,14 +28,14 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 ## 植物・木材
 
 - Nature's Aura由来植物として `aura_bloom`, `aura_cactus`, `aura_mushroom`, `crimson_aura_mushroom`, `warped_aura_mushroom` をTFC設置条件付きで追加する。
-- brilliant fiber供給用の弱光源装飾植物として `brilliant_grass` を追加する。ブロックIDは `tfaura:plant/brilliant_grass`、TFCハサミ（`#c:tools/shear`）で破壊した場合のみ `naturesaura:gold_fiber` を2〜4個ドロップする。BlockItem・creative tab項目・独自ドロップアイテムは作らない。
+- brilliant fiber供給用の弱光源装飾植物として `brilliant_grass` を追加する。ブロックIDは `tfaura:plant/brilliant_grass`、TFCの `ShortGrassBlock` をbluegrass相当の成長段階で継承し、`#tfc:natural_regrowing_plants` による密度制限付き自然拡散を行う。破壊lootはTFC short grassと同じalternatives構成とし、TFCハサミ（`#c:tools/shear`）なら `naturesaura:gold_fiber` 2〜4個、`#tfc:tools/sharp` なら `tfc:straw` 1個、それ以外は何も落とさない。BlockItem・creative tab項目・独自ドロップアイテムは作らない。
 - 植物の設置条件は、通常植物・キノコがTFC `BUSH_PLANTABLE_ON`、サボテン系が `DRY_PLANT_PLANTABLE_ON`、brilliant grassが `GRASS_PLANTABLE_ON`、苗木が `TREE_GROWS_ON`。
 - 植物・苗木のアイテムモデルは `minecraft:item/generated` を使い、block/crossモデルをitem parentにしない。
 - Nature's Aura由来の古代木として log, stripped log, wood, stripped wood, planks, lumber item, stairs, slab, fence, log fence, fence gate, leaves, sapling, potted sapling を追加する。
 - fallen leavesとtwigは追加しない。door, trapdoor, button, pressure plateも追加しない。TFCのblock entity/UI前提の木材（chest, barrel, sluice等）はblock entity type互換性を確認してから追加する。
-- ancient log/woodはTFCの `LogBlock` を使い、硬さ8.0、正しい工具要求、斧ストリップ、TFC一括伐採に対応する。sapling/worldgenで生成される幹は `branch_direction=down`、手置きlogはTFC同様 `none` のまま一括伐採対象外にする。
-- ancient saplingはTFAura専用 `tfaura:tick_counter` block entityを使う。TFC本体の `tfc:tick_counter` は有効ブロック検証に失敗するため使わない。
-- ancient/golden/decayed leavesはTFC葉同様に衝突判定なし。ancient leavesは原木距離更新と原木消失時decayをTFAura共通葉ブロックで行い、葉ブロックドロップはTFC同様ハサミまたはSilk Touch限定にする。
+- ancient woodのlog, stripped log, wood, stripped wood, planks, stairs, slab, fence, log fence, fence gateはTFCの `Wood.BlockType` factoryで生成し、各形状のTFCクラス・物性・専用BlockItemをそのまま利用する。log/woodは硬さ8.0、正しい工具要求、斧ストリップ、TFC一括伐採に対応する。sapling/worldgenで生成される幹は `branch_direction=down`、手置きlogはTFC同様 `none` のまま一括伐採対象外にする。
+- ancient saplingは `TFCSaplingBlock` 派生とTFCのsapling用BlockItemを使い、block entityのみTFAura専用 `tfaura:tick_counter` とする。TFC本体の `tfc:tick_counter` は有効ブロック検証に失敗するため使わない。
+- ancient/golden/decayed leavesは `TFCLeavesBlock` 派生とし、距離10の支持判定、fluidlogging、葉内の移動減速、季節粒子、衝突判定なしをTFCから継承する。fallen leaves/twig supplierは持たせない。ancient/golden leavesはTFC本体の原木距離更新と原木消失時decayを使い、葉ブロックドロップはTFC同様ハサミまたはSilk Touch限定にする。
 - golden leavesはTFAura独自ブロック `tfaura:wood/leaves/golden` として実装する。Nature's Aura本体仕様に合わせ、stage 0〜3、stage 2以降の隣接葉伝播、stage 3の金色粒子、stage 3時のみ75%で `naturesaura:gold_leaf` をドロップする。
 - decayed leavesはTFAura独自ブロック `tfaura:wood/leaves/decayed` として実装し、Nature's Aura本体同様ランダムtickで空気へ消える。
 - `naturesaura:gold_fiber` によるgolden leaves変換対象はTFC/ArborFirmaCraft/TFAura/Beneath系の葉。TFCは `#tfc:seasonal_leaves` / `#tfc:fruit_tree_leaves`、他modは `#tfaura:golden_leaves_convertible` と `minecraft:leaves` + namespace判定で拾う。

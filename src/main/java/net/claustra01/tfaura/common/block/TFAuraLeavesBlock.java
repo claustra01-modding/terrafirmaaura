@@ -1,72 +1,27 @@
 package net.claustra01.tfaura.common.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelAccessor;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.wood.TFCLeavesBlock;
+import net.dries007.tfc.util.registry.RegistryWood;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 
-public class TFAuraLeavesBlock extends LeavesBlock {
-    private static final int DECAY_DISTANCE = 7;
-
-    public TFAuraLeavesBlock(BlockBehaviour.Properties properties) {
-        super(properties);
+public class TFAuraLeavesBlock extends TFCLeavesBlock {
+    public TFAuraLeavesBlock(ExtendedProperties properties, RegistryWood wood) {
+        super(properties, wood, null, null);
     }
 
-    @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        level.scheduleTick(pos, this, 1);
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
-    }
-
-    @Override
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        decayIfUnsupported(state, level, pos, random);
-    }
-
-    protected boolean decayIfUnsupported(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        int distance = updateDistance(level, pos);
-        if (distance >= DECAY_DISTANCE && !state.getValue(PERSISTENT)) {
-            level.removeBlock(pos, false);
-            return true;
+    protected static BlockState copyLeafProperties(BlockState target, BlockState source) {
+        if (source.hasProperty(PERSISTENT)) {
+            target = target.setValue(PERSISTENT, source.getValue(PERSISTENT));
         }
-        if (distance != state.getValue(DISTANCE)) {
-            level.setBlock(pos, state.setValue(DISTANCE, distance), Block.UPDATE_CLIENTS | Block.UPDATE_NEIGHBORS);
+        IntegerProperty distance = distanceProperty(source);
+        if (distance != null) {
+            target = target.setValue(DISTANCE, Math.clamp(source.getValue(distance), 1, MAX_DECAY_DISTANCE));
         }
-        return false;
-    }
-
-    private int updateDistance(LevelAccessor level, BlockPos pos) {
-        int distance = DECAY_DISTANCE;
-        BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
-        for (Direction direction : Direction.values()) {
-            cursor.set(pos).move(direction);
-            distance = Math.min(distance, getDistance(level.getBlockState(cursor)) + 1);
-            if (distance == 1) {
-                break;
-            }
-        }
-        return distance;
-    }
-
-    private int getDistance(BlockState state) {
-        if (state.is(BlockTags.LOGS)) {
-            return 0;
-        }
-        if (state.is(BlockTags.LEAVES)) {
-            IntegerProperty property = distanceProperty(state);
-            if (property != null) {
-                return Math.min(DECAY_DISTANCE, state.getValue(property));
-            }
-        }
-        return DECAY_DISTANCE;
+        return target.setValue(FLUID, FLUID.keyForOrEmpty(source.getFluidState().getType()));
     }
 
     private static IntegerProperty distanceProperty(BlockState state) {

@@ -16,8 +16,6 @@ public class TFAuraPlantBlock extends TFCBushBlock {
     public static final VoxelShape TALL_FLOWER_SHAPE = box(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
     public static final VoxelShape MUSHROOM_SHAPE = box(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D);
     public static final VoxelShape CACTUS_SHAPE = box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
-    public static final VoxelShape GRASS_SHAPE = box(2.0D, 0.0D, 2.0D, 14.0D, 9.0D, 14.0D);
-
     private final TagKey<Block> plantableOn;
     private final VoxelShape shape;
 

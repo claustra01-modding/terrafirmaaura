@@ -6,11 +6,6 @@ import net.claustra01.tfaura.common.blockentity.TFAuraBlockEntities;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlocks;
-import net.dries007.tfc.common.blocks.wood.LogBlock;
-import net.dries007.tfc.common.blocks.wood.TFCFenceBlock;
-import net.dries007.tfc.common.blocks.wood.TFCFenceGateBlock;
-import net.dries007.tfc.common.blocks.wood.TFCSlabBlock;
-import net.dries007.tfc.common.blocks.wood.TFCStairBlock;
 import net.dries007.tfc.common.blocks.wood.Wood;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -20,7 +15,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -41,38 +35,38 @@ public final class TFAuraBlocks {
         () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.CRIMSON_STEM).lightLevel(state -> 3), CRIMSON_AURA_MUSHROOM_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
     public static final DeferredBlock<TFAuraPlantBlock> WARPED_AURA_MUSHROOM = register("plant/warped_aura_mushroom",
         () -> new TFAuraAuraPlantBlock(plantProperties(MapColor.WARPED_STEM).lightLevel(state -> 3), WARPED_AURA_MUSHROOM_PLANTABLE_ON, TFAuraPlantBlock.MUSHROOM_SHAPE, false));
-    public static final DeferredBlock<TFAuraPlantBlock> BRILLIANT_GRASS = registerNoItem("plant/brilliant_grass",
-        () -> new TFAuraPlantBlock(plantProperties(MapColor.GOLD).lightLevel(state -> 5), TFCTags.Blocks.GRASS_PLANTABLE_ON, TFAuraPlantBlock.GRASS_SHAPE));
+    public static final DeferredBlock<TFAuraBrilliantGrassBlock> BRILLIANT_GRASS = registerNoItem("plant/brilliant_grass",
+        () -> new TFAuraBrilliantGrassBlock(plantProperties(MapColor.GOLD).lightLevel(state -> 5).randomTicks()));
 
-    public static final DeferredBlock<Block> STRIPPED_ANCIENT_LOG = register("wood/stripped_log/ancient",
+    public static final DeferredBlock<Block> STRIPPED_ANCIENT_LOG = registerWood("wood/stripped_log/ancient", Wood.BlockType.STRIPPED_LOG,
         Wood.BlockType.STRIPPED_LOG.create(TFAuraWood.ANCIENT));
-    public static final DeferredBlock<Block> STRIPPED_ANCIENT_WOOD = register("wood/stripped_wood/ancient",
+    public static final DeferredBlock<Block> STRIPPED_ANCIENT_WOOD = registerWood("wood/stripped_wood/ancient", Wood.BlockType.STRIPPED_WOOD,
         Wood.BlockType.STRIPPED_WOOD.create(TFAuraWood.ANCIENT));
-    public static final DeferredBlock<LogBlock> ANCIENT_LOG = register("wood/log/ancient",
-        () -> new LogBlock(logProperties(TFAuraWood.ANCIENT), () -> STRIPPED_ANCIENT_LOG.get()));
-    public static final DeferredBlock<LogBlock> ANCIENT_WOOD = register("wood/wood/ancient",
-        () -> new LogBlock(logProperties(TFAuraWood.ANCIENT), () -> STRIPPED_ANCIENT_WOOD.get()));
-    public static final DeferredBlock<Block> ANCIENT_PLANKS = register("wood/planks/ancient",
-        () -> new Block(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).properties()));
-    public static final DeferredBlock<TFCStairBlock> ANCIENT_STAIRS = register("wood/stairs/ancient",
-        () -> new TFCStairBlock(() -> ANCIENT_PLANKS.get().defaultBlockState(), woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
-    public static final DeferredBlock<TFCSlabBlock> ANCIENT_SLAB = register("wood/slab/ancient",
-        () -> new TFCSlabBlock(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
-    public static final DeferredBlock<TFCFenceBlock> ANCIENT_FENCE = register("wood/fence/ancient",
-        () -> new TFCFenceBlock(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
-    public static final DeferredBlock<Block> ANCIENT_LOG_FENCE = register("wood/log_fence/ancient",
+    public static final DeferredBlock<Block> ANCIENT_LOG = registerWood("wood/log/ancient", Wood.BlockType.LOG,
+        Wood.BlockType.LOG.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<Block> ANCIENT_WOOD = registerWood("wood/wood/ancient", Wood.BlockType.WOOD,
+        Wood.BlockType.WOOD.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<Block> ANCIENT_PLANKS = registerWood("wood/planks/ancient", Wood.BlockType.PLANKS,
+        Wood.BlockType.PLANKS.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<Block> ANCIENT_STAIRS = registerWood("wood/stairs/ancient", Wood.BlockType.STAIRS,
+        Wood.BlockType.STAIRS.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<Block> ANCIENT_SLAB = registerWood("wood/slab/ancient", Wood.BlockType.SLAB,
+        Wood.BlockType.SLAB.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<Block> ANCIENT_FENCE = registerWood("wood/fence/ancient", Wood.BlockType.FENCE,
+        Wood.BlockType.FENCE.create(TFAuraWood.ANCIENT));
+    public static final DeferredBlock<Block> ANCIENT_LOG_FENCE = registerWood("wood/log_fence/ancient", Wood.BlockType.LOG_FENCE,
         Wood.BlockType.LOG_FENCE.create(TFAuraWood.ANCIENT));
-    public static final DeferredBlock<TFCFenceGateBlock> ANCIENT_FENCE_GATE = register("wood/fence_gate/ancient",
-        () -> new TFCFenceGateBlock(woodProperties(TFAuraWood.ANCIENT).strength(2.0F, 3.0F).flammableLikePlanks()));
+    public static final DeferredBlock<Block> ANCIENT_FENCE_GATE = registerWood("wood/fence_gate/ancient", Wood.BlockType.FENCE_GATE,
+        Wood.BlockType.FENCE_GATE.create(TFAuraWood.ANCIENT));
 
-    public static final DeferredBlock<TFAuraAncientLeavesBlock> ANCIENT_LEAVES = register("wood/leaves/ancient",
-        () -> new TFAuraAncientLeavesBlock(leavesProperties().properties()));
-    public static final DeferredBlock<TFAuraGoldenLeavesBlock> GOLDEN_LEAVES = register("wood/leaves/golden",
-        () -> new TFAuraGoldenLeavesBlock(leavesProperties().mapColor(MapColor.GOLD).strength(0.2F).properties()));
-    public static final DeferredBlock<TFAuraDecayedLeavesBlock> DECAYED_LEAVES = register("wood/leaves/decayed",
-        () -> new TFAuraDecayedLeavesBlock(leavesProperties().mapColor(MapColor.COLOR_GRAY).strength(0.2F).properties()));
+    public static final DeferredBlock<TFAuraAncientLeavesBlock> ANCIENT_LEAVES = registerWood("wood/leaves/ancient", Wood.BlockType.LEAVES,
+        () -> new TFAuraAncientLeavesBlock(leavesProperties(MapColor.PLANT, 0.5F), TFAuraWood.ANCIENT));
+    public static final DeferredBlock<TFAuraGoldenLeavesBlock> GOLDEN_LEAVES = registerWood("wood/leaves/golden", Wood.BlockType.LEAVES,
+        () -> new TFAuraGoldenLeavesBlock(leavesProperties(MapColor.GOLD, 0.2F), TFAuraWood.ANCIENT));
+    public static final DeferredBlock<TFAuraDecayedLeavesBlock> DECAYED_LEAVES = registerWood("wood/leaves/decayed", Wood.BlockType.LEAVES,
+        () -> new TFAuraDecayedLeavesBlock(leavesProperties(MapColor.COLOR_GRAY, 0.2F), TFAuraWood.ANCIENT));
 
-    public static final DeferredBlock<TFAuraSaplingBlock> ANCIENT_SAPLING = register("wood/sapling/ancient",
+    public static final DeferredBlock<TFAuraSaplingBlock> ANCIENT_SAPLING = registerWood("wood/sapling/ancient", Wood.BlockType.SAPLING,
         () -> new TFAuraSaplingBlock(TFAuraWood.ANCIENT.tree(), ExtendedProperties.of(MapColor.PLANT).noCollission().randomTicks().strength(0.0F).sound(SoundType.GRASS).flammableLikeLeaves().blockEntity(TFAuraBlockEntities.TICK_COUNTER), TFAuraWood.ANCIENT.ticksToGrow()));
     public static final DeferredBlock<FlowerPotBlock> POTTED_ANCIENT_SAPLING = registerNoItem("wood/potted_sapling/ancient",
         () -> new FlowerPotBlock(ANCIENT_SAPLING.get(), ExtendedProperties.of(Blocks.FLOWER_POT).noOcclusion().properties()));
@@ -89,35 +83,27 @@ public final class TFAuraBlocks {
             .noOcclusion();
     }
 
-    private static ExtendedProperties woodProperties(TFAuraWood wood) {
-        return ExtendedProperties.of(wood.woodColor())
-            .sound(SoundType.WOOD)
-            .instrument(NoteBlockInstrument.BASS);
-    }
-
-    private static ExtendedProperties logProperties(TFAuraWood wood) {
-        return woodProperties(wood)
-            .strength(8.0F)
-            .requiresCorrectToolForDrops()
-            .flammableLikeLogs();
-    }
-
-    private static ExtendedProperties leavesProperties() {
-        return ExtendedProperties.of(MapColor.PLANT)
-            .strength(0.5F)
+    private static ExtendedProperties leavesProperties(MapColor color, float strength) {
+        return ExtendedProperties.of()
+            .mapColor(color)
+            .strength(strength)
             .sound(SoundType.GRASS)
             .defaultInstrument()
             .randomTicks()
-            .noCollission()
             .noOcclusion()
             .isViewBlocking(TFCBlocks::never)
-            .isSuffocating(TFCBlocks::never)
             .flammableLikeLeaves();
     }
 
     private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> blockSupplier) {
         DeferredBlock<T> block = BLOCKS.register(name, blockSupplier);
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        return block;
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerWood(String name, Wood.BlockType type, Supplier<T> blockSupplier) {
+        DeferredBlock<T> block = BLOCKS.register(name, blockSupplier);
+        ITEMS.register(name, () -> type.createBlockItem(TFAuraWood.ANCIENT, new Item.Properties()).apply(block.get()));
         return block;
     }
 

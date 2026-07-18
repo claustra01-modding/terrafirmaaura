@@ -6,6 +6,8 @@ import de.ellpeck.naturesaura.blocks.BlockGoldenLeaves;
 import java.util.Set;
 import net.claustra01.tfaura.TerraFirmaAura;
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.util.registry.RegistryWood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,7 +17,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -27,8 +28,8 @@ public class TFAuraGoldenLeavesBlock extends TFAuraLeavesBlock {
     public static final TagKey<Block> CONVERTIBLE_LEAVES = BlockTags.create(TerraFirmaAura.id("golden_leaves_convertible"));
     private static final Set<String> CONVERTIBLE_NAMESPACES = Set.of("tfc", TerraFirmaAura.MOD_ID, "beneath", "arborfirmacraft", "arbor_firmacraft", "afc");
 
-    public TFAuraGoldenLeavesBlock(BlockBehaviour.Properties properties) {
-        super(properties);
+    public TFAuraGoldenLeavesBlock(ExtendedProperties properties, RegistryWood wood) {
+        super(properties, wood);
         registerDefaultState(defaultBlockState().setValue(STAGE, 0));
     }
 
@@ -39,9 +40,7 @@ public class TFAuraGoldenLeavesBlock extends TFAuraLeavesBlock {
         }
 
         if (!level.isClientSide) {
-            BlockState newState = TFAuraBlocks.GOLDEN_LEAVES.get().defaultBlockState()
-                .setValue(DISTANCE, oldState.hasProperty(DISTANCE) ? oldState.getValue(DISTANCE) : 1)
-                .setValue(PERSISTENT, oldState.hasProperty(PERSISTENT) && oldState.getValue(PERSISTENT));
+            BlockState newState = copyLeafProperties(TFAuraBlocks.GOLDEN_LEAVES.get().defaultBlockState(), oldState);
             level.setBlockAndUpdate(pos, newState);
         }
         return true;
@@ -63,6 +62,7 @@ public class TFAuraGoldenLeavesBlock extends TFAuraLeavesBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        super.animateTick(state, level, pos, random);
         if (state.getValue(STAGE) == HIGHEST_STAGE && random.nextFloat() >= 0.75F) {
             NaturesAuraAPI.instance().spawnMagicParticle(
                 pos.getX() + random.nextFloat(),
@@ -83,7 +83,8 @@ public class TFAuraGoldenLeavesBlock extends TFAuraLeavesBlock {
 
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        if (decayIfUnsupported(state, level, pos, random)) {
+        super.randomTick(state, level, pos, random);
+        if (!level.getBlockState(pos).is(this)) {
             return;
         }
         int stage = state.getValue(STAGE);
