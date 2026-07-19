@@ -10,7 +10,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - 現在値は `gradle.properties`、Gradle設定、Mod metadata、コード、同梱dataを正本とする。対象版の公式ソース、依存ソース、実JAR/dataを確認し、別バージョンの記憶でAPIやIDを決めない。
 - 公開API、registry、tag、dataを優先し、Mixin、accessor、reflectionは必要な対象へ限定する。任意依存のクラスを通常ロード経路から参照せず、client/server境界を守る。
 - 公開済みregistry ID、namespace、config keyはworld/data pack互換性を優先し、依頼なしに破壊的変更を行わない。他Mod namespaceは意図したtag追加・同名上書きだけに使う。
-- 依存JAR、展開物、比較画像、一時解析物は `.tmp/`、再利用する生成・検証処理は `tools/` または既存script置場に置く。生成物だけを手編集せず、入力と再生成手順を維持する。
+- 依存JAR、展開物、比較画像、解析・生成scriptは `.tmp/` に置いてGit管理外にする。仕様と生成済みresourceを正本とする。
 - JSONはBOMなしUTF-8とし、対象版のpack layoutに従う。`.gradle/`、`build/`、`run/`、`runs/`、IDE metadata、依存JARを変更対象へ含めない。
 - 変更前に既存の登録、命名、resource配置、生成scriptを確認し、依頼外のrename、format変更、依存・version更新、無関係な既存差分を混ぜない。
 - 通常は `./gradlew compileJava`、完了時は `./gradlew build` を実行する。dataは全JSONをparseし、optional連携・Mixin・client/server変更はMod有無と専用サーバー安全性を重点確認する。
