@@ -7,6 +7,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 - 仕様ファイル名は大文字の `AGENTS.md` に統一する。
 - 本書は現在維持すべき仕様を記録し、未実装事項は実装済みと区別する。挙動、対応版、依存、ID、登録、有効化条件、生成規則、検証手順の変更と同時に更新する。
 - READMEは利用者向けの短い概要とbuild入口に絞り、詳細仕様や作業履歴を重複掲載しない。
+- ライセンスと第三者表示はrootの `LICENCE` 一つへ統合し、別のlicense/noticeファイルを作らない。
 - 現在値は `gradle.properties`、Gradle設定、Mod metadata、コード、同梱dataを正本とする。対象版の公式ソース、依存ソース、実JAR/dataを確認し、別バージョンの記憶でAPIやIDを決めない。
 - 公開API、registry、tag、dataを優先し、Mixin、accessor、reflectionは必要な対象へ限定する。任意依存のクラスを通常ロード経路から参照せず、client/server境界を守る。
 - 公開済みregistry ID、namespace、config keyはworld/data pack互換性を優先し、依頼なしに破壊的変更を行わない。他Mod namespaceは意図したtag追加・同名上書きだけに使う。
