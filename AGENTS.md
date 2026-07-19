@@ -2,18 +2,28 @@
 
 NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
-## 運用ルール
+## 共通開発ルール
 
-- 仕様追加や実装変更があった場合、この `AGENTS.md` を随時更新する。
-- 形状の追加・削除、条件付き有効化の変更、ID規則の変更を優先して反映する。
-- 依存元Modの取得・展開・一時解析（jar展開や素材抽出など）は、リポジトリ直下の `.tmp` で行う。
-- 名前空間は `net.claustra01.tfaura`、mod名は `TerraFirmaAura` とする。
+- 仕様ファイル名は大文字の `AGENTS.md` に統一する。
+- 本書は現在維持すべき仕様を記録し、未実装事項は実装済みと区別する。挙動、対応版、依存、ID、登録、有効化条件、生成規則、検証手順の変更と同時に更新する。
+- READMEは利用者向けの短い概要とbuild入口に絞り、詳細仕様や作業履歴を重複掲載しない。
+- 現在値は `gradle.properties`、Gradle設定、Mod metadata、コード、同梱dataを正本とする。対象版の公式ソース、依存ソース、実JAR/dataを確認し、別バージョンの記憶でAPIやIDを決めない。
+- 公開API、registry、tag、dataを優先し、Mixin、accessor、reflectionは必要な対象へ限定する。任意依存のクラスを通常ロード経路から参照せず、client/server境界を守る。
+- 公開済みregistry ID、namespace、config keyはworld/data pack互換性を優先し、依頼なしに破壊的変更を行わない。他Mod namespaceは意図したtag追加・同名上書きだけに使う。
+- 依存JAR、展開物、比較画像、一時解析物は `.tmp/`、再利用する生成・検証処理は `tools/` または既存script置場に置く。生成物だけを手編集せず、入力と再生成手順を維持する。
+- JSONはBOMなしUTF-8とし、対象版のpack layoutに従う。`.gradle/`、`build/`、`run/`、`runs/`、IDE metadata、依存JARを変更対象へ含めない。
+- 変更前に既存の登録、命名、resource配置、生成scriptを確認し、依頼外のrename、format変更、依存・version更新、無関係な既存差分を混ぜない。
+- 通常は `./gradlew compileJava`、完了時は `./gradlew build` を実行する。dataは全JSONをparseし、optional連携・Mixin・client/server変更はMod有無と専用サーバー安全性を重点確認する。
+- Minecraftクライアントはランタイム確認が必要な変更または明示依頼時だけ起動し、未実施の検証は理由と範囲を報告する。
+
+## 関連文書
+
 - aura生成・消費コンテンツの一覧、概要、実装済み数値、未対応分の方針案は `docs/aura_content.md` に記録する。
 - 未対応分は対応状態を明記し、実装済み内容と混同しないようにする。
 
 ## 基本情報
 
-- mod idは `tfaura`、Javaパッケージは `net.claustra01.tfaura`。
+- mod名は `TerraFirmaAura`、mod idは `tfaura`、Javaパッケージは `net.claustra01.tfaura`。
 - TerraFirmaCraft、Nature's Aura、Patchouliを必須依存にする。
 - TFC More Items系（mod id `tfc_items`）は任意依存扱いにし、存在する場合のみ追加フォームを登録する。
 - TFAura creative tabのアイコンは ancient wood lumber（`tfaura:wood/lumber/ancient`）を使う。
