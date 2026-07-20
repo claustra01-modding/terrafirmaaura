@@ -109,7 +109,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 ## 生成スクリプト
 
 - ancient wood / brilliant grass系テクスチャ生成は `.tmp/generate_ancient_stripped_textures.py` で行う。TFC oakのstripped block/log系item、TFC lumber、TFC bluegrassを入力にする。
-- 金属テクスチャ生成は `.tmp/generate_tfaura_metal_textures.py` で行う。TFC-metallum-overhaul最新版に合わせ、通常版（平均色、輝度contrast 1.5、mapped下限0.05）と高輝度版（shadow/mid/highlight/glint、入力輝度contrast 1.45）を金属設定で選択できるようにする。Nature's Aura由来4金属はTFCフォームとの馴染みを優先し、すべて通常版を使う。
-- 基本フォームはTFC wrought ironを形状・輝度マスクとして使う。ingot pile用 `assets/tfc/textures/block/metal/smooth/<metal>.png` もTFC wrought iron smoothから同方式で生成する。sheet pile用アセットは追加しない。
+- 金属テクスチャ生成は `.tmp/generate_tfaura_metal_textures.py` で行う。元Modのingot全パレットを輝度順に並べ、TFC形状元の各ピクセルへ輝度順位で転写する。
+- 形状元は `infused_iron` がwrought iron、`tainted_gold` がgold、`sky` がblue steel、`depth` がblack steel。ingot pile用 `assets/tfc/textures/block/metal/smooth/<metal>.png` は同じ形状元を使い、元素材パレットの中央55%へ圧縮する。sheet pile用アセットは追加しない。
 - 金属登録・基本レシピ生成は `.tmp/generate_tfaura_metals.py`、装備・ツールの直接クラフトレシピと完成品heating生成は `.tmp/generate_tfaura_equipment_recipes.py` を使う。
 - Nature's Aura全レシピのTFC素材置換とitem size/weight生成は `.tmp/generate_naturesaura_tfc_compat.py` を使う。
