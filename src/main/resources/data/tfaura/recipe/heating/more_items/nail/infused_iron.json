@@ -1,1 +1,0 @@
-{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:heating","ingredient":{"tag":"c:nails/infused_iron"},"result_fluid":{"amount":5,"id":"tfc:metal/infused_iron"},"temperature":1535}

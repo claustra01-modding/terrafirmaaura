@@ -26,7 +26,6 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 - mod名は `TerraFirmaAura`、mod idは `tfaura`、Javaパッケージは `net.claustra01.tfaura`。
 - TerraFirmaCraft、Nature's Aura、Patchouliを必須依存にする。
-- TFC More Items系（mod id `tfc_items`）は任意依存扱いにし、存在する場合のみ追加フォームを登録する。
 - TFAura creative tabのアイコンは ancient wood lumber（`tfaura:wood/lumber/ancient`）を使う。
 
 ## ID規則
@@ -62,7 +61,7 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 - Nature's Aura由来金属はTFAura側の独自アイテムとして実装し、Nature's Aura本体インゴットをTFC金属フォームとしては使わない。
 - TFC風金属は `infused_iron`, `tainted_gold`, `sky`, `depth` を対象にする。
-- 標準フォームは ingot, double_ingot, sheet, double_sheet, rod。`tfc_items` がロードされている場合のみ foil, gear, heavy_sheet, nail, ring, rivet, screw, stamen, wire を登録する。
+- 金属フォームは ingot, double_ingot, sheet, double_sheet, rodのみ登録する。TFC More Items系の追加フォームには対応しない。
 - 溶融金属FluidはTFC名前空間の `tfc:metal/<metal>` / `tfc:metal/flowing_<metal>` として登録する。表示はTFC/Metallum同様 `FluidRendererExtension` で `tfc:block/molten_still` / `tfc:block/molten_flow` に金属色tintを乗せる。
 - Nature's Aura装備・ツールは元レシピを同名上書きし、TFAura金属のingotから通常の作業台で直接クラフトする。tool head/bladeやunfinished armorなどの中間素材は登録しない。
 - ツールは `#c:ingots/<metal>` + `#c:rods/wooden`、防具は `#c:ingots/<metal>` を使う。対象金属は `infused_iron`, `sky`, `depth` のみとする。
@@ -111,7 +110,6 @@ NeoForge 1.21.1環境のTerraFirmaCraftとNature's Aura連携を実装する。
 
 - ancient wood / brilliant grass系テクスチャ生成は `.tmp/generate_ancient_stripped_textures.py` で行う。TFC oakのstripped block/log系item、TFC lumber、TFC bluegrassを入力にする。
 - 金属テクスチャ生成は `.tmp/generate_tfaura_metal_textures.py` で行う。TFC-metallum-overhaul最新版に合わせ、通常版（平均色、輝度contrast 1.5、mapped下限0.05）と高輝度版（shadow/mid/highlight/glint、入力輝度contrast 1.45）を金属設定で選択できるようにする。Nature's Aura由来4金属はTFCフォームとの馴染みを優先し、すべて通常版を使う。
-- 基本フォームはTFC wrought iron、`tfc_items`追加フォームは最新版TFC-metallum-overhaulのcompressed iron生成物をTFC More Items由来の形状・輝度マスクとして使う。ingot pile用 `assets/tfc/textures/block/metal/smooth/<metal>.png` もTFC wrought iron smoothから同方式で生成する。sheet pile用アセットは追加しない。
+- 基本フォームはTFC wrought ironを形状・輝度マスクとして使う。ingot pile用 `assets/tfc/textures/block/metal/smooth/<metal>.png` もTFC wrought iron smoothから同方式で生成する。sheet pile用アセットは追加しない。
 - 金属登録・基本レシピ生成は `.tmp/generate_tfaura_metals.py`、装備・ツールの直接クラフトレシピと完成品heating生成は `.tmp/generate_tfaura_equipment_recipes.py` を使う。
 - Nature's Aura全レシピのTFC素材置換とitem size/weight生成は `.tmp/generate_naturesaura_tfc_compat.py` を使う。
-- More Items系フォームのテンプレートは、`tfc_items` jarが依存に入っていない現状では最新版参照repo（TFC-metallum-overhaul）の `compressed_iron` 生成済みテクスチャを形状・輝度ベースとして使う。

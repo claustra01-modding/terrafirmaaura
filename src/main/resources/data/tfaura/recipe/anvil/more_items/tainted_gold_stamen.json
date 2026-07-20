@@ -1,1 +1,0 @@
-{"neoforge:conditions":[{"type":"neoforge:mod_loaded","modid":"tfc_items"}],"type":"tfc:anvil","ingredient":{"tag":"c:rods/tainted_gold"},"result":{"id":"tfaura:metal/stamen/tainted_gold","count":2},"tier":1,"rules":["bend_last","draw_second_last","draw_third_last"]}
